@@ -4,11 +4,11 @@
 
 ## Useful links
 
-* [R `surveillance` function definition for `farringtonFlexible()`](https://github.com/r-forge/surveillance/blob/master/pkg/R/farringtonFlexible.R)
-	* [Official documentation](https://surveillance.r-forge.r-project.org/pkgdown/reference/farringtonFlexible.html)
-* [*Comparison of statistical algorithms for daily syndromic surveillance aberration detection*, Noufaily et al. 2019](https://academic.oup.com/bioinformatics/article/35/17/3110/5301313#151566659)
-* *An improved algorithm for outbreak detection in multiple surveillance systems*, Noufaily et al. 2012, doi:10.1002/sim.5595 - best detailed look at Farrington Flexible
-* *Monitoring count time series in R: Aberration detection in public health surveillance*, Salmon et al. 2016, [doi:10.18637/jss.v070.i10](https://doi.org/10.18637/jss.v070.i10) - paper on the `surveillance` package, explaining how Farrington Flexible is implemented
+- [R `surveillance` function definition for `farringtonFlexible()`](https://github.com/r-forge/surveillance/blob/master/pkg/R/farringtonFlexible.R)
+	- [Official documentation](https://surveillance.r-forge.r-project.org/pkgdown/reference/farringtonFlexible.html)
+- [*Comparison of statistical algorithms for daily syndromic surveillance aberration detection*, Noufaily et al. 2019](https://academic.oup.com/bioinformatics/article/35/17/3110/5301313#151566659)
+- *An improved algorithm for outbreak detection in multiple surveillance systems*, Noufaily et al. 2012, doi:10.1002/sim.5595 - best detailed look at Farrington Flexible
+- *Monitoring count time series in R: Aberration detection in public health surveillance*, Salmon et al. 2016, [doi:10.18637/jss.v070.i10](https://doi.org/10.18637/jss.v070.i10) - paper on the `surveillance` package, explaining how Farrington Flexible is implemented
 
 ## Motivation
 
@@ -24,9 +24,11 @@
 ## Method details
 
 - Since the events in question are often counts, they may be best modelled by the Poisson distribution. However, this restricts variance to be equal to the mean, and variance often exceeds the mean. Hence, this algorithm uses an *overdispersed* [[Poisson regression]] to model counts - ie. [[Negative Binomial regression]], a generalisation of Poisson regression.
+- The original method took seasonality into account by **only** using a window around the current week in previous years as training data - so the model is trained on a subset of each year. Noufaily et al.'s method uses all available historical data and takes seasonality into account with the 10-level factor.
+- Noufaily et al.'s method also excludes the last 26 weeks before $t_0$ (the week we're predicting over to detect an outbreak) in an attempt to make the method less sensitive to outbreaks that may have started recently.
 - In addition, there are a few extra terms:
 	- A time-varying trend is always fitted, regardless of if it is statistically significant
-	- To capture seasonality, a yearly 10-level factor, whose reference period comprises comparable weeks in previous years.
+	- To capture seasonality, a yearly 10-level factor, whose reference period comprises comparable weeks in previous years (as discussed above).
 - The functional form is as follows ($i$ refers to the week number):
 
 $$log(\mu_i) = \theta + \beta t_i + \delta_{j(t_i)}$$
@@ -36,9 +38,21 @@ Where:
 - $\theta$ is the constant/intercept
 - $\delta_{j(t_i)}$ is the 10-level 
 
+- [ ] write about exceedance algorithm⏫ 
+
 
 
 ## Example
 
-We'll use the example data provided in the R `surveillance` package which is [`salmonella.agona`](https://rdrr.io/cran/surveillance/man/salmonella.agona.html), a dataset containing reported number of cases of the Salmonella Agona serovar in the UK 1990-1995.
+We'll use the example data provided in the R `surveillance` package ([`salmonella.agona`](https://rdrr.io/cran/surveillance/man/salmonella.agona.html)), a dataset containing reported number of cases of the Salmonella Agona serovar in the UK 1990-1995.
 
+We need this to be in `sts` form to work with functions in the `surveillance` package. The `salmonella.agona` dataset is stored in `disProg` (the old data type used by `surveillance`), so we need to run:
+
+```r
+data("salmonella.agona")
+
+# Create the corresponding sts object from the old disProg object
+salm <- disProg2sts(salmonella.agona)
+```
+
+Next, we need to provide a list of controls to the `farringtonFlexible` function. To 
