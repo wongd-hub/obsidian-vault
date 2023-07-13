@@ -1,7 +1,10 @@
 [
-  "obsidian-git",
   "dataview",
   "obsidian-tagfolder",
   "obsidian-tasks-plugin",
-  "obsidian-linter"
+  "obsidian-linter",
+  "table-editor-obsidian",
+  "execute-code",
+  "gpt3-notes",
+  "obsidian-git"
 ]

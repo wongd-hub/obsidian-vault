@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "statistics/inferential-statistics/7. Inference for Proportions.md",
+                "file": "statistics/predictive-modelling/Farrington Flexible Aberration Detection.md",
                 "mode": "source",
                 "source": false
               }
@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 287.5
+    "width": 357.5
   },
   "right": {
     "id": "9278e0e4a1dae99f",
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "statistics/inferential-statistics/7. Inference for Proportions.md",
+                "file": "statistics/predictive-modelling/Farrington Flexible Aberration Detection.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "statistics/inferential-statistics/7. Inference for Proportions.md",
+                "file": "statistics/predictive-modelling/Farrington Flexible Aberration Detection.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,16 +134,24 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "statistics/inferential-statistics/7. Inference for Proportions.md"
+                "file": "statistics/predictive-modelling/Farrington Flexible Aberration Detection.md"
               }
             }
+          },
+          {
+            "id": "e1438512c693cdc4",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {}
+            }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 261.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -152,20 +160,29 @@
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
-      "command-palette:Open command palette": false
+      "command-palette:Open command palette": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "gpt3-notes:GPT-3 Notes": false
     }
   },
-  "active": "4a3cbdfd50d79040",
+  "active": "e1438512c693cdc4",
   "lastOpenFiles": [
-    "statistics/inferential-statistics/5. t-distribution and Comparing Two Means.md",
-    "statistics/predictive-modelling",
-    "statistics/inferential-statistics/6. ANOVA and Bootstrapping.md",
-    "statistics/inferential-statistics/4. Statistical Significance.md",
-    "statistics/inferential-statistics/3. Hypothesis Testing.md",
-    "statistics/inferential-statistics/2. Confidence Intervals.md",
-    "statistics/inferential-statistics/1. Central Limit Theorem and Sampling Distributions.md",
-    "statistics/inferential-statistics/7. Inference for Proportions.md",
     "statistics/inferential-statistics/8. Simulation based inference for proportions and chi-square testing.md",
+    "statistics/inferential-statistics/7. Inference for Proportions.md",
+    "statistics/predictive-modelling/Farrington Flexible Aberration Detection.md",
+    "web-dev-programming/javascript/typescript/1. Introduction.md",
+    "statistics/inferential-statistics/1. Central Limit Theorem and Sampling Distributions.md",
+    "statistics/inferential-statistics/2. Confidence Intervals.md",
+    "statistics/inferential-statistics/3. Hypothesis Testing.md",
+    "statistics/inferential-statistics/4. Statistical Significance.md",
+    "statistics/inferential-statistics/5. t-distribution and Comparing Two Means.md",
+    "statistics/inferential-statistics/6. ANOVA and Bootstrapping.md",
+    "web-dev-programming/javascript/typescript",
+    "web-dev-programming/javascript",
+    "web-dev-programming",
+    "data-science-programming/r",
+    "data-science-programming/python",
+    "statistics/predictive-modelling",
     "statistics/course-frontmatters/(Course) Inferential Statistics - Coursera.md",
     "Untitled.md",
     "data-science-programming",
@@ -183,9 +200,6 @@
     "statistics/inferential-statistics/attachments",
     "Pasted image 20230711151941.png.md",
     "img",
-    "statistics/course-frontmatters",
-    "data-science/Untitled.md",
-    "statistics/inferential-statistics",
-    "statistics"
+    "data-science/Untitled.md"
   ]
 }
