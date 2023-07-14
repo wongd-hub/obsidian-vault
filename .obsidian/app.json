@@ -1,4 +1,7 @@
 {
   "attachmentFolderPath": "./attachments",
-  "alwaysUpdateLinks": true
+  "alwaysUpdateLinks": true,
+  "spellcheckLanguages": [
+    "en-AU"
+  ]
 }
