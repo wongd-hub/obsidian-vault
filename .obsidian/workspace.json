@@ -18,8 +18,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "ea0072169a2f64bb",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "conflict-files-obsidian-git.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -94,7 +107,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "statistics/introduction-to-statistical-learning/1. Introduction.md",
+                "file": "conflict-files-obsidian-git.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +124,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "statistics/introduction-to-statistical-learning/1. Introduction.md",
+                "file": "conflict-files-obsidian-git.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +147,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "statistics/introduction-to-statistical-learning/1. Introduction.md"
+                "file": "conflict-files-obsidian-git.md"
               }
             }
           },
@@ -165,11 +178,12 @@
       "gpt3-notes:GPT-3 Notes": false
     }
   },
-  "active": "e1438512c693cdc4",
+  "active": "ea0072169a2f64bb",
   "lastOpenFiles": [
+    "statistics/introduction-to-statistical-learning/1. Introduction.md",
+    "conflict-files-obsidian-git.md",
     "statistics/introduction-to-statistical-learning/2. Statistical Learning.md",
     "statistics/inferential-statistics/1. Central Limit Theorem and Sampling Distributions.md",
-    "statistics/introduction-to-statistical-learning/1. Introduction.md",
     "statistics/course-frontmatters/(Textbook) Introduction to Statistical Learning.md",
     "statistics/predictive-modelling/Farrington Flexible Aberration Detection.md",
     "statistics/introduction-to-statistical-learning",
