@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "statistics/predictive-modelling/Farrington Flexible Aberration Detection.md",
+                "file": "statistics/introduction-to-statistical-learning/1. Introduction.md",
                 "mode": "source",
                 "source": false
               }
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "statistics/predictive-modelling/Farrington Flexible Aberration Detection.md",
+                "file": "statistics/introduction-to-statistical-learning/1. Introduction.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "statistics/predictive-modelling/Farrington Flexible Aberration Detection.md",
+                "file": "statistics/introduction-to-statistical-learning/1. Introduction.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "statistics/predictive-modelling/Farrington Flexible Aberration Detection.md"
+                "file": "statistics/introduction-to-statistical-learning/1. Introduction.md"
               }
             }
           },
@@ -165,14 +165,17 @@
       "gpt3-notes:GPT-3 Notes": false
     }
   },
-  "active": "04223b0096f8800a",
+  "active": "4a3cbdfd50d79040",
   "lastOpenFiles": [
-    "statistics/inferential-statistics/6. ANOVA and Bootstrapping.md",
+    "statistics/inferential-statistics/1. Central Limit Theorem and Sampling Distributions.md",
+    "statistics/introduction-to-statistical-learning/1. Introduction.md",
+    "statistics/course-frontmatters/(Textbook) Introduction to Statistical Learning.md",
     "statistics/predictive-modelling/Farrington Flexible Aberration Detection.md",
+    "statistics/introduction-to-statistical-learning",
+    "statistics/inferential-statistics/6. ANOVA and Bootstrapping.md",
     "web-dev-programming/javascript/typescript/1. Introduction.md",
     "statistics/inferential-statistics/8. Simulation based inference for proportions and chi-square testing.md",
     "statistics/inferential-statistics/7. Inference for Proportions.md",
-    "statistics/inferential-statistics/1. Central Limit Theorem and Sampling Distributions.md",
     "statistics/inferential-statistics/2. Confidence Intervals.md",
     "statistics/inferential-statistics/3. Hypothesis Testing.md",
     "statistics/inferential-statistics/4. Statistical Significance.md",
@@ -199,7 +202,6 @@
     "data-science/inferential-statistics/Untitled",
     "statistics/inferential-statistics/attachments",
     "Pasted image 20230711151941.png.md",
-    "img",
     "data-science/Untitled.md"
   ]
 }
