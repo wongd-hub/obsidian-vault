@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "12461cef1079c1b4",
+        "id": "a35c7fcdf2fe4536",
         "type": "tabs",
         "children": [
           {
-            "id": "4a3cbdfd50d79040",
+            "id": "24984bd8c3cfc8be",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 357.5
+    "width": 268.5
   },
   "right": {
     "id": "9278e0e4a1dae99f",
@@ -151,7 +151,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 261.5
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -165,17 +165,17 @@
       "gpt3-notes:GPT-3 Notes": false
     }
   },
-  "active": "4a3cbdfd50d79040",
+  "active": "24984bd8c3cfc8be",
   "lastOpenFiles": [
-    "statistics/inferential-statistics/1. Central Limit Theorem and Sampling Distributions.md",
-    "statistics/introduction-to-statistical-learning/1. Introduction.md",
-    "statistics/course-frontmatters/(Textbook) Introduction to Statistical Learning.md",
     "statistics/predictive-modelling/Farrington Flexible Aberration Detection.md",
+    "statistics/introduction-to-statistical-learning/1. Introduction.md",
     "statistics/introduction-to-statistical-learning",
+    "statistics/course-frontmatters/(Textbook) Introduction to Statistical Learning.md",
     "statistics/inferential-statistics/6. ANOVA and Bootstrapping.md",
     "web-dev-programming/javascript/typescript/1. Introduction.md",
     "statistics/inferential-statistics/8. Simulation based inference for proportions and chi-square testing.md",
     "statistics/inferential-statistics/7. Inference for Proportions.md",
+    "statistics/inferential-statistics/1. Central Limit Theorem and Sampling Distributions.md",
     "statistics/inferential-statistics/2. Confidence Intervals.md",
     "statistics/inferential-statistics/3. Hypothesis Testing.md",
     "statistics/inferential-statistics/4. Statistical Significance.md",
