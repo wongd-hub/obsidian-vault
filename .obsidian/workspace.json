@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "statistics/introduction-to-statistical-learning/1. Introduction.md",
+                "file": "statistics/introduction-to-statistical-learning/2. Statistical Learning.md",
                 "mode": "source",
                 "source": false
               }
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "statistics/introduction-to-statistical-learning/1. Introduction.md",
+                "file": "statistics/introduction-to-statistical-learning/2. Statistical Learning.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "statistics/introduction-to-statistical-learning/1. Introduction.md",
+                "file": "statistics/introduction-to-statistical-learning/2. Statistical Learning.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "statistics/introduction-to-statistical-learning/1. Introduction.md"
+                "file": "statistics/introduction-to-statistical-learning/2. Statistical Learning.md"
               }
             }
           },
@@ -167,8 +167,8 @@
   },
   "active": "24984bd8c3cfc8be",
   "lastOpenFiles": [
-    "statistics/introduction-to-statistical-learning/2. Statistical Learning.md",
     "statistics/introduction-to-statistical-learning/1. Introduction.md",
+    "statistics/introduction-to-statistical-learning/2. Statistical Learning.md",
     "statistics/inferential-statistics/5. t-distribution and Comparing Two Means.md",
     "statistics/predictive-modelling/Farrington Flexible Aberration Detection.md",
     "statistics/inferential-statistics/1. Central Limit Theorem and Sampling Distributions.md",
