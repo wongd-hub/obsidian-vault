@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "conflict-files-obsidian-git.md",
+                "file": "statistics/introduction-to-statistical-learning/2. Statistical Learning.md",
                 "mode": "source",
                 "source": false
               }
@@ -107,7 +107,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "conflict-files-obsidian-git.md",
+                "file": "statistics/introduction-to-statistical-learning/2. Statistical Learning.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -124,7 +124,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "conflict-files-obsidian-git.md",
+                "file": "statistics/introduction-to-statistical-learning/2. Statistical Learning.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -147,7 +147,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "conflict-files-obsidian-git.md"
+                "file": "statistics/introduction-to-statistical-learning/2. Statistical Learning.md"
               }
             }
           },
@@ -180,8 +180,8 @@
   },
   "active": "ea0072169a2f64bb",
   "lastOpenFiles": [
-    "statistics/introduction-to-statistical-learning/1. Introduction.md",
     "conflict-files-obsidian-git.md",
+    "statistics/introduction-to-statistical-learning/1. Introduction.md",
     "statistics/introduction-to-statistical-learning/2. Statistical Learning.md",
     "statistics/inferential-statistics/1. Central Limit Theorem and Sampling Distributions.md",
     "statistics/course-frontmatters/(Textbook) Introduction to Statistical Learning.md",
