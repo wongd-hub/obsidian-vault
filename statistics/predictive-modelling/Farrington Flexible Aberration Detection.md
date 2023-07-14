@@ -36,11 +36,16 @@ $$log(\mu_i) = \theta + \beta t_i + \delta_{j(t_i)}$$
 Where:
 - $\mu_i$ is the mean (expected) count, with variance $\phi\mu_i$
 - $\theta$ is the constant/intercept
-- $\delta_{j(t_i)}$ is the 10-level 
+- $\delta_{j(t_i)}$ is the 10-level factor
 
-- [ ] write about exceedance algorithm⏫ 
-
-
+- An exceedance score is then calculated finding the distance between the observed count in the target week and what was modelled for it with the quasi-Poisson regression. 
+- The count is flagged as an outbreak if this distance is larger than the distance between the modelled mean and the 95% (or $\alpha$%) upper threshold of the Negative Binomial quantile.
+	- In other words the exceedance score, $X$ is calculated; and if $X \ge 1$ then the week's count is flagged as an outbreak, where:
+$$X = \frac{y_0 - \hat{\mu_0}}{U-\hat{\mu_0}}$$
+Where:
+- $y_0$ is the observed count in the target week
+- $\hat{\mu_0}$ is the expected count, calculated as $\hat{\mu_0} = \hat\theta + \hat{\beta}t_0+\delta_{j(t_0)}$
+- $U$ is the upper threshold, the $100(1-\alpha)\%$ Negative Binomial quantile
 
 ## Example
 
@@ -55,4 +60,18 @@ data("salmonella.agona")
 salm <- disProg2sts(salmonella.agona)
 ```
 
-Next, we need to provide a list of controls to the `farringtonFlexible` function. To 
+- [ ] Todo: graph this data using ggplot
+
+Next, we need to provide a list of controls to the `farringtonFlexible` function. See below for the 'Flexible' controls (as per Salmon et al. 2016):
+
+```r
+controls <- list(
+  range = 282:312, # date/week range to operate within
+  noPeriods = 10, # 10 seasonal factors
+  b = 4, w = 3, # controls relating to the window size TODO: FIGURE THIS OUT
+  weightsThreshold = 2.58,
+  pastWeeksNotIncluded = 26, # not including last few weeks to dampen impact of recent epidemics
+  pThresholdTrend = 1,
+  alpha = 0.1
+)
+```

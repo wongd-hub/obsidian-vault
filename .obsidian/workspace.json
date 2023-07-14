@@ -11,8 +11,12 @@
             "id": "4a3cbdfd50d79040",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "statistics/predictive-modelling/Farrington Flexible Aberration Detection.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -90,6 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "statistics/predictive-modelling/Farrington Flexible Aberration Detection.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -106,6 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "statistics/predictive-modelling/Farrington Flexible Aberration Detection.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -127,7 +133,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "statistics/predictive-modelling/Farrington Flexible Aberration Detection.md"
+              }
             }
           },
           {
@@ -157,8 +165,9 @@
       "gpt3-notes:GPT-3 Notes": false
     }
   },
-  "active": "4a3cbdfd50d79040",
+  "active": "04223b0096f8800a",
   "lastOpenFiles": [
+    "statistics/inferential-statistics/6. ANOVA and Bootstrapping.md",
     "statistics/predictive-modelling/Farrington Flexible Aberration Detection.md",
     "web-dev-programming/javascript/typescript/1. Introduction.md",
     "statistics/inferential-statistics/8. Simulation based inference for proportions and chi-square testing.md",
@@ -168,7 +177,6 @@
     "statistics/inferential-statistics/3. Hypothesis Testing.md",
     "statistics/inferential-statistics/4. Statistical Significance.md",
     "statistics/inferential-statistics/5. t-distribution and Comparing Two Means.md",
-    "statistics/inferential-statistics/6. ANOVA and Bootstrapping.md",
     "web-dev-programming/javascript/typescript",
     "web-dev-programming/javascript",
     "web-dev-programming",
