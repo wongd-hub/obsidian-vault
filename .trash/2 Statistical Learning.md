@@ -7,10 +7,7 @@ $$Y = f(x) + \epsilon$$
 - Where $f$ is a fixed but unknown function of $X_1, \dots, X_p$, and $\epsilon$ is a random error term (independent of $X$ and mean 0). $f$ represents the systematic information that $X$ provides about $Y$, and is something we need to estimate based on observed points.
 - Statistical learning refers to the set of approaches for estimating $f$
 
-### 2.1.1 Why Estimate f?
 
-- Estimating $f$ can be useful for both *prediction* (predicting the response for future observations - prediction accuracy is paramount here) and *inference* (better understanding the relationship between the inputs and the output - interpretability is the priority).
-- There is often a [[#2.1.3 The Trade-Off Between Prediction Accuracy and Model Interpretability|trade-off between prediction power and interpretability]] (e.g. more complex models may provide better predictions, but are harder to interpret)
 
 ### 2.1.2 How Do We Estimate f?
 
