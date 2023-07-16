@@ -34,7 +34,7 @@ We have a few pieces of information given to us:
 - $\hat{p} = 0.33$
 - $SE = 0.014$
 
-Now to our [[2. Confidence Intervals|confidence interval]]: $\text{point estimate} \pm z^*SE \to 0.33 \pm 1.96 \times 0.014 \to \left(0.303, 0.357\right)$. The critical value is still 1.96 because this point estimate is still nearly-normal.
+Now to our [[2 Confidence Intervals|confidence interval]]: $\text{point estimate} \pm z^*SE \to 0.33 \pm 1.96 \times 0.014 \to \left(0.303, 0.357\right)$. The critical value is still 1.96 because this point estimate is still nearly-normal.
 
 So we are 95% confident that between 30.3% and 35.7% of college graduates watch the Daily Show.
 
@@ -74,7 +74,7 @@ If there were truly no difference between the average body fat percentage of mal
 
 ### Decision Errors
 
-[[3. Hypothesis Testing|Hypothesis tests]] are not flawless. Just like in court cases, innocent people can be incarcerated and guilty people can walk free. However, we have the tools necessary to quantify how often we make errors in statistics.
+[[3 Hypothesis Testing|Hypothesis tests]] are not flawless. Just like in court cases, innocent people can be incarcerated and guilty people can walk free. However, we have the tools necessary to quantify how often we make errors in statistics.
 
 There are two main types of errors in hypothesis testing, the Type I and Type II errors - whose rates are inversely proportional.
 
@@ -131,7 +131,7 @@ Our goal is to keep both $\alpha$ and $\beta$ low at the same time; but we know 
 
 ## Significance vs. Confidence Level
 
-So far we've looked at two inferential techniques; [[2. Confidence Intervals|confidence intervals]] and [[3. Hypothesis Testing|hypothesis testing]]. These methods are related and therefore it makes sense that their results will agree with each other if the confidence and significance levels are set the same.
+So far we've looked at two inferential techniques; [[2 Confidence Intervals|confidence intervals]] and [[3 Hypothesis Testing|hypothesis testing]]. These methods are related and therefore it makes sense that their results will agree with each other if the confidence and significance levels are set the same.
 
 Broadly speaking, we can say that the significance level and confidence level are complements of each other.
 

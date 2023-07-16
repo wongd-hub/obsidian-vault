@@ -13,8 +13,8 @@
 
 We'll build upon the tools we've used to perform inference on numerical variables in this unit. We'll be looking at:
 
-- Comparing multiple means against one another (two, or more using [[6. ANOVA and Bootstrapping#ANOVA|ANOVA]])
-- A technique that allows one to create confidence intervals for estimators that do not adhere to the Central Limit Theorem (such as the median): [[6. ANOVA and Bootstrapping#Bootstrapping|bootstrapping]]
+- Comparing multiple means against one another (two, or more using [[6 ANOVA and Bootstrapping#ANOVA|ANOVA]])
+- A technique that allows one to create confidence intervals for estimators that do not adhere to the Central Limit Theorem (such as the median): [[6 ANOVA and Bootstrapping#Bootstrapping|bootstrapping]]
     - This is a simulation-based method which does not impose as rigid conditions as using the CLT does
     - We'll learn how to bootstrap as well as when to bootstrap
 - Working with small samples (n < 30) - spoiler: the t-distribution is used here
@@ -43,7 +43,7 @@ What if your sample size is small?
 ![[Pasted image 20230712220139.png]]
 
 - This means that observations are more likely to fall greater than 2 standard deviations from the mean
-	- As a result, [[2. Confidence Intervals|confidence intervals]] constructed from the t-distribution will be wider, and therefore more conservative than those from the normal distribution
+	- As a result, [[2 Confidence Intervals|confidence intervals]] constructed from the t-distribution will be wider, and therefore more conservative than those from the normal distribution
 
 i.e. these thick tails are helpful for mitigating the effect of a less reliable estimate of the standard error of the sampling distribution.
 
@@ -77,7 +77,7 @@ pt(-2, df = 10) * 2
 #> 0.0733880347707404
 ```
 
-If we were considering a [[3. Hypothesis Testing|hypothesis test]] with a test statistic of 2, under which of these scenarios would you reject a null hypothesis at the 5% level?
+If we were considering a [[3 Hypothesis Testing|hypothesis test]] with a test statistic of 2, under which of these scenarios would you reject a null hypothesis at the 5% level?
 
 1. You would reject the null hypothesis
 

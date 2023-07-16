@@ -43,7 +43,7 @@ So to conduct this hypothesis test we:
 
 - Set up an alternative hypothesis ($H_A$) that represents our research question/what we're testing for
 
-- Conducted a hypothesis test under the assumption that the null hypothesis is true using either a simulation approach (as in the example) or theoretical methods (this course will focus on methods that rely on the [[1. Central Limit Theorem and Sampling Distributions|CLT]])
+- Conducted a hypothesis test under the assumption that the null hypothesis is true using either a simulation approach (as in the example) or theoretical methods (this course will focus on methods that rely on the [[1 Central Limit Theorem and Sampling Distributions|CLT]])
 
 - If the test results show that the data do not provide convincing evidence for the alternative hypothesis we stick with the null hypothesis, and vice versa.
 
@@ -60,7 +60,7 @@ The skeptic will not abandon $H_0$ unless the evidence in favour of $H_A$ is so 
 
 #### Example
 
-Earlier we calculated a 95% [[2. Confidence Intervals|confidence interval]] for the average number of exclusive relationships college students have been in to be 2.7 to 3.7. Based on this confidence interval, do these data support the hypothesis that college students on average have been in more than three exclusive relationships?
+Earlier we calculated a 95% [[2 Confidence Intervals|confidence interval]] for the average number of exclusive relationships college students have been in to be 2.7 to 3.7. Based on this confidence interval, do these data support the hypothesis that college students on average have been in more than three exclusive relationships?
 
 Here, $H_0$: $\mu = 3$ & $H_A$: $\mu \gt 3$
 
@@ -111,7 +111,7 @@ In the context of our previous example, the p-value would instead be equal to $P
 
 ### Recap
 
-Recall that asserting that the shape of the sampling distribution is normal means that we're using the [[1. Central Limit Theorem and Sampling Distributions|CLT]]; so the same conditions for CLT will apply here.
+Recall that asserting that the shape of the sampling distribution is normal means that we're using the [[1 Central Limit Theorem and Sampling Distributions|CLT]]; so the same conditions for CLT will apply here.
 
 ![[Pasted image 20230711233136.png]]
 

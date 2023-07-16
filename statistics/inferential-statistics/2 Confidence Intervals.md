@@ -20,7 +20,7 @@ Based on one sample's mean, $\bar{x}$, how do we figure out what the range of pl
 
 - Our sample mean is indeed our best guess of what the population parameter is, so our interval will be centred around this value.
 
-- From the [[1. Central Limit Theorem and Sampling Distributions|CLT]], we know $\bar{x}$ is distributed nearly normally, and the centre of the distribution is the unknown population mean.
+- From the [[1 Central Limit Theorem and Sampling Distributions|CLT]], we know $\bar{x}$ is distributed nearly normally, and the centre of the distribution is the unknown population mean.
 
 - The final thing to note here is the 68%, 95%, 99.7% rule. This tells us that roughly 95% of sample means will be within 2 standard deviations of the population mean. So for 95% of random samples, the true population is going to be within 2 standard errors of that sample's mean.
 
@@ -66,7 +66,7 @@ qnorm((1 - 0.95) / 2)
 #> -1.95996398454005
 ```
 
-There are some conditions that must be satisfied for this formula to apply, but since this confidence interval is based on the [[1. Central Limit Theorem and Sampling Distributions|CLT]], the conditions are the exact same:
+There are some conditions that must be satisfied for this formula to apply, but since this confidence interval is based on the [[1 Central Limit Theorem and Sampling Distributions|CLT]], the conditions are the exact same:
 
 1. Independence
 

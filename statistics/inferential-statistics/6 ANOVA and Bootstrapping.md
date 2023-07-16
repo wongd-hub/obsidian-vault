@@ -14,7 +14,7 @@ The data we'll consider here comes from the General Social Survey. We're interes
 
 ![[Pasted image 20230712222908.png]]
 
-We can use Analysis of Variance (ANOVA) to analyse 3+ means (whereas the [[5. t-distribution and Comparing Two Means|t-distribution]] only works for comparing two means).
+We can use Analysis of Variance (ANOVA) to analyse 3+ means (whereas the [[5 t-distribution and Comparing Two Means|t-distribution]] only works for comparing two means).
 
 - Note that, as with the t-test, comparison groups with means that are further apart and with tighter variances will be more likely to be found as statistically significantly different from the other means.
 
@@ -121,7 +121,7 @@ pf(21.735, 3, 791, lower.tail = FALSE)
 
 ### Conclusion
 
-As with previous [[3. Hypothesis Testing|hypothesis tests]]:
+As with previous [[3 Hypothesis Testing|hypothesis tests]]:
 
 - If the p-value is small/less than $\alpha$, we reject the null hypothesis and conclude that there is evidence that at least one pair of means is different (although we can't tell which one at this stage).
 - Otherwise if the p-value is larger than $\alpha$, we do not reject the null hypothesis and conclude that there is no evidence that any pair of means is statistically significantly different from the other.

@@ -10,14 +10,14 @@ This course covers commonly used statistical inference methods for numerical and
 * Week 1
     * Administrative tasks, no course content
 * Week 2
-	* [[1. Central Limit Theorem and Sampling Distributions]]
-	* [[2. Confidence Intervals]]
+	* [[1 Central Limit Theorem and Sampling Distributions]]
+	* [[2 Confidence Intervals]]
 * Week 3
-	* [[3. Hypothesis Testing]]
-	* [[4. Statistical Significance]]
+	* [[3 Hypothesis Testing]]
+	* [[4 Statistical Significance]]
 * Week 4
-	* [[5. t-distribution and Comparing Two Means]]
-	* [[6. ANOVA and Bootstrapping]]
+	* [[5 t-distribution and Comparing Two Means]]
+	* [[6 ANOVA and Bootstrapping]]
 * Week 5
-	* [[7. Inference for Proportions]]
-	* [[8. Simulation based inference for proportions and chi-square testing]]
+	* [[7 Inference for Proportions]]
+	* [[8 Simulation based inference for proportions and chi-square testing]]
