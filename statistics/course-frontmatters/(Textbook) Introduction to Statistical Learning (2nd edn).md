@@ -1,4 +1,4 @@
-#textbook-intro-to-statistical-learning 
+#textbook-intro-to-statistical-learning #moc
 
 Authors: Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani | [Website](https://www.statlearning.com/)
 
