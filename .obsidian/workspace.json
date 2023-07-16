@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "statistics/introduction-to-statistical-learning/1. Introduction.md",
+                "file": "statistics/introduction-to-statistical-learning/2. Statistical Learning.md",
                 "mode": "source",
                 "source": false
               }
@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 357.5
+    "width": 200
   },
   "right": {
     "id": "9278e0e4a1dae99f",
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "statistics/introduction-to-statistical-learning/1. Introduction.md",
+                "file": "statistics/introduction-to-statistical-learning/2. Statistical Learning.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "statistics/introduction-to-statistical-learning/1. Introduction.md",
+                "file": "statistics/introduction-to-statistical-learning/2. Statistical Learning.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "statistics/introduction-to-statistical-learning/1. Introduction.md"
+                "file": "statistics/introduction-to-statistical-learning/2. Statistical Learning.md"
               }
             }
           },
@@ -151,7 +151,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 261.5
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -167,8 +167,9 @@
   },
   "active": "4a3cbdfd50d79040",
   "lastOpenFiles": [
-    "statistics/introduction-to-statistical-learning/1. Introduction.md",
+    "overfit.md",
     "statistics/introduction-to-statistical-learning/2. Statistical Learning.md",
+    "statistics/introduction-to-statistical-learning/1. Introduction.md",
     "conflict-files-obsidian-git.md",
     "statistics/inferential-statistics/1. Central Limit Theorem and Sampling Distributions.md",
     "statistics/course-frontmatters/(Textbook) Introduction to Statistical Learning.md",
