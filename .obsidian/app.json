@@ -3,5 +3,7 @@
   "alwaysUpdateLinks": true,
   "spellcheckLanguages": [
     "en-AU"
-  ]
+  ],
+  "tabSize": 2,
+  "useTab": false
 }
