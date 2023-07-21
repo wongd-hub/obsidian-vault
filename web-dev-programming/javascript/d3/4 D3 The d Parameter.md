@@ -26,4 +26,15 @@ There are multiple possible methods that can be used in this manner:
 | `.insert()`   | Works the same as the `.append()` method, except you can specify another element to insert before |     
 | `.remove()`   | Removes selected element from the DOM |
 
+`.attr()` and `.style()` take two parameters; the attribute/style rule you want to change, and what you want to change it to. .e.g:
 
+```js
+let dataset = [55,34,23,22,59];  
+  
+let svg = d3
+  .select("body")  
+  .selectAll("div")  
+  .data(dataset)  
+  .attr("id", function(d,i) { return "element-" + i; })  
+  .style("width", function(d) { return d + "px"; });
+```
