@@ -25,7 +25,7 @@ jobs:
       - name: Copy obsidian-vault contents to obsidian-quartz/content
         run: |
           ls -l obsidian-quartz/content
-          rsync -av --progress obsidian-vault/ obsidian-quartz/content/ --exclude notes --exclude private --exclude templates --exclude _index.md --exclude .trash --exclude --exclude .github --exclude .gitignore --exclude README.md --exclude .git
+          rsync -av --progress obsidian-vault/ obsidian-quartz/content/ --exclude notes --exclude private --exclude templates --exclude _index.md --exclude .trash --exclude .github --exclude .gitignore --exclude README.md --exclude .git
           ls -l obsidian-quartz/content
 
       - name: Commit and push to repo 2
