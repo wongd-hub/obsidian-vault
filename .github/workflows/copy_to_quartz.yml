@@ -24,11 +24,14 @@ jobs:
 
       - name: Copy obsidian-vault contents to obsidian-quartz/content
         run: |
-          ls -l obsidian-quartz/content
           rsync -av --progress obsidian-vault/ obsidian-quartz/content/ --exclude notes --exclude private --exclude templates --exclude _index.md --exclude .trash --exclude .github --exclude .gitignore --exclude README.md --exclude .git
-          ls -l obsidian-quartz/content
+          
+      - name: Add front-matter to each .md file
+        run: |
+          cd obsidian-quartz/content
+          find . -name "*.md" -exec sh -c 'grep -q "^---" "$1" || echo "---\ntitle: \"$(basename "${1%.*}")\"\n---\n$(cat "$1")" > "$1"' _ {} \;
 
-      - name: Commit and push to repo 2
+      - name: Commit and push to obsidian-quartz
         run: |
           cd obsidian-quartz
           git config --global user.email "actions@github.com"
