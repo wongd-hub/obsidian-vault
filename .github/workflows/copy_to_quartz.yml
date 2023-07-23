@@ -11,12 +11,12 @@ jobs:
 
     steps:
       - name: Checkout obsidian-vault
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           path: obsidian-vault
 
       - name: Checkout obsidian-quartz
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: wongd-hub/obsidian-quartz
           path: obsidian-quartz
@@ -24,7 +24,7 @@ jobs:
 
       - name: Copy obsidian-vault contents to obsidian-quartz/content
         run: |
-          rsync -av --progress obsidian-vault/ obsidian-quartz/content/ --exclude notes --exclude private --exclude templates --exclude _index.md
+          rsync -av --progress obsidian-vault/ obsidian-quartz/content/ --exclude notes --exclude private --exclude templates --exclude _index.md --exclude .trash --exclude --exclude .github --exclude .gitignore --exclude README.md
 
       - name: Commit and push to repo 2
         run: |
