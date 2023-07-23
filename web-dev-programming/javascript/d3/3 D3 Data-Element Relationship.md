@@ -29,3 +29,4 @@ d3
 
 In the code block above, there are no `p` elements within the div of class `d3_fruit`. `.join()` realises this and creates 3 `p` elements to match the `3` elements in the `fruits` dataset.
 
+This can also be addressed using `.enter()` and `.append()`.
