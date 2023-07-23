@@ -12,7 +12,7 @@
 
 ## Motivation
 
-- Need a way to detect outbreaks quickly and accurately to allow time to respond
+- We need a way to detect outbreaks quickly and accurately to allow time to respond
 - Initial motivation was detection of bio-terrorist attacks but this can be used in any environment that requires swift and automated anomaly detection.
 
 ## Method summary
