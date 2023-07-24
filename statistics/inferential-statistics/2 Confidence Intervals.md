@@ -1,13 +1,5 @@
 #coursera-inferential-stats #statistics 
 
-## Table of contents
-
-1. [[#Introduction]]
-2. [[#Confidence interval (for a mean)]]
-3. [[#Accuracy vs. Precision (of confidence intervals)]]
-4. [[#Required sample size for Margin of Error]]
-5. [[#CI (for the mean) examples]]
-
 ## Introduction
 
 A plausible range of values for the population parameter is called a confidence interval.

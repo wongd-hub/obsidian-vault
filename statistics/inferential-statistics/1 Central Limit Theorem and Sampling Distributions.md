@@ -1,13 +1,5 @@
 #coursera-inferential-stats #statistics
 
-## Table of contents
-
-1. [[#Introduction]]
-2. [[#Sampling variability and Central Limit Theorem]]
-	1. [[#Sampling distribution]]
-	2. [[#The Central Limit Theorem]]
-3. [[#CLT (for the mean), further examples]]
-
 ## Introduction
 
 We start this course off with an example study by Pew Research which quotes:

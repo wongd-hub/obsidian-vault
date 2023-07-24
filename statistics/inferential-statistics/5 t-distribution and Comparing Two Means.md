@@ -1,14 +1,5 @@
 #coursera-inferential-stats #statistics 
 
-## Table of contents
-
-1. [[#Inference for Numerical Variables]]
-2. [[#t-distribution]]
-3. [[#Inference for a mean]]
-4. [[#Inference for comparing two independent means]]
-5. [[#Inference for comparing two paired means]]
-6. [[#Power]]
-
 ## Inference for Numerical Variables
 
 We'll build upon the tools we've used to perform inference on numerical variables in this unit. We'll be looking at:

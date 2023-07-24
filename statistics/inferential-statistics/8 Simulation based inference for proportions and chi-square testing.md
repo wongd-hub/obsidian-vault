@@ -1,13 +1,5 @@
 #coursera-inferential-stats #statistics 
 
-## Table of contents
-
-1. [[#Small sample proportions]]
-2. [[#Examples]]
-3. [[#Comparing two small sample proportions]]
-4. [[#Chi-Square GOF test]]
-5. [[#Chi-Square independence test]]
-
 ## Small sample proportions
 
 If the success-failure ≥ 10 rule (i.e. the Sample Size/Skew condition) is not satisfied, then the sampling distribution for your given scenario will not adhere to the CLT, reducing the effectiveness of CLT-based methods.

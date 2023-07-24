@@ -1,14 +1,5 @@
 #coursera-inferential-stats #statistics 
 
-## Table of contents
-
-1. [[#Introduction]]
-2. [[#Sampling variability and CLT for proportions]]
-3. [[#Confidence interval for a proportion]]
-4. [[#Hypothesis test for a proportion]]
-5. [[#Estimating the difference between two proportions]]
-6. [[#Hypothesis test for comparing two proportions]]
-
 ## Introduction
 
 This week we discuss categorical variables where the metric of interest is a proportion (e.g. proportion of elderly patients taking antihypertensive medications that experience falls).

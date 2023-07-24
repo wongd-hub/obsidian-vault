@@ -1,11 +1,5 @@
 #coursera-inferential-stats  #statistics
 
-## Table of contents
-
-1. [[#Another Introduction to Inference]]
-2. [[#Hypothesis Testing (for a mean)]]
-3. [[#HT for the mean examples]]
-
 ## Another Introduction to Inference
 
 We'll start with an example of a first-principles hypothesis test that the last course ended on.

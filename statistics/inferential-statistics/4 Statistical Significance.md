@@ -1,12 +1,5 @@
 #coursera-inferential-stats #statistics 
 
-## Table of contents
-
-1. [[#Inference for Other Estimators]]
-2. [[#Decision Errors]]
-3. [[#Significance vs. Confidence Level]]
-4. [[#Statistical vs. Practical Significance]]]
-
 ## Inference for Other Estimators
 
 The methods we've been learning can be applied to other estimators that have nearly-normal sampling distributions, which are listed here:
