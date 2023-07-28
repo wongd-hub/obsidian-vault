@@ -24,7 +24,7 @@ There are multiple possible methods that can be used in this manner:
 | `.property()` | Used to set an element property                                                                   |     
 | `.text()`     | Updates selected element text content                                                             |     
 | `.html()`     | Sets the inner HTML to the specified value on all selected elements                               |     
-| `.append()`   | Appends a new element as the last child of the selected element                                   |     
+| `.append()`   | Appends a new element as the last child of each of the selected element/s                                   |     
 | `.insert()`   | Works the same as the `.append()` method, except you can specify another element to insert before |     
 | `.remove()`   | Removes selected element from the DOM |
 
