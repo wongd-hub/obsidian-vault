@@ -1,4 +1,4 @@
-#excess-mortality #regression
+#excess-mortality #regression #farrington-flexible
 
 - A quasi-Poisson regression-based aberration detection algorithm
 
