@@ -1,4 +1,4 @@
-#codecademy-d3
+#course_codecademy-d3 #d3
 
 * D3 stands for Data-Driven Documents and has risen to popularity due to various reasons:
 	* D3 has revolutionised the way that data visualisation is built natively on the web. It did this by associating data with elements on a website's [[Document Object Model]].

@@ -1,2 +1,2 @@
-#codecademy-typescript
+#course_codecademy-typescript #typescript
 

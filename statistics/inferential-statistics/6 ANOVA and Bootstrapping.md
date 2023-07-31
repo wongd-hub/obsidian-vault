@@ -1,4 +1,4 @@
-#coursera-inferential-stats #statistics
+#course_coursera-inferential-stats #statistics
 
 ## Comparing more than two means
 

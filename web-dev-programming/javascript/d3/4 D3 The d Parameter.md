@@ -1,4 +1,4 @@
-#codecademy-d3 
+#course_codecademy-d3 #d3
 
 After we've [[2 D3 Selection|selected]] our elements and [[3 D3 Data-Element Relationship|bound]] our dataset to them, we'll need to find a way to properly display that data in those elements.
 
@@ -36,7 +36,11 @@ let dataset = [55,34,23,22,59];
 let svg = d3
   .select("body")  
   .selectAll("div")  
-  .data(dataset)  
-  .attr("id", function(d,i) { return "element-" + i; })  
-  .style("width", function(d) { return d + "px"; });
+    .data(dataset)  
+    .attr("id", function(d,i) { return "element-" + i; })  
+    .style("width", function(d) { return d + "px"; });
 ```
+
+## Further sources
+
+* [D3.js Tutorial – Data Visualization for Beginners](https://www.freecodecamp.org/news/d3js-tutorial-data-visualization-for-beginners/#data-driven)
