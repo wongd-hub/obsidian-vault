@@ -1,9 +1,7 @@
 {
   "attachmentFolderPath": "./",
   "alwaysUpdateLinks": true,
-  "spellcheckLanguages": [
-    "en-AU"
-  ],
+  "spellcheckLanguages": null,
   "tabSize": 2,
   "useTab": false
 }
