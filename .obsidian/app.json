@@ -3,5 +3,6 @@
   "alwaysUpdateLinks": true,
   "spellcheckLanguages": null,
   "tabSize": 2,
-  "useTab": false
+  "useTab": false,
+  "newFileLocation": "current"
 }
