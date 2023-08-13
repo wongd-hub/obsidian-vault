@@ -11,4 +11,20 @@
 
 ## What is TypeScript?
 
+- TypeScript code is a *superset* of JavaScript code, so it contains everything that JavaScript has, but adds more functionality to it.
+- We write TypeScript code in files with the `.ts` extension. This is then run through the TypeScript *transpiler* which checks the codes for errors and code that doesn't adhere to TypeScript's standards.
+  - Assuming everything goes to plan, the transpiler will output a JavaScript version of the file (`.js`).
+  - You can run the transpiler with the `tsc` bash command on a `.ts` script. Run the resulting `.js` file with the `node filehere.js` command.
+
+For example, this gets compiled to…
+
+```ts
+let firstName = 'Anders';
+```
+
+… this (which is exactly the same since there's no TypeScript-specific code here)
+
+```js
+let firstName = 'Anders';
+```
 
