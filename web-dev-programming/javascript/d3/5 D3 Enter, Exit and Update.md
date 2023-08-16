@@ -28,8 +28,7 @@ circle.enter()
 ```
 
 - If we have excess DOM elements, then we get an *exit selection* in addition to the *update selection*.
-
-  - In this case, we often want to delete the excess elements since we don't need them. Calling `.exit()` will return the *exit selection* and calling `.remove()` will remove the excess elements.
+    - In this case, we often want to delete the excess elements since we don't need them. Calling `.exit()` will return the *exit selection* and calling `.remove()` will remove the excess elements.
 
 ## Join
 
