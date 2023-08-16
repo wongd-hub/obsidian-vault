@@ -23,7 +23,7 @@ Website: davidsilver.uk/teaching
 > - **Make a humanoid robot walk** - rewards for making progress
 
 ## The reinforcement learning problem
-### The reward
+### Reward
 
 - A *reward* $R_t$ - a scalar feedback signal. Indicates how well the agent is doing at step *t*. The agent's job is to maximise cumulative reward.
     - The overarching goal is to select actions to maximise total future reward.
@@ -107,16 +107,46 @@ $$S_t=f\left(H_t\right)$$
 > [!tip] Example: The rat
 > ![[Pasted image 20230816163729.png]]
 > Take for example, a rat in an experiment. Say that it experiences the three sequences shown above.
->- If you were the agent and used the last three items in the sequence as your state, you would believe that you were about to be electrocuted.
->- If you chose your agent state to be the count of lights, bells, and levers, you'd expect that the cheese would appear.
->- If your agent state was the complete sequence we wouldn't know what happens next.
->
->==What we believe will happen next depends on our representation of state.==
+> - If you were the agent and used the last three items in the sequence as your state, you would believe that you were about to be electrocuted.
+> - If you chose your agent state to be the count of lights, bells, and levers, you'd expect that the cheese would appear.
+> - If your agent state was the complete sequence we wouldn't know what happens next.
+> 
+> ==What we believe will happen next depends on our representation of state.==
 
-- A *fully observable environment* is one in which the agent *directly observes* the environment state.
+- A *fully observable environment* is one in which the agent *directly observes* the environment state. This is a nice case, the agent sees all the numbers in the environment state. i.e. $O_t=S_t^a=S_t^e$.
+    - When we have this situation, this is formally a *Markov decision process* (MDP). We'll discuss this in the next lecture and the majority of the course.
+
+- *Partial observability* describes the situation in which the agent *indirectly observes* the environment. e.g. A robot with camera vision isn't told its absolute location, and poker agent only observes the public cards.
+    - Now the agent must construct its own state representation $S_t^a$ that's distinct from the environment state. There are many ways to do this:
+        - **Complete history** - naive approach: $S_t^a=H_t$
+        - **Build beliefs of the environment state** - the Bayesian approach. Don't know what's happening in the environment but going to keep a probability distribution over where we think we are in the environment: $S_t^a = (\mathbb{P}[S_t^e = s^1], \ldots, \mathbb{P}[S_t^e = s^n])$; i.e. we have some probability that the state is $s^1$ or $s^n$, etc
+        - Recurrent neural network: $S_t^a = \sigma(S_{t-1}^aW_s + O_tW_o)$, take a linear combination of the agent state you had at the last time step with your current observation to generate your new state
+    - Formally, this is a *partially observable Markov decision process* (POMDP)
+## Inside an RL agent
+
+So far we've only talked about the problem, not yet how to solve the problem.
+
+- An RL agent may include one or more of these components:
+
+    - **Policy**: the agent's *behaviour function*
+        - A map from state to action. 
+        - Deterministic policy: If we're in some state $s$, we have some policy $\pi$ that then determines our action from that state, i.e. $a=\pi(s)$.
+        - Stochastic policy: Can be useful, helps us make random, exploratory decisions, i.e. $\pi(a|s)=\mathbb{P}[A=a|S=s]$
+
+    - **Value function**: how good is each state and/or action. How much reward do I expect to get if we take this action in this particular state.
+        - A prediction of expected future reward. This is how we choose between action 1 and action 2.
+        - Since the value will depend on what your action/policy is, we index by $\pi$: $v_\pi(s)=\mathbb{E}_\pi\left[R_t+\gamma R_{t+1} + \gamma^2 R_{t+2} + \dots|S_t=s\right]$
+            - i.e. The value function tells us how much total reward we expect going into the future. We can also have discounting ($\gamma$) that goes into the future which helps us care more about immediate rewards if we want.
+
+    - **Model**: agent's subjective representation of the how the environment works. Its sometimes useful to learn the behaviour of the environment and use that model of the environment to help figure out what to do next.
+        - It is optional to do this; a lot of the course we'll focus on model-free methods that don't use a model at all.
+        - The way we normally do this is to have two parts of the model:
+            - Transition model: $\mathscr{P}$ predicts the next state, predicts the dynamics of the environment. If this were the helicopter, this is the function that would predict where the helicopter would be next given its current state.
+                - Formally this is represented in a state transition model that is the probability of being in the next state given the previous state and action: $\mathscr{P}^a_{ss'}=\mathbb{P}[S'=s'|S=s,A=a]$
+            - Reward model: $\mathscr{R}$ predicts the next (immediate) reward. The helicopter can learn that if its in this position then it's not crashing and therefore doing well.
+                - Formally this is represented as a function that tells us the expected reward given the previous state and action: $\mathscr{R}^a_s=\mathbb{E}[R | S=s,A=a]$
 
 
 
 
-
-
+up to 1:08:07

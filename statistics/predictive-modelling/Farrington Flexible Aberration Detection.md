@@ -1,7 +1,6 @@
 #excess-mortality #regression #farrington-flexible
 
-- A quasi-Poisson regression-based aberration detection algorithm
-
+A quasi-Poisson regression-based aberration detection algorithm
 ## Useful links
 
 - [R `surveillance` function definition for `farringtonFlexible()`](https://github.com/r-forge/surveillance/blob/master/pkg/R/farringtonFlexible.R)
@@ -24,13 +23,13 @@
 ## Method details
 
 - Since the events in question are often counts, they may be best modelled by the Poisson distribution. However, this restricts variance to be equal to the mean, and variance often exceeds the mean. Hence, this algorithm uses an *overdispersed* [[Poisson regression]] to model counts - ie. [[Negative Binomial regression]], a generalisation of Poisson regression.
-- The original method took seasonality into account by **only** using a window around the current week in previous years as training data - so the model is trained on a subset of each year. Noufaily et al.'s method uses all available historical data and takes seasonality into account with the 10-level factor.
+- The original method took seasonality into account by **only** using a window around the current week in previous years as training data - so the model is trained on a subset of each year. Noufaily et al.'s method uses all available historical data and takes seasonality into account with a 10-level factor.
 - Noufaily et al.'s method also excludes the last 26 weeks before $t_0$ (the week we're predicting over to detect an outbreak) in an attempt to make the method less sensitive to outbreaks that may have started recently.
 - In addition, there are a few extra terms:
 	- A time-varying trend is always fitted, regardless of if it is statistically significant
-	- To capture seasonality, a yearly 10-level factor, whose reference period comprises comparable weeks in previous years (as discussed above).
+	- To capture seasonality, a yearly 10-level factor, whose reference period comprises comparable weeks in previous years (as discussed above)
 - The functional form is as follows ($i$ refers to the week number):
-
+ 
 $$log(\mu_i) = \theta + \beta t_i + \delta_{j(t_i)}$$
 
 Where:
@@ -47,6 +46,8 @@ Where:
 - $\hat{\mu_0}$ is the expected count, calculated as $\hat{\mu_0} = \hat\theta + \hat{\beta}t_0+\delta_{j(t_0)}$
 - $U$ is the upper threshold, the $100(1-\alpha)\%$ Negative Binomial quantile
 
+> [!info]
+> Another approach to compute *U* uses the 2/3 power transformation of the Poisson distribution which is approximately normal.
 ## Example
 
 We'll use the example data provided in the R `surveillance` package ([`salmonella.agona`](https://rdrr.io/cran/surveillance/man/salmonella.agona.html)), a dataset containing reported number of cases of the Salmonella Agona serovar in the UK 1990-1995.
