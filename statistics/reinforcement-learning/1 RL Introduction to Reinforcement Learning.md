@@ -2,3 +2,5 @@
 
 Website: davidsilver.uk/teaching
 
+## About reinforcement learning
+
