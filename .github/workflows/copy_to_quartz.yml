@@ -22,14 +22,16 @@ jobs:
           path: obsidian-quartz
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
 
+      - name: Clear obsidian-quartz content folder
+        run: rm -rf obsidian-quartz/content/*
+      
       - name: Copy obsidian-vault contents to obsidian-quartz/content
-        run: |
-          rsync -av --protect-args --progress obsidian-vault/ obsidian-quartz/content/ --exclude notes --exclude private --exclude _index.md --exclude .trash --exclude .github --exclude .gitignore --exclude README.md --exclude .git
-          
+        run: cp -R obsidian-vault/. obsidian-quartz/content/
+
       - name: Add front-matter to each .md file
         run: |
           cd obsidian-quartz/content
-          find . -name "*.md" -exec sh -c 'grep -q "^---" "$1" || echo "---\ntitle: \"$(basename "${1%.*}")\"\n---\n$(cat "$1")" > "$1"' _ {} \;
+          find . -name "*.md" -exec sh -c 'if [ "$(head -n 1 "$1")" != "---" ]; then echo "---\ntitle: \"$(basename "${1%.*}")\"\n---\n$(cat "$1")" > "$1"; fi' _ {} \;
 
       - name: Commit and push to obsidian-quartz if there's a change
         run: |
