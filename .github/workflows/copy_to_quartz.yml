@@ -26,7 +26,9 @@ jobs:
         run: rm -rf obsidian-quartz/content/*
       
       - name: Copy obsidian-vault contents to obsidian-quartz/content
-        run: cp -R obsidian-vault/. obsidian-quartz/content/
+        run: |
+          cp -R obsidian-vault/. obsidian-quartz/content/
+          rm -rf .github .trash .gitignore README.md
 
       - name: Add front-matter to each .md file
         run: |
