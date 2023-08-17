@@ -1,3 +1,7 @@
+---
+title: "7 Inference for Proportions"
+---
+
 #course_coursera-inferential-stats #statistics 
 
 ## Introduction

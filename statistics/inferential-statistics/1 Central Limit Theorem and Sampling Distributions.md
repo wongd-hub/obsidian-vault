@@ -1,3 +1,7 @@
+---
+title: "1 Central Limit Theorem and Sampling Distributions"
+---
+
 #course_coursera-inferential-stats #statistics
 
 ## Introduction

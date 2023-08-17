@@ -1,3 +1,7 @@
+---
+title: "6 ANOVA and Bootstrapping"
+---
+
 #course_coursera-inferential-stats #statistics
 
 ## Comparing more than two means
