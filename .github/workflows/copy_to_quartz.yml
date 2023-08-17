@@ -31,12 +31,17 @@ jobs:
           cd obsidian-quartz/content
           find . -name "*.md" -exec sh -c 'grep -q "^---" "$1" || echo "---\ntitle: \"$(basename "${1%.*}")\"\n---\n$(cat "$1")" > "$1"' _ {} \;
 
-      - name: Commit and push to obsidian-quartz
+      - name: Commit and push to obsidian-quartz if there's a change
         run: |
           cd obsidian-quartz
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Action"
           git remote set-url origin https://${{ secrets.REPO_ACCESS_TOKEN }}@github.com/wongd-hub/obsidian-quartz.git
           git add .
+          if git diff --quiet HEAD; then
+            echo "No changes detected. Nothing to commit."
+            exit 0
+          fi
           git commit -m "Sync obsidian-vault to obsidian-quartz"
           git push
+  
