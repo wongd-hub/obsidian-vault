@@ -1,4 +1,4 @@
-#course_google-deepmind-reinforcement-learning #reinforcement-learning 
+#course_google-deepmind-reinforcement-learning #moc 
 
 Instructor: David Silver | [Link to course](https://www.youtube.com/watch?v=2pWv7GOvuf0) | [Website](davidsilver.uk/teaching)
 ## Recommended textbooks
