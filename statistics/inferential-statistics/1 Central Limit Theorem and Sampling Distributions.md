@@ -1,9 +1,4 @@
----
-title: "1 Central Limit Theorem and Sampling Distributions"
----
-
 #course_coursera-inferential-stats #statistics
-
 ## Introduction
 
 We start this course off with an example study by Pew Research which quotes:

@@ -1,7 +1,3 @@
----
-title: "(Textbook) Introduction to Statistical Learning (2nd edn)"
----
-
 #textbook_intro-to-statistical-learning #moc
 
 Authors: Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani | [Website](https://www.statlearning.com/)

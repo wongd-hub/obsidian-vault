@@ -1,9 +1,4 @@
----
-title: "7 Inference for Proportions"
----
-
 #course_coursera-inferential-stats #statistics 
-
 ## Introduction
 
 This week we discuss categorical variables where the metric of interest is a proportion (e.g. proportion of elderly patients taking antihypertensive medications that experience falls).

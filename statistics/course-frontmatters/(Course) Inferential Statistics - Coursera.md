@@ -1,7 +1,3 @@
----
-title: "(Course) Inferential Statistics - Coursera"
----
-
 #course_coursera-inferential-stats #moc
 
 Instructor: Mine Çetinkaya-Rundel | [Link to course](https://www.coursera.org/learn/inferential-statistics-intro)
