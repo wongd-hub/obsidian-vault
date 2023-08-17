@@ -1,5 +1,4 @@
 #course_coursera-inferential-stats #statistics 
-
 ## Small sample proportions
 
 If the success-failure ≥ 10 rule (i.e. the Sample Size/Skew condition) is not satisfied, then the sampling distribution for your given scenario will not adhere to the CLT, reducing the effectiveness of CLT-based methods.

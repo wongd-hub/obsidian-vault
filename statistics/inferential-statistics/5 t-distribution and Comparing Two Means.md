@@ -1,9 +1,4 @@
----
-title: "5 t-distribution and Comparing Two Means"
----
-
 #course_coursera-inferential-stats #statistics 
-
 ## Inference for Numerical Variables
 
 We'll build upon the tools we've used to perform inference on numerical variables in this unit. We'll be looking at:

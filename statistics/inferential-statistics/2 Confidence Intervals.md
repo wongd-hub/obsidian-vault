@@ -1,9 +1,4 @@
----
-title: "2 Confidence Intervals"
----
-
 #course_coursera-inferential-stats #statistics 
-
 ## Introduction
 
 A plausible range of values for the population parameter is called a confidence interval.

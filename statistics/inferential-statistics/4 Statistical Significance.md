@@ -1,9 +1,4 @@
----
-title: "4 Statistical Significance"
----
-
 #course_coursera-inferential-stats #statistics 
-
 ## Inference for Other Estimators
 
 The methods we've been learning can be applied to other estimators that have nearly-normal sampling distributions, which are listed here:

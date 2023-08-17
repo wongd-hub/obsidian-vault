@@ -1,9 +1,4 @@
----
-title: "3 Hypothesis Testing"
----
-
 #course_coursera-inferential-stats  #statistics
-
 ## Another Introduction to Inference
 
 We'll start with an example of a first-principles hypothesis test that the last course ended on.
