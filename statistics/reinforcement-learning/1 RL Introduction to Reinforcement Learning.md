@@ -1,6 +1,4 @@
 #course_google-deepmind-reinforcement-learning #reinforcement-learning
-
-Website: davidsilver.uk/teaching
 ## About reinforcement learning
 
 ![[Pasted image 20230816152354.png]]
@@ -146,7 +144,89 @@ So far we've only talked about the problem, not yet how to solve the problem.
             - Reward model: $\mathscr{R}$ predicts the next (immediate) reward. The helicopter can learn that if its in this position then it's not crashing and therefore doing well.
                 - Formally this is represented as a function that tells us the expected reward given the previous state and action: $\mathscr{R}^a_s=\mathbb{E}[R | S=s,A=a]$
 
+> [!tip] Example: Maze
+> ![[Pasted image 20230817132701.png]]
+> 
+> Here the goal is to navigate this maze as quickly as possible, so:
+> - Reward: -1 for every second taken
+> - Actions: N, E, S, W
+> - State: Agent's location in the maze
+> 
+> An example of policy is like the following. For each state (location), there is an action (the arrows) mapped to it ($\pi(s)$)
+> ![[Pasted image 20230817133000.png]]
+> 
+> An example of the value function ($v_\pi(s)$), each state has an expected future value attached. You can see that its -1 at the last state since it knows there's only one more step to the end. It can also go higher such as -24 when you've taken a wrong turn and now it'll take you more steps to get to the end.
+> ![[Pasted image 20230817133131.png]]
+> 
+> An example of the agent's model of reality is like the following. The agent is trying to build its own map of the environment. The map represents the transition model ($\mathscr{P}^a_{ss'}$) and the numbers in each grid represent the expected reward in each state ($\mathscr{R}^a_s$)
+> ![[Pasted image 20230817133422.png]]
 
+### Categorising RL agents
 
+- We can build a taxonomy of RL agents based on which of the key components our agent contains. The fundamental distinction in RL is whether the algorithm is model-free or model-based. Second to this is whether a policy or value function is used.
+    - **Value based**: stores a value function. If it's got a value function then the policy is implicit - it just needs to pick actions greedily with respect to the value function
+    - **Policy based**: we explicitly represent the policy and the agent will work on creating a policy that maximises the total cumulative reward - without ever storing an explicit value function
+    - **Actor Critic**: stores both the policy and the value function
+    - **Model Free**: has a policy and/or value; we do not try to explicitly understand the dynamics of the environment, we just see our policy/rewards and base our actions on that
+    - **Model Based**: first step is to build a dynamics model of how the environment works. Has a policy and/or value
 
-up to 1:08:07
+![[Pasted image 20230817134408.png]]
+
+## Problems within reinforcement learning
+
+### Learning and planning
+
+Two fundamental problems in sequential decision making
+
+- Reinforcement Learning:
+    - The environment is unknown; the agent isn't told how the environment works.
+    - The agent interacts with the environment with the aim of getting the most cumulative reward, trial and error.
+    - The agent improves its policy.
+
+- Planning:
+    - A model of the environment is known, we tell the agent this
+    - Instead of interacting with the environment, the agent performs internal computations with its model
+    - As a result of this, the agent improves its policy.
+
+You could also learn how the environment works, and then do planning
+
+> [!tip] Example: Atari
+> Reinforcement Learning setup: Rules of the game are unknown, the agent learns directly from interactive gameplay, picks actions on the joystick and sees pixels and scores.
+> ![[Pasted image 20230817135332.png]]
+> 
+> Planning setup: Rules of the game are known and told to the agent, can query an emulator (consider this a perfect model in the agent's brain) to plan its next step using look-ahead or tree search.
+> ![[Pasted image 20230817135436.png]]
+
+### Exploration and exploitation
+
+How do we balance exploration and exploitation?
+
+- Reinforcement learning is like trial and error learning. 
+    - The problem is that the agent is losing reward along the way. 
+    - We want to figure out a good policy without giving up opportunities to exploit the things it has discovered.
+
+- Exploration finds more information about the environment, giving up reward to do so. Could you potentially gain more reward by trying something you haven't done yet?
+- Exploitation exploits known information to maximise reward
+- It is important to do both, the question is what is the best balance?
+
+> [!tip] Examples
+> - Restaurant Selection
+>     - *Exploitation*: go to your favourite restaurant
+>     - *Exploration*: Try a new restaurant - you'll never know if you'll find 
+> - Online Banner Advertisements
+>     - *Exploitation*: Show the most successful advert
+>     - *Exploration*: Show a different advert - which might be more successful
+
+### Prediction and control
+
+- Prediction: evaluate the future given a policy
+- Control: what is the optimal policy, what policy should you choose?
+
+Typically you need to solve the prediction problem in order to solve the control problem
+
+> [!tip] Example: GridWorld
+> Prediction setup: if we perform a fixed policy of moving randomly across the grid, how much reward will we get?
+> ![[Pasted image 20230817141004.png]]
+> 
+> Control setup: whats the optimal behaviour of this GridWorld? If I behave optimally, now what's the value function? This is very different to the prediction problem
+> ![[Pasted image 20230817141117.png]]

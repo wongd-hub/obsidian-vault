@@ -61,8 +61,6 @@ data("salmonella.agona")
 salm <- disProg2sts(salmonella.agona)
 ```
 
-- [ ] Todo: graph this data using ggplot
-
 Next, we need to provide a list of controls to the `farringtonFlexible` function. See below for the 'Flexible' controls (as per Salmon et al. 2016):
 
 ```r
@@ -76,3 +74,5 @@ controls <- list(
   alpha = 0.1
 )
 ```
+
+This is what the data look like, as well as the seasonal factor 
