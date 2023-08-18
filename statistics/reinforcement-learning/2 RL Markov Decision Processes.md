@@ -73,3 +73,5 @@ We can now keep sampling from this matrix to move through states.
 > - $\gamma = 0$ means you care only about immediate returns
 > - $\gamma = 1$ means you care about future returns equally as much as present returns
 
+18:16
+
