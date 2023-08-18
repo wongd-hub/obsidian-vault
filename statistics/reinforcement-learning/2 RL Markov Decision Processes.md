@@ -34,6 +34,10 @@ We can now keep sampling from this matrix to move through states.
 
 ### Markov chains
 
-- A Markov process is a memoryless random process
+- Formally, a Markov process is a memoryless random process. i.e. A sequence of random states $S_1, S_2, \dots$ with the Markov property
+- All that's needed to define this is a state space $\mathscr{S}$ and the set of transition properties $\mathscr{P}$. This fully defines the dynamics of the whole system.
 
-6:30
+> [!info] Definition: Markov process
+> A Markov process or a Markov chain is a tuple ($\mathscr{S}$, $\mathscr{P}$)
+> - $\mathscr{S}$ is a finite set of states
+> - $\mathscr{P}$ is a state transition probability matrix $\mathscr{P}_{ss'}=\mathbb{P}\left[S_{t+1}=s'|S_t=s\right]$
