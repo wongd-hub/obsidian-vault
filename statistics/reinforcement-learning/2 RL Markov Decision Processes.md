@@ -69,7 +69,7 @@ We can now keep sampling from this matrix to move through states.
 > [!info] Definition: Return
 > The *return* $G_t$ is the total *discounted* return from time-step $t$ 
 > $$G_t=R_{t+1}+\gamma R_{t+2}+\dots=\sum_{k=0}^{\infty} \gamma^k R_{t+k+1}$$
-> $\gamma \in [0, 1]$, our discount factor, tells us how much you care now about rewards you get in the future.
+> $\gamma \in [0, 1]$, our discount factor, tells us how much you care now about rewards you get in the future. In other words, the value of receiving $R$ in $k+1$ time-steps is $\gamma^kR$
 > - $\gamma = 0$ means you care only about immediate returns
 > - $\gamma = 1$ means you care about future returns equally as much as present returns
 
