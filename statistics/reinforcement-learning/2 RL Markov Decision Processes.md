@@ -30,8 +30,10 @@ $$
 \mathscr{P}_{n1} & \dots & \mathscr{P}_{nn}
 \end{bmatrix}
 $$
-We can now keep sampling from this matrix to move through the problem.
+We can now keep sampling from this matrix to move through states.
 
 ### Markov chains
 
 - A Markov process is a memoryless random process
+
+6:30
