@@ -21,3 +21,17 @@ As discussed in the [[1 RL Introduction to Reinforcement Learning#^c3f6cb|previo
 
 For a Markov state $s$ and a successor state $s'$, the *state transition probability* is defined by $\mathscr{P}_{ss'}=\mathbb{P}\left[S_{t+1}=s'|S_t=s\right]$.
 - Recall that $S_t$ characterises everything about what happens next (Markov by definition), that should mean that there is some well-defined transition probability that i will transition to another state.
+
+From this, we can produce a matrix which contains all transition probabilities from one state (rows) to another (columns). Note that each row of the matrix sums to 1.
+$$
+\mathscr{P} = \begin{bmatrix}
+\mathscr{P}_{11} & \dots & \mathscr{P}_{1n} \\
+\vdots & \ddots & \vdots \\
+\mathscr{P}_{n1} & \dots & \mathscr{P}_{nn}
+\end{bmatrix}
+$$
+We can now keep sampling from this matrix to move through the problem.
+
+### Markov chains
+
+- A Markov process is a memoryless random process
