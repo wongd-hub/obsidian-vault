@@ -65,6 +65,12 @@ We can now keep sampling from this matrix to move through states.
 ### Return
 
 - The *return* is what we want to maximise.
+    - Most Markov reward and decision processes are discounted. 
+        - Mathematically convenient to do so and avoids infinite returns in cyclic Markov processes
+        - There is more uncertainty in the future due to the fact that we don't have a perfect model of the environment
+        - Natural in financial settings since [money earned now will earn more interest than money earned later](https://www.investopedia.com/articles/03/082703.asp)
+        - There is a natural preference for immediate rewards over future rewards in human/animal behaviour
+        - It is possible to use un-discounted Markov processes (i.e. $\gamma=1$) if we know that all sequences end in a terminal node
 
 > [!info] Definition: Return
 > The *return* $G_t$ is the total *discounted* return from time-step $t$ 
@@ -73,5 +79,13 @@ We can now keep sampling from this matrix to move through states.
 > - $\gamma = 0$ means you care only about immediate returns
 > - $\gamma = 1$ means you care about future returns equally as much as present returns
 
-18:16
+## Value function
+
+- This is the central quantity we're interested in and is the total reward that you expect to get from a given state onwards.
+    - In other words, $v(s)$ gives the long-term value of state $s$
+
+> [!info] Definition: State value function
+> The *state value function* $v(s)$ of an MRP is the expected return starting from state $s$
+> $$v(s)=\mathbb{E}[G_t|S_t=s]$$
+> This has to be an expectation because the environment we're in (a Markov process) is stochastic.
 
