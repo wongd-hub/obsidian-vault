@@ -91,6 +91,34 @@ We can now keep sampling from this matrix to move through states.
 
 > [!tip] Example: Student Markov Chain returns
 > ![[Pasted image 20230819230607.png]]
-> This is the return starting at time step 1. How would we find the value (i.e. the expected return from time step 1 onwards)? We could take a bunch of samples starting in the first state and average out all possible returns
+> This is the return starting at time step 1. How would we find the value (i.e. the expected return from time step 1 onwards)? We could take a bunch of samples starting in the first state and average out all possible returns.
+> 
+> Now consider the case where $\gamma=0$; i.e. we are maximally short-sighted and don't care about future returns. Here's what the state-value function might look like for our example. The value function at each state is equal to the reward at each state since we only care what we get in the immediate time step.
+> 
+> ![[Pasted image 20230819233220.png]]
+> 
+> The scenario where $\gamma=0.9$ leads to different values at each state since we're now accounting for returns at other states as well as their transition probabilities.
+> 
+> ![[Pasted image 20230819233526.png]]
 
+## Bellman equation for MRPs
+
+This is a fundamental relationship in RL
+
+- The idea is that the value function obeys a recursive decomposition. You can take a sequence of rewards (the value function) and break it up into two parts:
+    - The immediate reward ($R_{t+1}$)
+    - Discounted value of the value function from the next state onwards ($\gamma v(S_{t+1})$)
+
+$$
+\begin{align*}
+v(s) & = \mathbb{E} [G_t | St = s] \\
+& = \mathbb{E} \left[ R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + \ldots \mid St = s \right] \\
+& = \mathbb{E} \left[ R_{t+1} + \gamma (R_{t+2} + \gamma R_{t+3} + \ldots) \mid St = s \right] \\
+& = \mathbb{E} \left[ R_{t+1} + \gamma G_{t+1} \mid St = s \right] \\
+& = \mathbb{E} \left[ R_{t+1} + \gamma v(S_{t+1}) \mid St = s \right]
+\end{align*}
+$$
+
+> [!tip]
+> The lecturer explains here that the use of the $t+1$ index to indicate immediate reward (i.e. $R_{t+1}$) comes from the idea that the agent's action must be seen by the environment before the environment updates its state and provides a reward to the agent. So you get the reward for your current action in the next time step. He also notes that this might be slightly inconsistent in the slides since there are different conventions surrounding this.
 
