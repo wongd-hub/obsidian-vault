@@ -122,11 +122,14 @@ $$
 > [!tip]
 > The lecturer explains here that the use of the $t+1$ index to indicate immediate reward (i.e. $R_{t+1}$) comes from the idea that the agent's action must be seen by the environment before the environment updates its state and provides a reward to the agent. So you get the reward for your current action in the next time step. He also notes that this might be slightly inconsistent in the slides since there are different conventions surrounding this.
 
-We can also think of this as a one-step lookahead search, where from our current state we look ahead to find the value function/s at the next possible state/s (weighted by the probability of transitioning to those states) and add the immediate reward we get along the way. 
+### Lookahead search formulation
+
+- We can also think of this as a one-step lookahead search, where from our current state we look ahead to find the value function/s at the next possible state/s (weighted by the probability of transitioning to those states) and add the immediate reward we get along the way. 
 
 ![[Pasted image 20230821162857.png]]
 
-Using this concept, we can write the value function in the following format: the current return ($\mathscr{R}$) plus the weighted (using the state transition matrix $\mathscr{P}_{ss'}$) and discounted ($\gamma$) sum of the value functions at all possible next states ($v(s')$).
+- Using this concept, we can write the value function in the following format: 
+    - The current return ($\mathscr{R}$) plus the weighted (using the state transition matrix $\mathscr{P}_{ss'}$) and discounted ($\gamma$) sum of the value functions at all possible next states ($v(s')$).
 
 $$
 \begin{align*}
@@ -139,3 +142,43 @@ $$
 > ![[Pasted image 20230821163831.png]]
 > This example has a discount factor ($\gamma$) of 1. The value function in the red state is a sum of the current return ($-2$) and a weighted sum of the value functions at the two next possible states you can move to.
 
+### Matrix formulation
+
+- We can also express the Bellman equation concisely with matrices. See below, where $v$ is a column vector with one entry per state:
+$$v = \mathscr{R}+\gamma \mathscr{P}v$$
+$$
+\begin{bmatrix}
+v(1) \\
+\vdots \\
+v(n)
+\end{bmatrix}
+=
+\begin{bmatrix}
+\mathscr{R}_1 \\
+\vdots \\
+\mathscr{R}_n
+\end{bmatrix}
++ \gamma
+\begin{bmatrix}
+\mathscr{P}_{11} & \dots & \mathscr{P}_{1n} \\
+\vdots & \ddots & \vdots \\
+\mathscr{P}_{n1} & \dots & \mathscr{P}_{nn}
+\end{bmatrix}
+\begin{bmatrix}
+v(1) \\
+\vdots \\
+v(n)
+\end{bmatrix}
+$$
+- Since this is a linear equation, it can be solved for smaller systems. However, the computational complexity of the solution is $O(n^3)$ for $n$ states, so for larger systems we'll talk about more efficient methods of solving the value function for each state:
+    - [[3 RL Planning by Dynamic Programming|Dynamic programming]]
+    - Monte-Carlo evaluation
+    - Temporal-Difference learning
+
+$$
+\begin{align*}
+v &= \mathscr{R} + \gamma \mathscr{P} v \\
+(I - \gamma \mathscr{P}) v &= \mathscr{R} \\
+v &= (I - \gamma \mathscr{P})^{-1} \mathscr{R}
+\end{align*}
+$$
