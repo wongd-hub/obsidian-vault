@@ -112,13 +112,30 @@ This is a fundamental relationship in RL
 $$
 \begin{align*}
 v(s) & = \mathbb{E} [G_t | St = s] \\
-& = \mathbb{E} \left[ R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + \ldots \mid St = s \right] \\
-& = \mathbb{E} \left[ R_{t+1} + \gamma (R_{t+2} + \gamma R_{t+3} + \ldots) \mid St = s \right] \\
-& = \mathbb{E} \left[ R_{t+1} + \gamma G_{t+1} \mid St = s \right] \\
-& = \mathbb{E} \left[ R_{t+1} + \gamma v(S_{t+1}) \mid St = s \right]
+& = \mathbb{E} \left[ R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + \ldots \mid S_t = s \right] \\
+& = \mathbb{E} \left[ R_{t+1} + \gamma (R_{t+2} + \gamma R_{t+3} + \ldots) \mid S_t = s \right] \\
+& = \mathbb{E} \left[ R_{t+1} + \gamma G_{t+1} \mid S_t = s \right] \\
+& = \mathbb{E} \left[ R_{t+1} + \gamma v(S_{t+1}) \mid S_t = s \right]
 \end{align*}
 $$
 
 > [!tip]
 > The lecturer explains here that the use of the $t+1$ index to indicate immediate reward (i.e. $R_{t+1}$) comes from the idea that the agent's action must be seen by the environment before the environment updates its state and provides a reward to the agent. So you get the reward for your current action in the next time step. He also notes that this might be slightly inconsistent in the slides since there are different conventions surrounding this.
+
+We can also think of this as a one-step lookahead search, where from our current state we look ahead to find the value function/s at the next possible state/s (weighted by the probability of transitioning to those states) and add the immediate reward we get along the way. 
+
+![[Pasted image 20230821162857.png]]
+
+Using this concept, we can write the value function in the following format: the current return ($\mathscr{R}$) plus the weighted (using the state transition matrix $\mathscr{P}_{ss'}$) and discounted ($\gamma$) sum of the value functions at all possible next states ($v(s')$).
+
+$$
+\begin{align*}
+v(s) & = \mathbb{E} [G_t | St = s] \\
+& = \mathscr{R}_s + \gamma \sum_{s' \in S} \mathscr{P}_{ss'}v(s')
+\end{align*}
+$$
+
+> [!tip] Example: Bellman Equation for Student MRP
+> ![[Pasted image 20230821163831.png]]
+> This example has a discount factor ($\gamma$) of 1. The value function in the red state is a sum of the current return ($-2$) and a weighted sum of the value functions at the two next possible states you can move to.
 
