@@ -4,14 +4,14 @@
     "type": "split",
     "children": [
       {
-        "id": "db763c5f90e9d2fc",
+        "id": "d557928e9e11b207",
         "type": "tabs",
         "children": [
           {
-            "id": "884a1a2f877560a8",
+            "id": "37dd6c7da585e6c5",
             "type": "leaf",
             "state": {
-              "type": "empty",
+              "type": "graph",
               "state": {}
             }
           }
@@ -142,6 +142,9 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "884a1a2f877560a8",
-  "lastOpenFiles": []
+  "active": "37dd6c7da585e6c5",
+  "lastOpenFiles": [
+    "web-dev-programming/javascript/typescript/2 TS Type Inferences.md",
+    "data-science-programming/r/advanced-r/2 Names and Values/2.2 Binding Basics.md"
+  ]
 }
