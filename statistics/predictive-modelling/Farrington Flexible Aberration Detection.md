@@ -75,4 +75,5 @@ controls <- list(
 )
 ```
 
-This is what the data look like, as well as the seasonal factor 
+This is what the data look like, as well as the seasonal factor created.
+
