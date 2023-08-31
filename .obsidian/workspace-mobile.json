@@ -11,8 +11,12 @@
             "id": "37dd6c7da585e6c5",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "statistics/inferential-statistics/6 ANOVA and Bootstrapping.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -85,7 +89,7 @@
         }
       }
     ],
-    "currentTab": 5
+    "currentTab": 0
   },
   "right": {
     "id": "33f851a784485b35",
@@ -97,6 +101,7 @@
         "state": {
           "type": "backlink",
           "state": {
+            "file": "statistics/inferential-statistics/6 ANOVA and Bootstrapping.md",
             "collapseAll": false,
             "extraContext": false,
             "sortOrder": "alphabetical",
@@ -113,6 +118,7 @@
         "state": {
           "type": "outgoing-link",
           "state": {
+            "file": "statistics/inferential-statistics/6 ANOVA and Bootstrapping.md",
             "linksCollapsed": false,
             "unlinkedCollapsed": true
           }
@@ -123,7 +129,9 @@
         "type": "leaf",
         "state": {
           "type": "outline",
-          "state": {}
+          "state": {
+            "file": "statistics/inferential-statistics/6 ANOVA and Bootstrapping.md"
+          }
         }
       }
     ],
@@ -144,6 +152,10 @@
   },
   "active": "37dd6c7da585e6c5",
   "lastOpenFiles": [
+    "statistics/introduction-to-statistical-learning/2 Statistical Learning/2.2 Assessing Model Accuracy.md",
+    "Untitled.canvas",
+    "statistics/reinforcement-learning/1 RL Introduction to Reinforcement Learning.md",
+    "statistics/reinforcement-learning/2 RL Markov Decision Processes.md",
     "web-dev-programming/javascript/typescript/2 TS Type Inferences.md",
     "data-science-programming/r/advanced-r/2 Names and Values/2.2 Binding Basics.md"
   ]
