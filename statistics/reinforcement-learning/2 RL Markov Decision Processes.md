@@ -174,7 +174,6 @@ $$
     - [[3 RL Planning by Dynamic Programming|Dynamic programming]]
     - Monte-Carlo evaluation
     - Temporal-Difference learning
-
 $$
 \begin{align*}
 v &= \mathscr{R} + \gamma \mathscr{P} v \\
@@ -182,3 +181,54 @@ v &= \mathscr{R} + \gamma \mathscr{P} v \\
 v &= (I - \gamma \mathscr{P})^{-1} \mathscr{R}
 \end{align*}
 $$
+- This is not true of Markov Decision Processes; so this is useful for when we want to evaluate rewards, but not for maximising those rewards.
+
+## Markov decision processes
+
+- Markov Decision Processes are just Markov Reward Processes with actions.
+    - In the previous examples, there's no agency - you couldn't take actions or make decisions.
+    - We add one more component to our Markov Reward Process, the set of actions $\mathscr{A}$.
+
+> [!info] Definition: Markov decision process
+> A *Markov Decision Process* is a tuple $\langle \mathscr{S}, \mathscr{A}, \mathscr{P}, \mathscr{R}, \gamma \rangle$, where:
+> - $\mathscr{S}$ is a finite set of states
+> - ==$\mathscr{A}$ is a finite set of actions==
+> - $\mathscr{P}$ is a state transition probability matrix, $\mathscr{P}^a_{ss'}=\mathbb{P}\left[S_{t+1}=s'|S_t=s, A_t=a\right]$ where $a$ represents the action. Note that this matrix (i.e. where you end up) now depends on the action you take.
+>     - Think of this as one separate set of transition probabilities for each action that you might take.
+> - $\mathscr{R}$ is a reward function, $\mathscr{R}^a_s=\mathbb{E}\left[R_{t+1}|S_t=s, A_t=a\right]$
+>     - This can also depend on the action
+> - $\gamma$ is the discount factor $\gamma \in [0, 1]$
+
+> [!tip] Example: Student MDP
+> We've refactored the student example such that the focus is now on the action/decision you take. There are no longer probabilities attached to each action that moves you to each state since you are now choosing what action to take and hence which state you'll end up in.
+> - Note if you choose to go to the pub, this is the only place where is randomness built in; once you're there there are probabilities as to whether you'll transition to a set of other states.
+> 
+> ![[Pasted image 20230901134420.png]]
+> 
+> The goal now is to find the best path through the decision making process that maximises the sum of rewards that you end up with.
+
+### Policies
+
+- This is how we formalise what it means to make decisions. A *policy* fully defines the behaviour of an agent.
+
+> [!info] Definition: Policies
+> A *policy* $\pi$ is a distribution over actions given states,
+> $$\pi(a|s) = P [A_t = a | S_t = s]$$
+> - This distribution gives you the mapping between the state $s$ and the probability of taking each available action.
+> - This is something under the agent's control, and is useful to keep stochastic since that helps with things like exploration
+> - Note there is no need to mention rewards here because in an MDP, a state $s$ fully characterises all future rewards.
+
+- In an MDP, the policies depend just on the current state (the *Markov property*). As a result, we consider *stationary* policies here - i.e. the policy doesn't change depending on the time step, they only depend on the state that we're in.
+    - i.e. $A_t \sim \pi(\cdot | S_t), \forall t > 0$ - your action at time $t$ is sampled from your distribution given your state at time $t$, where the distribution is the same given the state for all time > 0. This is as opposed to if the policy changed with time (not the case in what we're discussing here - $A_t \sim \pi_t(\cdot | S_t)$)
+
+> [!tip] Sidebar on the relationship between MRPs and MDPs
+> On the relationship between MRPs and MDPs - we can always recover a Markov Reward Process from a Markov Decision Process.
+> - Given an MDP $\mathscr{M} = \langle \mathscr{S}, \mathscr{A}, \mathscr{P}, \mathscr{R}, \gamma \rangle$ and a fixed policy $\pi$
+> - The state sequence $S_1, S_2, \dots$ is a Markov chain (recall this is characterised by a set of states $\mathscr{S}$ and a state transition matrix $\mathscr{P}$) $\langle \mathscr{S}, \mathscr{P}^\pi \rangle$. 
+>      - i.e. If we have some policy that helps us pick actions, we're going to draw a sequence of states; that sequence of states is a Markov chain.
+>  - The state and reward sequence $S_1, R_1, S_2, \dots$ is a Markov Reward Process $\langle \mathscr{S}, \mathscr{P}^\pi, \mathscr{R}^\pi, \gamma \rangle$
+>  - $\mathscr{P}^\pi$ and $\mathscr{R}^\pi$ are the transition dynamics and the rewards averaged across the policy:
+> $$\mathscr{P}^{\pi}_{s, s'} = \sum_{a \in \mathscr{A}} \pi(a|s) \mathscr{P}^{a}_{s s'}$$
+> $$\mathscr{R}^{\pi}_{s} = \sum_{a \in \mathscr{A}} \pi(a|s) \mathscr{R}^{a}_{s}$$
+
+## Value function
