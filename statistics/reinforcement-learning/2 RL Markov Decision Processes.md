@@ -260,7 +260,7 @@ $$
     - State-value: $v_\pi(s) = \mathbb{E}_\pi [R_{t+1} + \gamma v_\pi(S_{t+1}) | S_t = s]$
     - Action-value: $q_\pi(s, a) = \mathbb{E}_\pi [R_{t+1} + \gamma q_\pi(S_{t+1}, A_{t+1}) | S_t = s, A_t = a]$
 
-#### Bellman expectation equation for state-value
+#### Bellman for state-value
 
 - Looking at this from a look-ahead search perspective:
     - If you're in a state value function $v_\pi$ at the white dot; what it's saying is that it'll average over the two actions we might take (the black dots). The probability we'll go left/right is defined by our policy.
@@ -271,11 +271,18 @@ $$
 
 i.e.
 $$v_\pi(s) = \sum_{a \in \mathscr{A}} \pi(a|s) q_\pi(s, a)$$
-#### Bellman expectation equation for action-value
+#### Bellman for action-value
 
 - Say we start off taking some action - the root of this tree is a state, and we're considering one specific action from that state.
     - Consider that after we take this action and move to the relevant state, we could go in any direction from there. The action-value function is the weighted average of the return of all possible actions after you take the action you're considering.
 
+![[Pasted image 20230901154931.png]]
+
 $$q_\pi(s, a) = R^a_s + \gamma \sum_{s' \in S} P^a_{ss'} v_\pi(s')$$
-#### Bringing it together...
+#### Bringing it together for state-value functions
+
+Up to 59:30
+
+
+#### Bringing it together for action-value functions
 
