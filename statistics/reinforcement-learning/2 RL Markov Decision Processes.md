@@ -248,6 +248,8 @@ $$
 >   
 >   $$q_\pi(s, a) = \mathbb{E}_\pi [G_t | S_t = s, A_t = a]$$
 
+- Overall, the state-value function tells us how good it is to be in a particular state, and the action-value function tells us how good taking certain actions from that given state will be.
+
 > [!tip] Example: State-Value function for Student MDP
 > ![[Pasted image 20230901143739.png]]
 > We're fixing the policy so that whenever we have a choice, we'll choose with 50% probability between the choices. Here there is a low value for starting in the -1.3 state since there's a high probability you'll end up in the Facebook state.
@@ -270,3 +272,10 @@ $$
 i.e.
 $$v_\pi(s) = \sum_{a \in \mathscr{A}} \pi(a|s) q_\pi(s, a)$$
 #### Bellman expectation equation for action-value
+
+- Say we start off taking some action - the root of this tree is a state, and we're considering one specific action from that state.
+    - Consider that after we take this action and move to the relevant state, we could go in any direction from there. The action-value function is the weighted average of the return of all possible actions after you take the action you're considering.
+
+$$q_\pi(s, a) = R^a_s + \gamma \sum_{s' \in S} P^a_{ss'} v_\pi(s')$$
+#### Bringing it together...
+
