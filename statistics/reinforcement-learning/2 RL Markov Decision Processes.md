@@ -79,7 +79,7 @@ We can now keep sampling from this matrix to move through states.
 > - $\gamma = 0$ means you care only about immediate returns
 > - $\gamma = 1$ means you care about future returns equally as much as present returns
 
-## Value function
+### Value function
 
 - This is the central quantity we're interested in and is the total reward that you expect to get from a given state onwards.
     - In other words, $v(s)$ gives the long-term value of state $s$
@@ -101,7 +101,7 @@ We can now keep sampling from this matrix to move through states.
 > 
 > ![[Pasted image 20230819233526.png]]
 
-## Bellman equation for MRPs
+### Bellman expectation equation for MRPs
 
 This is a fundamental relationship in RL
 
@@ -231,4 +231,42 @@ $$
 > $$\mathscr{P}^{\pi}_{s, s'} = \sum_{a \in \mathscr{A}} \pi(a|s) \mathscr{P}^{a}_{s s'}$$
 > $$\mathscr{R}^{\pi}_{s} = \sum_{a \in \mathscr{A}} \pi(a|s) \mathscr{R}^{a}_{s}$$
 
-## Value function
+### Value function
+
+- We already had a value function for an MRP but there was no agency or decisions. Now we have a policy, there is some way we can choose to behave throughout the process.
+    - This means there is not one expectation (i.e. value function) anymore, there are different expectations depending on how we behave.
+
+> [!info] Definition: State-value function
+> The *state-value function* $v_\pi(s)$ of an MDP is the expected return starting from state $s$, and then following policy $\pi$. i.e. How good is it to be in state $s$ if I'm following $\pi$ - how much reward can I get form this state onwards?
+> $$v_\pi(s) = \mathbb{E}_\pi [G_t | S_t = s]$$
+> - $\mathbb{E}_\pi$ means the expectation when we sample all actions according to this policy
+
+> [!info] Definition: Action-value function
+> The *action-value function* $q_\pi(s, a)$ is the expected return starting from state $s$, taking action $a$, and then following policy $\pi$. i.e. How good is it to take a particular action from a particular state? 
+> - For a given policy, if I'm in state $s$ and I take action $a$, what is the expected return/total reward I'll get from this point onwards?
+> - This is what we intuitively care about when we're trying to evaluate what the best decision for the next action is. This is the key quantity we'll be using to optimise our MDP.
+>   
+>   $$q_\pi(s, a) = \mathbb{E}_\pi [G_t | S_t = s, A_t = a]$$
+
+> [!tip] Example: State-Value function for Student MDP
+> ![[Pasted image 20230901143739.png]]
+> We're fixing the policy so that whenever we have a choice, we'll choose with 50% probability between the choices. Here there is a low value for starting in the -1.3 state since there's a high probability you'll end up in the Facebook state.
+
+### Bellman expectation equation for MDPs
+
+- As with the MRP, the state-value and action-value functions can be decomposed into immediate reward plus discounted value of successor state:
+    - State-value: $v_\pi(s) = \mathbb{E}_\pi [R_{t+1} + \gamma v_\pi(S_{t+1}) | S_t = s]$
+    - Action-value: $q_\pi(s, a) = \mathbb{E}_\pi [R_{t+1} + \gamma q_\pi(S_{t+1}, A_{t+1}) | S_t = s, A_t = a]$
+
+#### Bellman expectation equation for state-value
+
+- Looking at this from a look-ahead search perspective:
+    - If you're in a state value function $v_\pi$ at the white dot; what it's saying is that it'll average over the two actions we might take (the black dots). The probability we'll go left/right is defined by our policy.
+    - For each of the actions we might take there is an action-value function ($q_\pi$) telling us how good it is to take that action from the white dot state.
+        - So we can calculate the value of being in our white dot state by looking ahead, getting the action-values from each of the actions we might take, then averaging them out weighted by the probability we'll go there based on our policy $\pi$.
+
+![[Pasted image 20230901145529.png]]
+
+i.e.
+$$v_\pi(s) = \sum_{a \in \mathscr{A}} \pi(a|s) q_\pi(s, a)$$
+#### Bellman expectation equation for action-value
