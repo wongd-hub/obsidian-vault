@@ -170,7 +170,7 @@ v(1) \\
 v(n)
 \end{bmatrix}
 $$
-- Since this is a linear equation, it can be solved for smaller systems. However, the computational complexity of the solution (i.e. inverting $(I - \gamma \mathscr{P})$) is $O(n^3)$ for $n$ states, so for larger systems we'll talk about more efficient methods of solving the value function for each state:
+- Since this is a linear equation, it can be solved for smaller systems. However, the solution is computationally complex (inverting $(I - \gamma \mathscr{P})$ is $O(n^3)$ for $n$ states), so for larger systems we'll talk about more efficient methods of solving the value function for each state:
     - [[3 RL Planning by Dynamic Programming|Dynamic programming]]
     - Monte-Carlo evaluation
     - Temporal-Difference learning
