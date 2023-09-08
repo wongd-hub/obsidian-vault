@@ -260,6 +260,7 @@ $$
     - State-value: $v_\pi(s) = \mathbb{E}_\pi [R_{t+1} + \gamma v_\pi(S_{t+1}) | S_t = s]$
     - Action-value: $q_\pi(s, a) = \mathbb{E}_\pi [R_{t+1} + \gamma q_\pi(S_{t+1}, A_{t+1}) | S_t = s, A_t = a]$
 
+- Recall that the idea underlying these equations is that the value function at the current time step is equal to the immediate reward *plus* the value function of where you end up.
 #### Bellman for state-value
 
 - Looking at this from a look-ahead search perspective:
@@ -281,8 +282,43 @@ $$v_\pi(s) = \sum_{a \in \mathscr{A}} \pi(a|s) q_\pi(s, a)$$
 $$q_\pi(s, a) = R^a_s + \gamma \sum_{s' \in S} P^a_{ss'} v_\pi(s')$$
 #### Bringing it together for state-value functions
 
-Up to 59:30
+- Stitching together the two figures from the last two slides gives us a way of understanding $v$ in terms of itself. This is how we end up solving Markov Decision Processes. 
+    - How we understand how good it is to be in a state is to do a two-step lookahead - performing all actions that are possible and ending up in all possible successor states. Those successor states will have state-value functions as well.
 
+- The Bellman equation averages across all possible actions from a given state:
+    - The immediate return of the action given the current state; and, 
+    - The discounted and weighted average of the value function for all possible successor states (weighted by the probability of ending up in those states using the state transition matrix)
 
+![[Pasted image 20230908135607.png]]
+
+$$
+v_\pi(s) = \sum_{a \in A} \pi(a|s) \left[ \mathscr{R}^a_s + \gamma \sum_{s' \in S} \mathscr{P}^a_{ss'} v_\pi(s') \right]
+$$
 #### Bringing it together for action-value functions
 
+- You can do the same thing for action values. Using the same idea, starting form a particular state and action, we can look ahead 2 steps to the state we end up in, then what action we might take next.
+
+![[Pasted image 20230908140107.png]]
+
+$$
+q_\pi(s, a) = \mathscr{R}^a_s + \gamma \sum_{s' \in S} \mathscr{P}^a_{ss'} \sum_{a' \in A} \pi(a' | s') q_\pi(s', a')
+$$
+
+> [!tip] Example: Bellman Expectation Equation in Student MDP
+> ![[Pasted image 20230908140325.png]]
+> We'll consider just one state (the red 7.4 state) - recall we're evaluating a policy where we do everything 50/50). We can verify that the value of this state is 7.4 by doing look-aheads to each of the possible actions and states from there.
+> - If we Study again, the immediate reward is 10, and the value function of the successor state is 0.
+> - If we go to the Pub, our immediate reward is 1, but we'll also be kicked into any of 3 other states with probabilities 0.2, 0.4, 0.4.
+
+#### Matrix Form
+
+- The Bellman equation can also be expressed in matrix form. $\mathscr{R}^\pi$ is our immediate rewards averaged over our policy and $\mathscr{P}^\pi$ is our transition probabilities averaged over our policy.
+
+$$v_\pi = \mathscr{R}^\pi + \gamma \mathscr{P}^\pi \mathbf{v}_\pi$$
+$$ v_\pi = (I - \gamma \mathscr{P}^\pi)^{-1} \mathscr{R}^\pi $$
+
+- There are more efficient ways to solve for the value function which we'll talk about later.
+
+## Optimal value function
+
+- Here we start to think about how we find the best behaviour in an MDP.
