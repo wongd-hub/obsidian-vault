@@ -322,3 +322,5 @@ $$ v_\pi = (I - \gamma \mathscr{P}^\pi)^{-1} \mathscr{R}^\pi $$
 ## Optimal value function
 
 - Here we start to think about how we find the best behaviour in an MDP.
+
+Up to 1:04:30
