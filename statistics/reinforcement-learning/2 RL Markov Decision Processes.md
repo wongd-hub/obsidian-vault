@@ -1,4 +1,6 @@
 #course_google-deepmind-reinforcement-learning #reinforcement-learning 
+
+[Slide link](https://www.davidsilver.uk/wp-content/uploads/2020/03/MDP.pdf)
 ## Markov processes
 
 - *Markov decision processes* (MDPs) formally describe an environment for machine learning
@@ -322,5 +324,114 @@ $$ v_\pi = (I - \gamma \mathscr{P}^\pi)^{-1} \mathscr{R}^\pi $$
 ## Optimal value function
 
 - Here we start to think about how we find the best behaviour in an MDP.
+    - The *optimal value function* specifies the best possible performance in an MDP; i.e. we have 'solved' an MDP once we know this function.
 
-Up to 1:04:30
+> [!info] Definition: Optimal value function
+> The *optimal state-value function* $v_*(s)$ is the maximum value function over all policies. i.e. the maximum amount of reward you can extract from the system by following the 'optimal' policy.
+> $$v_*(s) = \max_\pi v_\pi(s)$$
+> The *optimal action-value function* $q_*(s,a)$ is the maximum action-value function over all policies. i.e. Given you take a certain action, what is the maximum possible value you can get from that point onwards?
+> $$q_*(s, a) = \max_\pi q_\pi(s, a)$$
+> Once we know $q_*(s,a)$, then we're basically done and have solved the MDP.
+
+> [!tip] Example: Student MDP
+> ![[Pasted image 20230924130359.png]]
+> Assuming a discount factor ($\gamma$) of 1 for simplicity, the diagram above shows the optimal value function for each state in the process. 
+> - The last node (10) shows that the value of that node is 10 because you can get +10 for studying, but only +1 for going to the pub
+> - The second last node (8) is 8 because sleeping only gives a reward of 0 here; so instead you can study (-2) and then sleep (+10) which gives a value of 8
+> 
+> This doesn't really tell us how to behave - only what the reward for optimal behaviour. To do this, we define our $q_*$s. So each of the actions is now labelled with their value below.
+> ![[Pasted image 20230924130933.png]]
+> Considering the two possible actions from the middle (8) node:
+> - The sleep action locks in 0 immediate reward and ends in a terminal state with 0 value, so sleeping will give a total reward of 0
+> - Studying locks in -2 immediate reward, then the value of the next state is 10, so the action-value function here is -2 + 10 = 8
+
+## Optimal policy
+
+- Define a partial ordering between policies: $\pi \geq \pi^{\prime} \text{ if } v_\pi(s) \geq v_{\pi^{\prime}}(s), \forall s$
+    - That is, a policy is better than or equal to another if the value function for that policy is better than or equal to the other's.
+    - This needs to be true in *all* states for us to say a policy is $\geq$ another
+
+> [!info] Theorem
+> For any Markov Decision Process:
+> - There exists an *optimal policy* $\pi_*$ that is better than or equal to all other policies, $\pi_* \geq \pi, \forall \pi$
+> - All *optimal policies* achieve the optimal value function, $v_{\pi_*}(s)= v_*(s)$
+> - All *optimal policies* achieve the optimal action-value function, $q_{\pi_*}(s,a) = q_{*}(s,a)$
+>   
+> i.e. There is always *at least* one (there can be more than one) optimal policy that is better than or equal to all other policies. This means you won't need to 'mix and match' policies to get the optimal reward.
+
+- Formally, an optimal policy can be found by maximising $q_{*}(s,a)$ at every state.
+    - i.e. At every state, you pick the action that gives you the most possible reward with probability 1.
+    - There is always a deterministic optimal policy for any MDP - no need to randomise actions, there is always a set of actions that is optimal
+    - If we know $q_{*}(s,a)$, we know the optimal policy
+$$
+\pi_*(a|s) = 
+\begin{cases} 
+1 & \text{if } a = {\arg\max}_{a \in A} q_*(s, a) \\
+0 & \text{otherwise}
+\end{cases}
+$$
+
+> [!tip] Example
+> ![[Pasted image 20230924133336.png]]
+> The optimal actions are now highlighted in red - we can now see the optimal (reward maximising) path through the MDP.
+> 
+> Intuitively, we arrive at these numbers by working backwards, looking ahead from each state. This is the logic underlying the Bellman equation.
+
+## Bellman optimality equation
+
+i.e. the *real* Bellman equation.
+### For v*
+
+![[Pasted image 20230924133648.png]]
+
+- To solve for the optimal value of being in some state, consider each of the actions you might take from there as well as their action-values. We then take the maximum of them (instead of the average of them like previously). i.e.:
+$$v_*(s) = \max_{a} q_*(s, a)$$
+### For q*
+
+![[Pasted image 20230924134051.png]]
+
+- The other half of this; how we can figure out the optimal action-value for each possible action.
+- Given you take a certain action, it's now up to the environment to determine which state we end up in next - note we have no control over this. Hence, we'll need to average over all possible states we can end up in given the action we've taken.
+    - Assuming we know the optimal value of each of those states, we average those values weighted by the probability that we'll end up in each of them. Recall that $\mathscr{P}^a_{ss^{\prime}}$ denotes the probability, given an action $a$ from state $s$, that you'll end up in state $s^{\prime}$.
+$$q_*(s, a) = \mathscr{R}^a_s + \gamma \sum_{s' \in \mathscr{S}} \mathscr{P}^a_{ss'} v_*(s')$$
+### For V*
+
+![[Pasted image 20230924134858.png]]
+
+- Stitching the $v_*$ and $q_*$ look-aheads together, to determine your optimal value function at a given state, you:
+    - Look ahead over the actions you can take and finding the one with maximal value
+    - Then looking over the states you can end up in given that maximal value action and averaging the optimal values of those
+$$v_*(s) = \max_{a} \mathscr{R}^a_s + \gamma \sum_{s' \in \mathscr{S}} \mathscr{P}^a_{ss'} v_*(s')$$
+### For Q*
+
+![[Pasted image 20230924135247.png]]
+
+- A re-ordering of the same idea, and starting from an action instead of a state.
+- To determine the optimal action-value function for a given state and action, 
+    - Look ahead across all possible states the environment will put you in given your starting state and action
+    - From those states, you have agency again and can choose the next action with the maximal action-value
+    - Average these across all possible states you might be blown into from the original state/action.
+$$q_*(s, a) = \mathscr{R}^a_s + \gamma \sum_{s' \in \mathscr{S}} \mathscr{P}^a_{ss'} \max_{a'} q_*(s', a')$$
+
+> [!tip] Example
+> ![[Pasted image 20230924135713.png]]
+> Focusing on the left-most node (the red 6); you can either:
+> - Facebook (R = -1), then end up in a state with optimal value of 6 (overall value -1 + 6)
+> - Study (R = -2), then end up in a state with optimal value of 8 (overall value -2 + 8)
+
+### Solving the Bellman optimality equation
+
+- Previously we saw linear equations that could be solved using matrix inversion, however the Bellman optimality equation is non-linear.
+    - In general, there is no closed-form solution.
+- There are iterative solution methods to solve this (dynamic programming)
+    - Value Iteration
+    - Policy Iteration
+    - Q-Learning
+    - Sarsa
+
+## Extensions to MDPs
+
+- Skipping this for now; this covers:
+    - Infinite and continuous MDPs 
+    - Partially observable MDPs 
+    - Undiscounted, average reward MDPs
