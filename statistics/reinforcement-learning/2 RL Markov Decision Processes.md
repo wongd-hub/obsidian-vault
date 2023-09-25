@@ -423,7 +423,7 @@ $$q_*(s, a) = \mathscr{R}^a_s + \gamma \sum_{s' \in \mathscr{S}} \mathscr{P}^a_{
 
 - Previously we saw linear equations that could be solved using matrix inversion, however the Bellman optimality equation is non-linear.
     - In general, there is no closed-form solution.
-- There are iterative solution methods to solve this (dynamic programming)
+- There are iterative solution methods to solve this (dynamic programming), we'll discuss these in the next lecture
     - Value Iteration
     - Policy Iteration
     - Q-Learning
