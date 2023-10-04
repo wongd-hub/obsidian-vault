@@ -53,4 +53,64 @@ The focus of this lecture will be *planning* via dynamic programming.
 ## Policy evaluation
 ### Iterative policy evaluation
 
-- 13:02
+Someone tells you the policy, and you need to evaluate it.
+
+- **Problem**: evaluate a given policy, $\pi$
+- **Solution**: iterative application of Bellman expectation backup
+    - Note that we use the Bellman expectation equation to do policy evaluation, but later we'll use the Bellman optimality equation to do control.
+
+- We will apply the Bellman expectation equation iteratively to do this. 
+    - We'll start with some arbitrary initial value (for example 0) for all states in the MDP (call this a vector, $v_1$).
+    - We'll then apply our Bellman expectation equation in a one-step lookahead from all states, and using this we'll update the value of each state to a vector, $v_2$.
+    - Iterate this process many times and we eventually converge on the true value function, $v_\pi$ (this will be proven at the end of the lecture).
+
+> [!info] Synchronous backups
+> We use *synchronous* backups, which means that we consider all states at every iteration. In other words:
+> 
+> > At each iteration ($k + 1$), update $v_{k+1}(s)$ from $v_k(s^\prime)$ $\forall \space s \in \mathscr{S}$, where $s^\prime$ is a successor state to $s$.
+>   
+> We will discuss *asynchronous* backups later.
+
+How are we actually performing this update?
+ ![[Pasted image 20231004215136.png]]
+
+- Consider again this one-step lookahead tree. Recall that to find the value of some state $s$ (the root of this tree), we need to:
+    1. Look ahead across all actions we could take from this state
+    2. See what state $s^\prime$ the environment might place us in once we take each of those actions, in our case these are represented by the leaves
+    3. Then back up the value functions of each successor state, the expected value of $v_{k+1}(s)$ is then the sum of these value functions weighted by the probability that you'll end up in them
+
+- We can see this in equation form (normal and matrix form) below. Note how we are summing - for all possible actions - the probability of taking that action from the current state, multiplied by the immediate return, and the discounted and probability-weighted value functions for all possible successor states.
+    - ==In other words, we define the value at the next iteration by plugging in the previous iteration's value functions at the leaves and backing those up to the root.== 
+    - We do this for every single state in the MDP at every iteration.
+    - Note also that since this is the *expectation* equation, we are using a sum, not a max.
+$$v_{k+1}(s) = \sum_{a \in \mathscr{A}} \pi(a|s) \left( \mathscr{R}^a_s + \gamma \sum_{s' \in \mathscr{S}} \mathscr{P}_{ss'}^a v_k(s') \right)$$
+$$\mathbf{v}^{k+1} = \mathscr{R}^\pi + \gamma \mathscr{P}^\pi \mathbf{v}^k$$
+
+> [!tip] Small gridworld example - evaluating a random policy
+> ![[Pasted image 20231004221751.png]]
+> 
+> Consider a small gridworld with a 4 x 4 grid.
+> - The two shaded states in the edges are terminal states where you no longer get any reward, since rewards are negative, the goal is to get into one of these terminal states.
+> - The reward for any change in state is -1 ($r = -1$), and a each state you can choose from 4 actions, move north, east, south, or west. 
+>     - But if you choose an action that would take you off the grid, you remain in your current state and still incur a -1 reward.
+> 
+> Based on this, you can think of the optimal policy as tell you how long it'll take you to get to one of the terminal states.
+> - We will consider a random policy (i.e. $\pi(n|\cdot) = \pi(e|\cdot) = \pi(s|\cdot) = \pi(w|\cdot) = 0.25$). How many steps will it take from each state to get to the closest terminal state?
+>   
+> In the following images, focus only on the left column for now. 
+> - In the first iteration ($k = 0$), we plug in an arbitrary value for each state, 0.
+> - In the next iteration, we apply the Bellman expectation equation to all states to calculate a new value function for each state.
+>     - From a given state, we look at what actions we can take and generally see that each action will take you into another state in which the immediate reward is -1 and the value function of the successor state is 0 (from the first iteration). Therefore the updated value for all states apart from the terminal states is -1. ==Why are the values for the states adjacent to the terminal states not (-3 + 0) / 4 = -0.75? Does moving to a terminal state still incur an immediate reward of -1, then 0 onwards? -- **No**, this is because the reward is attached to the action that changes the state, not the state itself.==
+>     - From the terminal states, you can't exit, you stay in the same state and keep getting 0 reward.
+> - We apply the same process again on the third iteration ($k = 2$), again we consider the immediate reward of each possible action *plus* the value of where you end up.
+>     - To get the -1.7 (the one in the top row), we can go north, east, or south; each incurs an immediate reward of -1, plus the value of where you end up is -1 (from $k = 1$). If you go west, you incur -1 but the value of where you end up is 0. Hence (-2 $\times$ 3 + -1) / 4 = -1.7(5).
+> - At $k = \infty$, we converge on the true value function.
+> 
+> ![[Pasted image 20231004222017.png]]  
+> ![[Pasted image 20231004223318.png]]
+> 
+> Discussing the right hand column now, UP TO 26:00
+
+
+ 
+
