@@ -109,7 +109,9 @@ $$\mathbf{v}^{k+1} = \mathscr{R}^\pi + \gamma \mathscr{P}^\pi \mathbf{v}^k$$
 > ![[Pasted image 20231004222017.png]]  
 > ![[Pasted image 20231004223318.png]]
 > 
-> Discussing the right hand column now, this tells us that even though we're evaluating a random policy, we can use this information to compute a better policy/value function. As we evaluate values at each state, we can see which state provides the highest value, ==up to 26:00==
+> Discussing the right hand column now, this tells us that even though we're evaluating a random policy, we can use this information to compute a better policy/value function. 
+> - As we evaluate values at each state, we can see which state provides the highest value, and therefore which states are best to move to (i.e. the best policy occurs when we start to act greedily from the state we're in).
+> - At $k = 0$, we can see that all states have all 4 arrows as 'best' options. At this point, all states have 0 value, so all states are equivalently valued/tied.
 
 
  
