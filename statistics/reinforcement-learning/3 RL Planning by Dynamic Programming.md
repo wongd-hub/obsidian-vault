@@ -117,6 +117,15 @@ $$\mathbf{v}^{k+1} = \mathscr{R}^\pi + \gamma \mathscr{P}^\pi \mathbf{v}^k$$
 
 ## Policy iteration
 
-- Before we were just trying to evaluate a fixed policy. Now we want to find the best policy. We'll do this by iteratively applying policy evaluation and continually acting greedily with respect to each policy. 30:00
- 
+Before we were just trying to evaluate a fixed policy. Now we want to find the best policy. We'll do this by iteratively applying policy evaluation and continually acting greedily with respect to each iteration's policy.
+
+Given a policy $\pi$, how do we give back a policy we can say for certain is better than or equal to the policy before? We'll break this down into two steps
+
+- Evaluate the policy $\pi$, figure out its value function: $v_\pi(s) = \mathbb{E} \left[ R_{t+1} + \gamma R_{t+2} + \dots \mid S_t = s \right]$
+- Improve the policy by acting greedily with respect to $v_\pi$: $\pi^\prime = greedy(v_\pi)$
+    - i.e. Look ahead in each direction and pick the action that results in the highest value
+
+- In the Small Gridworld example above, we only needed to do this once (i.e. we fully evaluated the random policy once, and found a better policy by acting greedily) - $\pi^\prime = \pi^*$. But in general, we'll need to do more iterations of evaluation/improvement.
+    - This process of policy iteration always converges to $\pi^*$
+
 
