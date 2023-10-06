@@ -109,10 +109,14 @@ $$\mathbf{v}^{k+1} = \mathscr{R}^\pi + \gamma \mathscr{P}^\pi \mathbf{v}^k$$
 > ![[Pasted image 20231004222017.png]]  
 > ![[Pasted image 20231004223318.png]]
 > 
-> Discussing the right hand column now, this tells us that even though we're evaluating a random policy, we can use this information to compute a better policy/value function. 
+> Discussing the right hand column now, this tells us that even though we're evaluating a random policy, we can use this information to compute a better policy by performing greedily with respect to the current value function. 
 > - As we evaluate values at each state, we can see which state provides the highest value, and therefore which states are best to move to (i.e. the best policy occurs when we start to act greedily from the state we're in).
 > - At $k = 0$, we can see that all states have all 4 arrows as 'best' options. At this point, all states have 0 value, so all states are equivalently valued/tied.
+> - After one iteration, we're already doing something non-random. The states next to the terminal states point to the terminal states since they have a higher value, so if we behave greedily with respect to that value function, we'd want to move into the terminal states.
+> - After just 3 iterations, we already have the optimal policy. You don't need to iterate this to convergence to get to the optimal policy.
 
+## Policy iteration
 
+- Before we were just trying to evaluate a fixed policy. Now we want to find the best policy. We'll do this by iteratively applying policy evaluation and continually acting greedily with respect to each policy. 30:00
  
 
