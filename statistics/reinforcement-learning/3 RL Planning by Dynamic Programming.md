@@ -125,7 +125,48 @@ Given a policy $\pi$, how do we give back a policy we can say for certain is bet
 - Improve the policy by acting greedily with respect to $v_\pi$: $\pi^\prime = greedy(v_\pi)$
     - i.e. Look ahead in each direction and pick the action that results in the highest value
 
+> [!info]
+> After your initial policy, every step you take will be deterministic. Recall also that for any MDP there is always at least one [[2 RL Markov Decision Processes#Optimal policy|deterministic optimal policy]].
+
 - In the Small Gridworld example above, we only needed to do this once (i.e. we fully evaluated the random policy once, and found a better policy by acting greedily) - $\pi^\prime = \pi^*$. But in general, we'll need to do more iterations of evaluation/improvement.
-    - This process of policy iteration always converges to $\pi^*$
+    - This process of policy iteration always converges to $\pi^*$.
 
+> [!info]
+> ![[Pasted image 20231007110637.png]]
+> This diagram illustrates what we're doing here. We start with arbitrary inputs to our value function and a policy, then we:
+> - Evaluate the value function for that policy (i.e. we calculate $v_\pi$, and go on the up arrow in the diagram)
+> - Act greedily with respect to that value function to find a new policy (and go on a down arrow in the diagram)
+> And as we continually do this, we converge on both the optimal value function and the optimal policy.
+> 
+> Note that no matter where you start, you always converge on the optimal policy. Why don't we converge to local maxima if we can start at any point? Because of the [[2 RL Markov Decision Processes#Optimal policy|partial ordering]] where a value function must have greater than or equal value *in all states* for it to be considered greater than or equal to another value function. Therefore each iteration is guaranteed to yield a value function that is the same or better than the last one. ==Probably need to flesh out this thinking a bit more, [more here](https://stats.stackexchange.com/a/297805)==.
 
+> [!tip] Jack's car rental example
+> A car rental company has two different locations you can rent from. There is a maximum of 20 cars per location.
+> - There is a random rent and return process; people come in and randomly rent cars from these locations and will also randomly return cars. The rate of renting and returning differs between locations.
+>     - The random process is Poisson-distributed, $n$ returns/requests with probability $\frac{\lambda^n}{n!} e^{-\lambda}$
+>     - 1st location: av. requests = 3, av. returns = 3
+>     - 2nd location: av. requests = 4, av. returns = 2
+> - Each night you can transfer up to 5 cars between locations. What is the optimal policy for shifting cars around so that you minimise the amount of times a customer comes in and there are no cars to rent?
+>     - Reward is $10 per car successfully rented.
+>       
+> Setting up the MDP:
+> - States: two locations, max 20 cars in either
+> - Actions: moving up to 5 cars between locations each night
+> - Reward: $10 per car rented
+> - Transitions: the Poisson-distributed return/request rates
+>   
+> Policy iteration looks like this. Axes are the number of cars in each location (i.e. they show the state). What is plotted is the number of cars you should transition between location 1 to 2.
+> 
+> ![[Pasted image 20231007112703.png]]
+> 
+> - We start off with our arbitrary policy where we do nothing.
+> - We'll start our process by evaluating that policy which will give us some sort of value function (bottom right) upon which we can act greedily to get to our first policy iteration.
+> - We continue until our policy converges to the optimal policy.
+
+Doing this more formally:
+
+- Consider a deterministic policy, $a = \pi(s)$
+- We can improve this policy by acting greedily. We look at the value of being in a state and taking a particular action, then following your policy after that. This is the action value, so we want to pick the action that gives us the largest $q$ (`argmax`: the action that maximises $q$).
+    - $\pi^\prime(s) = \arg\max_{a \in A} q_\pi(s, a)$
+- This improves the value from any state $s$ over one step (disregard other steps for now)
+    - 
