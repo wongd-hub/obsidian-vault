@@ -27,7 +27,7 @@
 
 This is a general solution method for problems that have two properties:
 
-- **Optimal substructure** - i.e. the principle of optimality applies - the optimal solution can be decomposed into subproblems
+- **Optimal substructure** - i.e. the principle of optimality applies - the optimal solution can be decomposed into subproblems ^3a68c9
     - This means that you can solve some overall problem by breaking it down into pieces, and the optimal solution to those pieces tells you how to get the optimal solution to your overall problem.
     - If this didn't apply, it would be fruitless to solve your subproblems since they won't take you any closer to solving the overall problem.
     - An example is the shortest path problem. The shortest path between you and some point X can be broken down into the shortest path between you and some closer point Y, then the shortest path between Y and X.
@@ -163,10 +163,177 @@ Given a policy $\pi$, how do we give back a policy we can say for certain is bet
 > - We'll start our process by evaluating that policy which will give us some sort of value function (bottom right) upon which we can act greedily to get to our first policy iteration.
 > - We continue until our policy converges to the optimal policy.
 
+### Policy improvements
+
 Doing this more formally:
 
 - Consider a deterministic policy, $a = \pi(s)$
-- We can improve this policy by acting greedily. We look at the value of being in a state and taking a particular action, then following your policy after that. This is the action value, so we want to pick the action that gives us the largest $q$ (`argmax`: the action that maximises $q$).
+
+- We can improve this policy by acting greedily. We look at the value of being in a state and taking a particular action, then following your policy after that. This is the action value, so we want to pick the action that gives us the largest $q$ ($\arg\max$: the action that maximises $q$).
     - $\pi^\prime(s) = \arg\max_{a \in A} q_\pi(s, a)$
-- This improves the value from any state $s$ over one step (disregard other steps for now)
-    - 
+
+- We can show that acting greedily will at least improve our value over one step.
+    - $q_\pi(s, \pi'(s)) = \max_{a \in \mathcal{A}} q_\pi(s, a) \geq q_\pi(s, \pi(s)) = v_\pi(s)$
+        - If we follow our new greedy policy ($\pi^\prime$) for one step from state $s$ then the original $\pi$ onwards ($q_\pi(s, \pi'(s))$), we want to know if that gets more or less value than following $\pi$ all the way from $s$ ($q_\pi(s, a)$).
+        - Plugging in the $\arg\max$ definition into the first action-value - since we're always picking the action that maximises $q_\pi$, our resulting action-value will be the maximum across all actions ($a \in \mathcal{A}$) from state $s$.
+        - The maximum action-value from state $s$ must be at least as good as one particular action we can plug in ($\max_{a \in \mathcal{A}} q_\pi(s, a) \geq q_\pi(s, \pi(s))$).
+        - Overall, we can see that the value function improves or stays the same over one step if we act greedily over that step.
+
+- Iterating this and unpicking the action-value using the Bellman equation, we can see that the greedy policy over one step, then the original policy from there results in a value function that is $\geq$ the original policy over all steps.
+$$
+\begin{align*}
+v_\pi(s) &\leq q_\pi(s, \pi'(s)) = \mathbb{E}_{\pi'} [R_{t+1} + \gamma v_\pi(S_{t+1}) | S_t = s] \\
+&\leq \mathbb{E}_{\pi'} [R_{t+1} + \gamma q_\pi(S_{t+1}, \pi'(S_{t+1})) | S_t = s] \\
+&\leq \mathbb{E}_{\pi'} [R_{t+1} + \gamma R_{t+2} + \gamma^2 q_\pi(S_{t+2}, \pi'(S_{t+2})) | S_t = s] \\
+&\leq \mathbb{E}_{\pi'} [R_{t+1} + \gamma R_{t+2} + \dots | S_t = s] \\
+&= v_{\pi'}(s)
+\end{align*}
+$$
+
+- If improvements stop then we'll be at the optimal policy
+    - $q_\pi(s, \pi'(s)) = \max_{a \in \mathcal{A}} q_\pi(s, a) = q_\pi(s, \pi(s)) = v_\pi(s)$
+    - This satisfies the [[2 RL Markov Decision Processes#For v*|Bellman optimality equation]], i.e. $v_\pi(s) = \max_{a \in \mathcal{A}} q_\pi(s, a)$
+    - $\therefore v_\pi(s) = v_*(s) \space \forall \space s \in \mathcal{S}$, and $\pi$ is the optimal policy - this is one way of solving MDPs
+
+### Extensions to policy iteration
+#### Modified policy iteration
+
+- Does policy evaluation need to converge to $v_\pi$? In a previous example we saw that we landed on the optimal policy long before we calculated the exact value function.
+- *Modified policy iteration* has us stop the process early to avoid any wasted work.
+    - We could introduce a stopping condition. $\epsilon$-convergence of value function - if our value function changes by less than $\epsilon$ on any iteration, stop the process.
+    - Or simply stop after $k$ iterations.
+        - $k = 3$ was sufficient in the small gridworld example.
+- We could also update our policy after every iteration. i.e. Stop evaluation after $k = 1$, act greedily with respect to that value function, then evaluate again.
+    - This is equivalent to *value iteration*.
+
+## Value iteration
+
+- Recall that MDPs satisfy the requirements for dynamic programming including having [[3 RL Planning by Dynamic Programming#^3a68c9|optimal substructure]]. This means that any optimal policy can be subdivided into two components:
+    - An optimal first action $A_*$
+    - Followed by an optimal policy from the successor state $S^\prime$
+
+> [!info] Theorem: Principle of Optimality
+> A policy $\pi(a|s)$ achieves the optimal value from state $s$ ($v_\pi(s) = v_*(s)$) iff:
+> 
+> > For any state $s^\prime$ reachable from $s$, $\pi$ achieves the optimal value from state $s^\prime$, i.e. $v_\pi(s^\prime) = v_*(s^\prime)$.
+
+- The intuition behind *value iteration* is that you start off at the end of your problem (i.e. someone tells you what your final reward is), then you work backwards from that figuring out the optimal path.
+    - This still works with loopy and/or stochastic MDPs.
+    - This also still works in MDPs with no 'final state'.
+
+- Formally, assuming that we know the solution to $v_*(s^\prime)$, solution $v_*(s)$ can be found from a one-step lookahead 
+    - $v_*(s) \leftarrow \max_{a \in \mathcal{A}} \mathscr{R}^a_s + \gamma \sum_{s' \in \mathcal{S}} \mathscr{P}^a_{ss'} v_*(s')$, recall that this is the [[2 RL Markov Decision Processes#For V*|Bellman optimality equation]].
+
+> [!tip] Example: another small gridworld
+> 
+> ![[Pasted image 20231009162942.png]]
+> 
+> There is one goal state in this example, we want to find out how many steps it takes to reach the goal. 
+> - Previously, we were looking at some random policy and trying to evaluate that. Here we're optimising for the shortest path.
+> 
+> Starting in the goal corner and working our way backwards, we see that the states adjacent to the goal have value of -1 since moving from them to the goal gives an immediate reward of -1. We naively apply the -1 to all other states in the MDP for now since we don't know their value yet.
+> - On the second step, we see that the states further on from those are -2 since they are two steps away from the goal. In reality, we look across each state and assess possible successor states and associated rewards:
+>     - The -1 states remain -1 since the best action you can take will take you to the goal; -1 reward + 0 value. The -2 states are -2 because a step in any direction will result in a -1 reward + -1 value. This is iterated until all states have had a one-step lookahead from their perspective.
+>       
+>  Eventually we end up with the optimal value function.
+### Value iteration in MDPs
+
+> Reiterating that we're *not* solving the entire reinforcement learning problem here, someone is telling us the dynamics of the system (the immediate rewards and the state transition matrix).
+
+- **Problem**: find the optimal policy $\pi$
+- **Solution**: iterative application of Bellman optimality backup (recall we used the Bellman expectation equation for policy iteration)
+    - $v_1 \rightarrow v_2 \rightarrow \dots \rightarrow v^*$
+    - We start off with our initial value (can be arbitrary values), then iterate over whole sweeps of our state space (i.e. *synchronous backups*), then update our value functions in each state using a one-step lookahead and the previous iteration to seed the current iteration's values.
+    - The difference between this and policy iteration is that we're not building an explicit policy in every step, we're just building value functions.
+        - This means that if we stop the algorithm at an intermediate step, we can end up with a value function that isn't achievable by *any* policy. However at the end of this process, we know that we have the value function of the optimal policy.
+        - This is equivalent to modified policy iteration with $k = 1$. If we try to evaluate the policy for just one step, we're taking the greedy policy (an $\arg\max$) and evaluating it to get the max over one step - which is the same as using the Bellman optimality equation.
+
+![[Pasted image 20231009171312.png]]
+
+- The image above is the same slide we saw earlier for the Bellman expectation equation, but using the optimality equation. The same logic applies.
+- We do synchronous sweeps - in every iteration, each state gets a turn at being the root of this diagram.
+    1. We perform a one-step lookahead from each state. 
+    2. We maximise over what we're able to do from that state, then we take an expectation over all the things the environment might do. 
+    3. We use our previous iteration's value functions ($v_k(s^\prime)$) for the values at the leaves to calculate $v_{k+1}(s)$
+
+i.e.
+$$\begin{align}
+v_{k+1}(s) &= \max_{a \in A} \left( \mathscr{R}^a_s + \gamma \sum_{s' \in S} \mathscr{P}^a_{ss'} v_k(s') \right) \\
+\boldsymbol{v}_{k+1} &= \max_{a \in A} \left( \boldsymbol{\mathscr{R}}^a + \gamma \boldsymbol{\mathscr{P}}^a \boldsymbol{v}_k \right)
+\end{align}
+$$
+
+Note that if both $v$s had no subscript, this would be exactly the Bellman optimality equation.
+
+### Summary of DP algorithms
+
+A summary of the contents of this lecture is in the image below.
+
+![[Pasted image 20231009172400.png]]
+
+- All of these are planning problems, we're given the dynamics of the MDP and we're trying to solve it.
+    - In **Prediction**, we're trying to solve how much value we'll get from a particular policy. We use the Bellman expectation equation here. If we take that Bellman equation and turn it into an iterative update, we end up with *Iterative Policy Evaluation*.
+    - In **Control**, we're figuring out how to maximise our total reward. We could use *Policy Iteration* (alternating between applying the Bellman expectation equation and policy improvement - acting greedily). Alternatively, we could use *Value Iteration* where we use the Bellman Optimality Equation (the one with the $\max$ in it) iteratively.
+        - Between Policy Iteration and Value Iteration we also have Modified Policy Iteration, where Policy Iteration with $k = 1$ is equivalent to Value Iteration.
+
+- All of these algorithms have been based on state-value functions $v_\pi(s)$ or $v_*(s)$. If we have *m* actions and *n* states then:
+    - We're considering $n$ states, and for each state we consider $n$ possible successor states. With $m$ actions, our complexity is $O(mn^2)$ for synchronous backup.
+- Using the action-value function $q_\pi(s,a)$ or $q_*(s,a)$ has higher complexity, but there are still legitimate reasons (like model-free control, this lets us get away from doing a one-step lookahead and allows us to not know the dynamics of the problem) for using it which we'll see in future lectures:
+    - There are Bellman equations for $q$ and we can turn those into iterative updates, but their complexity is $O(m^2n^2)$ since we have to consider each state-action, and each successive state-action from there.
+
+## Extensions to dynamic programming
+
+- DP methods described so far use *synchronous* backups. However, there are *asynchronous backups* where we pick any state we want to be the root of the backup, perform the backup, then re-run this immediately without updating every single state.
+    - This significantly reduces computation, and as long as you select every state at least once (regardless of order) then your algorithm will still converge to the optimal value function.
+
+- Three asynchronous methods we'll focus on here. The point of difference is that each of these methods is a way to pick which states we update in each sweep.
+    - *In-place* dynamic programming
+    - *Prioritised sweeping*
+    - *Real-time* dynamic programming
+
+### In-place dynamic programming
+
+- In synchronous value iteration, we store two copies of the value function $\forall \space s \in \mathcal{S}$.
+    - You have to plug the old value into the leaves, and you also need to store the new value function which is what you're computing at the root.
+    - Then you'll switch your new values into your old values and repeat.
+$$
+\begin{align} 
+\color{red}{\mathscr{v}_{\text{new}}(s)} &\leftarrow \max_{a \in A} \left( \mathscr{R}^a_s + \gamma \sum_{s' \in S} 
+\mathscr{P}^a_{ss'} 
+\color{red}{\mathscr{v}_{\text{old}}(s')} \right) \\
+\color{red}{\mathscr{v}_{\text{old}}} &\color{red}{\leftarrow \mathscr{v}_{\text{new}}} \end{align}
+$$
+- With in-place value iteration, we forget about the differentiation between old and new. When we sweep over states, we use the latest value instead of the old value.
+    - Since this uses more new information it tends to be more efficient, and the question starts to become how can you order things to be most efficient - this motivates *prioritised sweeping*.
+    - With some problems you can be much more efficient.
+$$
+\begin{align}
+\color{red}{v(s)} &\leftarrow \max_{a \in A} \left( \mathscr{R}^a_s + \gamma \sum_{s' \in S} \mathscr{P}^a_{ss'} \color{red}v(s') \right)
+\end{align}
+$$
+### Prioritised sweeping
+
+- The idea here is to come up with some measure of how important it is to visit any state within the MDP, and prioritise visiting states based on a ranking of this measure.
+- Use the magnitude of Bellman error to guide state selection.
+    - The intuition is the states that are changing the most after your update are the ones that are most important to update.
+$$\left| \max_{a \in A} \left( \mathscr{R}^a_s + \gamma \sum_{s' \in S} \mathscr{P}^a_{ss'} v(s') \right) - v(s) \right|$$
+- The algorithm is to:
+    1. Backup the state with the largest remaining Bellman error
+    2. Update the Bellman error of affected states after each backup
+    3. Repeat
+- Note this requires knowledge of predecessor states ==does this mean that we can only perform this after a few steps of Value/Policy Iteration?==
+### Real-time dynamic programming
+
+- Don't just sweep over everything naively, set an agent loose and record which states it visits. Then select those states for backup.
+    - After each time step $S_t$, $A_t$, $R_{t+1}$, backup state $S_t$
+$$v(S_t) \leftarrow \max_{a \in A} \left( R^a_{S_t} + \gamma \sum_{s' \in S} P^a_{S_ts'} v(s') \right)$$
+### Full-width backups
+
+- DP uses *full-width backups*; this means that when we build the lookahead diagrams, we're considering *all* actions and *all* successor states. This is computationally expensive.
+    - In order to do this lookahead, we need to know the dynamics of the system since we're doing planning.
+- This is still effective for medium-sized problems (millions of states), but for larger problems we suffer from Bellman's *curse of dimensionality*. The number of states $n = |\mathcal{S}|$ grows exponentially with number of state variables. Here, even one full backup is too expensive.
+    - In future lectures, we'll look at how to solve this problem - we'll do this by sampling particular trajectories (sampling just one trajectory in some instances). This means that:
+        - Model-free: we don't need to have advance knowledge of the MDP
+        - Breaks the curse of dimensionality, in fact the cost of backup is now constant and independent of $n = |\mathcal{S}|$.
+
+**Contraction Mapping** wasn't covered in this lecture due to lack of time.
