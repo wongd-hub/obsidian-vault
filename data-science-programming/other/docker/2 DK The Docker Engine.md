@@ -3,7 +3,7 @@
 - Docker is an open-source tool that allows us to create, run, and manage containers.
     - Docker's creation in 2013 caused containers (which already existed) to explode in popularity.
     - *Docker Engine* is all you need to create and run containers, but is part of a wider ecosystem which contains (amongst other things):
-        - *Docker Compose*: A tool for managing multi-containers Docker applications
+        - *Docker Compose*: A tool for managing multi-container Docker applications
         - *Kubernetes*: A tool for scheduling and management of containers
 
 ## Docker Engine
