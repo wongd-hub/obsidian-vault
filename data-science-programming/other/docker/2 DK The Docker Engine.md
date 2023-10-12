@@ -7,6 +7,7 @@
         - *Kubernetes*: A tool for scheduling and management of containers
 
 ## Docker Engine
+
 - The Docker Engine is composed of a client and a server:
     - The client is called Docker Client, and is a command-line interface used to interact with the Docker server
         - Docker Engine provides API specifications which define how a programmer or other applications can interact with the server
@@ -15,12 +16,14 @@
 
 ![[Pasted image 20230904220447.png]]
 ### The Docker Daemon
+
 - The daemon is responsible for managing Docker objects (i.e. containers, images)
 - We can't tell the daemon directly what to do, we need to use the client to provide us a human-usable interface to it
     - The Docker command-line is one, however there is also Docker Desktop which provides a GUI
 
 ![[Pasted image 20230904220506.png]]
 ### Images and Containers
+
 - An image is like a snapshot of a computer
     - Think of this like a recipe to perform our workflow
 - A container is simply a running image

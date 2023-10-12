@@ -1,9 +1,11 @@
 #course_datacamp-docker #docker
 
 ## Containers and Virtual Machines
+
 - Containers and VMs both enable you to run processes side-by-side on the same physical  machine without interfering with each other. However, there is a difference from the technical perspective, making their use-cases different.
 
 ### Resource Virtualisation
+
 - Running processes side-by-side on the same physical machine safely is done via resource virtualisation.
 - Resource virtualisation means that resources such as RAM, Disk, and CPU can be split up and look like separate resources to the software using them. e.g. A 100GB hard disk can be virtualised into 4 25GB disks, each used by separate processes with no overlap. 
     - Both containers and VMs are virtualisation technologies.
@@ -11,6 +13,7 @@
 ![[Pasted image 20230904221906.png]]
 
 ### Main Differences
+
 - The key difference between containers and virtual machines is that VMs virtualise the entire computer down to the hardware. Whereas virtualisation in containers happens in a software layer above the operating system.
     - Separation in VMs is better since only the hardware is shared by processes; whereas in containers, the host OS is also shared
 
