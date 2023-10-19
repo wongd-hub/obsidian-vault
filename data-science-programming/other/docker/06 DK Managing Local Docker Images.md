@@ -26,7 +26,7 @@ docker pull <image-name>:<version-number>
 
 - List the images you've downloaded with `docker images`. This also tells us when the image was created, what size it is on disk, and the image's unique ID.
 - Since images take up space, we should remove any that we're not using. We can do this with `docker image rm <image-name>`.
-    - Since a container is a running image, if we have any containers running off that image we will get an error message. This message tells us the ID of the containers we would need to stop. We can then use `docker container rm <container-id>` to [[5 DK Working with Docker containers#Cleaning up containers|remove them]].
+    - Since a container is a running image, if we have any containers running off that image we will get an error message. This message tells us the ID of the containers we would need to stop. We can then use `docker container rm <container-id>` to [[05 DK Working with Docker containers#Cleaning up containers|remove them]].
     - It is common to have multiple containers running off a single image. It might be easier to remove all stopped containers, which we can do with `docker container prune`.
 
 ![[Pasted image 20231017212110.png]]

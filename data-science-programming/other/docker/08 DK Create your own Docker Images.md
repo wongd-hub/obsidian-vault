@@ -2,7 +2,7 @@
 ## Dockerfiles
 
 - The recipe for each image is contained in a `Dockerfile`. 
-    - The first line in any `Dockerfile` is always a `FROM` command. This tells Docker which image to start from when building our image. Often, this will be `FROM ubuntu` but it can be anything that matches your use-case. We can also [[6 DK Managing Local Docker Images#Docker Hub|specify a specific version using colon notation]] as seen in previous videos.
+    - The first line in any `Dockerfile` is always a `FROM` command. This tells Docker which image to start from when building our image. Often, this will be `FROM ubuntu` but it can be anything that matches your use-case. We can also [[06 DK Managing Local Docker Images#Docker Hub|specify a specific version using colon notation]] as seen in previous videos.
     - We can then customise from there by putting in `RUN` lines followed by valid shell commands, which run the given commands in the shell of the image. 
     - A simple `Dockerfile` might look like the following:
 
