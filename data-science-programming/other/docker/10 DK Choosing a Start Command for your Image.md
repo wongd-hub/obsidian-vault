@@ -1,7 +1,6 @@
 #course_datacamp-docker #docker 
 
 - The images we've created so far do not do anything upon running them as containers. In this lesson we'll talk about having the image execute commands once it starts as a container.
-
 ## What is a start command?
 
 - The `hello-world` container will print a "Hello World" message upon instantiation, then automatically exit. A `python3-sandbox` container will likely open up a `python3` interpreter upon run.

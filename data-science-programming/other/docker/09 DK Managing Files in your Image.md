@@ -1,7 +1,6 @@
 #course_datacamp-docker #docker 
 
 - We've seen how to create a Docker image using another image as a starting point, as well as how to run arbitrary shell commands upon build. This lesson will take this further and show you how to add/download files into your image.
-
 ## Copying files from your local machine
 
 - Use the `COPY` command to copy files from your local machine into your Docker image.
