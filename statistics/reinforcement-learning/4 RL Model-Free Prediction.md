@@ -37,8 +37,80 @@ Monte-Carlo learning describes a class of methods that have the agent fully expl
 > - This gives us our total reward from each time step onwards (with which we calculate $G_t$)
 > - Monte-Carlo learning then estimates $v_\pi(s)$ as the empirical mean return from each state (in place of the expectation above)
 >   
-> How do we calculate this for all states when we can't reset our state back to certain points (i.e. we need to run the full trajectory)? There are two methods…
+> How do we calculate this for all states when we can't reset our state back to certain points (i.e. we need to run the full trajectory)? There are two methods, both of which are effective…
 
+### First-visit Monte-Carlo policy evaluation
 
+In short, the first (and only the first) time we visit a given state $s$ each episode, we count it and track the returns from that point. Over all episodes, we estimate $v_\pi(s)$ as $\text{sum of returns over all first-time visits}/\text{number of episodes in which the state was visited}$.
 
+In detail, to evaluate state $s$, the *first* time we visit it in episode $i$ we:
+- Increment a counter $N(s) \leftarrow N(s) + 1$
+- Increment total return $S(s) \leftarrow S(s) + G_t$
+- Estimate value using mean return of first-time visits across all episodes $V(s) = S(s)/N(s)$
+    - By the law of large numbers, as $N(s) \rightarrow \infty$, $V(s) \rightarrow v_\pi(s)$ 
+### Every-visit Monte-Carlo policy evaluation
 
+The same as [[#First-visit Monte-Carlo policy evaluation]], but instead of incrementing the counter and total return only the first time we visit a state, we do it *every time* we visit the state in each episode.
+
+To evaluate state $s$, *every* time we visit it in episode $i$ we:
+- Increment a counter $N(s) \leftarrow N(s) + 1$
+- Increment total return $S(s) \leftarrow S(s) + G_t$
+- Estimate value using mean return of visits across all episodes $V(s) = S(s)/N(s)$
+
+> [!tip] Example: Blackjack
+> 
+> Sidenote: do something with [justBlackjack](https://wongd-hub.github.io/justBlackjack/)…
+> 
+> - *States*: 200, encompasses:
+>     - Current sum of your hand (12-21), if sum $\le$ 11 then we automatically draw another card (as the max value of a card is 10)
+>     - Dealer's showing card (ace-10)
+>     - Do you have a 'useable' ace (yes-no)
+> - *Actions*:
+>     - Stand: Stop receiving cards and terminate episode
+>     - Hit: Take another card
+> - *Rewards*:
+>     - Stand: 
+>         - $+1$ if sum of cards $\gt$ sum of dealer's hand
+>         - $0$ if sum of cards $=$ sum of dealer's hand
+>         - $-1$ if sum of cards < sum of dealer's hand
+>     - Hit: 
+>         - $-1$ if sum of cards $\gt$ 21 (and terminate episode)
+>         - $0$ otherwise
+>  
+>  For now, consider the simple policy of *stand* if sum of cards $\ge$ 20, else *hit*.
+>  - The following graphs show the value function/expected return in each state using Monte-Carlo learning after 10k and 500k episodes.
+>  - We can see that after 10k episodes, the case where we have a usable ace is still not stable - this is because this is a rare occurrence. On the other hand, not having a usable ace is already fairly stable at that point.
+>  - Otherwise, you only really do well if you have 20/21, otherwise you do badly due to the simplistic policy.
+>  
+>  ![[Pasted image 20231024225149.png]]
+
+### Incremental Monte-Carlo learning
+
+> [!info] Incremental mean calculation
+> A short proof to show that it is possible to calculate a mean *incrementally* as we continue to run through episodes.
+> 
+> The mean $\mu_1, \mu_2, \dots$ of a sequence $x_1, x_2, \dots$ can be computed incrementally. This can be done by taking the previous mean $\mu_{k-1}$ and adjusting it towards the newly observed value by some step size $\frac{1}{k}$ and error from the previous value $x_k - \mu_{k-1}$.
+> 
+> $$
+> \begin{align*}
+> \mu_k &= \frac{1}{k} \sum_{j=1}^{k} x_j \\
+> &= \frac{1}{k} \left( x_k + \sum_{j=1}^{k-1} x_j \right) \\
+> &= \frac{1}{k} \left( x_k + (k - 1)\mu_{k-1} \right) \\
+> &= \mu_{k-1} + \frac{1}{k} (x_k - \mu_{k-1})
+> \end{align*}
+> $$
+
+We use the same idea to perform incremental Monte-Carlo updates over each episode. This way we don't need to keep track of the sum ($S(s)$) and only the counter and working mean.
+- Update $V(s)$ incrementally after episode $S_1, A_1, R_2, \dots, S_T$
+- For each state $S_t$ with return $G_t$:
+    - $N(S_t) \leftarrow N(S_t) + 1$
+    - $V(S_t) \leftarrow V(S_t) + \frac{1}{N(S_t)}\left(G_t-V(S_t)\right)$
+
+In non-stationary problems, it can be useful to track a running mean (i.e. forget old episodes).
+- This is often the case, as things change in the real world so remembering all old returns would lead to bias.
+- This also means that we also don't need to track the counter $N(s)$
+$$V(S_t) \leftarrow V(S_t) + \alpha\left(G_t-V(S_t)\right)$$
+
+## Temporal-Difference learning
+
+34:00
