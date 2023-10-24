@@ -18,7 +18,7 @@
     - This lecture will focus on the policy evaluation/prediction; what is the value of a given policy.
 - Next lecture: model-free control, find the optimal value function in the MDP
 
-## Monte-Carlo Reinforcement Learning
+## Monte-Carlo reinforcement learning
 
 Monte-Carlo learning describes a class of methods that have the agent fully explore a trajectory then estimate the value of each state/action by looking at sample returns.
 
@@ -26,3 +26,19 @@ Monte-Carlo learning describes a class of methods that have the agent fully expl
 - Learns from *complete* episodes (i.e. play the full scenario and propagate rewards backwards). In other words, we *do not bootstrap*.
     - Hence this only works for episodic MDPs - you need to terminate the episode for this to work.
 - MC uses the simplest possible idea to estimate the value function. Take sample returns, and then estimate the value as the mean of observed returns.
+
+> [!info] Monte-Carlo Policy Evaluation
+> Recall that:
+> - Return at time step $t$ is the total discounted reward from that point onwards $G_t = R_{t+1} + \gamma R_{t+2} + … + \gamma^{T-1} R_T$
+> - The value function is the expected return $v_\pi(s) = \mathbb{E}_\pi [ G_t | S_t = s]$
+> 
+> *Goal*: learn $v_\pi$ (expected future return from any state) from observation of episodes of experience under policy $\pi$
+> - Observation of the episodes gives us a stream of states, actions, and resulting rewards ($S_1, A_1, R_2, …, S_k \sim \pi$)
+> - This gives us our total reward from each time step onwards (with which we calculate $G_t$)
+> - Monte-Carlo learning then estimates $v_\pi(s)$ as the empirical mean return from each state (in place of the expectation above)
+>   
+> How do we calculate this for all states when we can't reset our state back to certain points (i.e. we need to run the full trajectory)? There are two methods…
+
+
+
+
