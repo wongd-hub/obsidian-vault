@@ -13,7 +13,16 @@
 
 - Last lecture: how do we solve a MDP (find the optimal behaviour that maximises reward) where we already know the dynamics and rewards. 
     - Use DP to evaluate a policy, then use that as an inner loop to find the optimal policy.
-- This lecture: model-free prediction, go directly from the experience the agent has to a value function/policy.
+- This lecture: model-free prediction, go directly from the experience the agent has to a value function/policy with no prior knowledge of the MDP.
     - Will break this down into policy evaluation, then use our methods for policy evaluation to help us do control.
     - This lecture will focus on the policy evaluation/prediction; what is the value of a given policy.
 - Next lecture: model-free control, find the optimal value function in the MDP
+
+## Monte-Carlo Reinforcement Learning
+
+Monte-Carlo learning describes a class of methods that have the agent fully explore a trajectory then estimate the value of each state/action by looking at sample returns.
+
+- Learn directly from episodes of experience, so we don't need a model prior to learning.
+- Learns from *complete* episodes (i.e. play the full scenario and propagate rewards backwards). In other words, we *do not bootstrap*.
+    - Hence this only works for episodic MDPs - you need to terminate the episode for this to work.
+- MC uses the simplest possible idea to estimate the value function. Take sample returns, and then estimate the value as the mean of observed returns.
