@@ -9,6 +9,7 @@
     - *Monte-Carlo Learning*: Methods which go all the way to the end of a trajectory and estimate value by looking at sample returns.
     - *Temporal-Difference Learning*: Can be more efficient. Look one/n steps ahead and estimate the return after that step.
     - We can unify these methods and there's a whole spectrum of methods in between (TD($\lambda$))
+
 ## Introduction
 
 - Last lecture: how do we solve a MDP (find the optimal behaviour that maximises reward) where we already know the dynamics and rewards. 
@@ -48,6 +49,7 @@ In detail, to evaluate state $s$, the *first* time we visit it in episode $i$ we
 - Increment total return $S(s) \leftarrow S(s) + G_t$
 - Estimate value using mean return of first-time visits across all episodes $V(s) = S(s)/N(s)$
     - By the law of large numbers, as $N(s) \rightarrow \infty$, $V(s) \rightarrow v_\pi(s)$ 
+
 ### Every-visit Monte-Carlo policy evaluation
 
 The same as [[#First-visit Monte-Carlo policy evaluation]], but instead of incrementing the counter and total return only the first time we visit a state, we do it *every time* we visit the state in each episode.
@@ -113,4 +115,180 @@ $$V(S_t) \leftarrow V(S_t) + \alpha\left(G_t-V(S_t)\right)$$
 
 ## Temporal-Difference learning
 
-34:00
+Similarly to MC learning, TD learning:
+- Learns directly from episodes of experience
+- Is model-free, no prior knowledge of MDP transitions/rewards
+
+However, TD learning differs in that:
+- We no longer need to see entire episodes, TD learns from incomplete episodes
+- TD updates an initial guess of $v_\pi(s)$ towards another guess
+
+Together, the behaviour in the last two points describes the process of *bootstrapping*.
+
+### MC vs. TD
+
+*Goal*: learn $v_\pi(s)$ on-line (i.e. mid-episode(?)) from experience under policy $\pi$
+
+How do MC and TD differ?:
+
+- *Incremental Every-Visit Monte-Carlo* updates a value $V(S_t)$ towards an *actual* return $G_t$ that is propagated backwards from the termination of the episode.
+    - In other words, we update our estimate of $V(S_t)$ by a factor ($\alpha$) of the error between our next observed return and our current estimate of $V(S_t)$.
+$$V(S_t) \leftarrow V(S_t) + \alpha \left( G_t - V(S_t) \right)$$
+
+- *Simplest Temporal-Difference Learning algorithm, TD(0)* updates value $V(S_t)$ toward an *estimated* return composed of the immediate reward and the discounted value of the successor state, $R_{t+1} + \gamma V(S_{t+1})$
+    - $R_{t+1} + \gamma V(S_{t+1})$ is referred to as the TD target (what we're updating towards)
+    - $\delta_t=R_{t+1} + \gamma V(S_{t+1}) - V(S_t)$ is referred to as the TD error
+$$V(S_t) \leftarrow V(S_t) + \alpha \left( R_{t+1} + \gamma V(S_{t+1}) - V(S_t) \right)$$
+
+> [!tip] How do these methods differ in practice?
+> Suppose your agent is driving a car, it sees a car hurtling toward it and it thinks it'll crash. At the last second, it doesn't crash and you continue driving.
+> 
+> - In Monte-Carlo, since you didn't have a crash/termination, you wouldn't get a negative reward to disincentivise whatever behaviour led to this situation. 
+> - In Temporal-Difference, you can immediately update the value you had before to say that this is a bad situation and that we want to avoid situations like these. You don't need to wait until you die to update your value function.
+
+> [!tip] Example: driving home
+> ![[Pasted image 20231026075046.png]]
+> 
+> Imagine you're driving on your way home from work. As you leave the office, you have an initial guess of how long it'll take to get home (first row, 30 minutes).
+> - It's raining when you reach the car, you think it'll take you slightly longer. 5 minutes have already elapsed and you think it'll take you 35 minutes from here to get home.
+> - …
+> - When you get to your home's street, you think there'll be 3 minutes left to go
+> - You get home
+> 
+> How would we update our value function based on our trajectory/experience? The following diagram shows the difference between MC and TD methods for this problem.
+> - At each point in the MC method, you're updating towards the *final* outcome, you need to wait until you've gone all the way until you have any proper estimate.
+> - With TD learning, at every step you have a guess at how long it will take which is being adjusted upwards or downwards based on your experience at each step. At all points in time, you have a working estimate of the value function.
+> 
+> ![[Pasted image 20231026075446.png]]
+
+### Advantages and disadvantages of MC vs. TD
+
+- As we saw in the previous examples, TD can learn *before* seeing the final outcome
+    - TD can learn on-line after every step
+    - MC must wait until the end of the episode before the return is known
+
+- As a consequence, TD can learn *without* a final outcome
+    - TD can learn from incomplete sequences, whereas MC cannot
+    - TD works for continuing (non-terminating) environments where as MC only works in episodic (terminating) environments
+
+### Bias-Variance trade-off
+
+- The following measures are *unbiased*:
+    - The true return $G_t = R_{t+1} + \gamma R_{t+2} + \dots + \gamma^{T-1} R_T$ is an unbiased estimate of $v_\pi(S_t)$
+        - Hence, Monte-Carlo is unbiased
+    - The true TD target (i.e. we are told the true value function) $R_{t+1} + \gamma v_{\pi}(S_{t+1})$ is an unbiased estimate of $v_\pi(S_t)$ (the Bellman equation)
+
+- However, the actual TD target $R_{t+1} + \gamma v_{\pi}(S_{t+1})$  (using our best guesses) is a *biased* estimate of $v_\pi(S_t)$
+    - But the TD target has much lower *variance* than the return $G_t$
+    - This because there is noise inherent to each random action, transition, and reward that makes up $G_t$ (the entire trajectory), whereas the TD target depends on only one random action, transition, and reward.
+
+> [!info]
+> - MC has high variance, but zero bias
+>     - Good convergence properties (just works out of the box, even with function approximation)
+>     - Not very sensitive to the initial value since you're not bootstrapping off that initial value
+>     - Very simple to understand and use
+> 
+> - TD has low variance but some bias
+>     - Usually more efficient than MC since it's lower variance
+>     - TD(0) converges to true value function $v_\pi(s)$ (but not always with function approximation)
+>     - More sensitive to initial value due to bootstrapping from that value
+> 
+> NB: We'll touch on *function approximation* in later lectures, the general gist is that estimating the value function for each value separately is inefficient, so we use a function approximation to estimate the value function
+
+> [!tip] Example: random walk
+> ![[Pasted image 20231026082205.png]]
+> - Actions: left and right
+> - Policy: a uniform random policy that goes left/right 50%/50%.
+> - States: left-most square is a terminal state, all actions have 0 rewards, apart from the state on the right which moving into has a return of 1
+>   
+> Solving this using TD, we can see that:
+> - At the 0th iteration, we have all 0s, our initialising values
+> - At the 1st iteration, we start to move towards the true value function (light grey)
+> - At 100 iterations, we are close to the true value function
+> 
+> ![[Pasted image 20231026082438.png]]
+> 
+> Comparing against MC, we calculate the RMSE against the actual value of each state as we increase the number of iterations
+> - We can see that TD much more efficiently arrives an optimal solution whereas MC's RMSE trends downwards much more slowly (but presumably will zero in on the true value function precisely)
+> 
+> ![[Pasted image 20231026082642.png]]
+
+### Batch MC and TD
+
+- We've seen that MC and TD converge $V(s) \rightarrow v_\pi(s)$ as episodes $\rightarrow \infty$
+- What happens if we stop after a finite number of episodes, or show only a certain set of episodes to the agent and train over those repeatedly?
+
+$$
+\begin{align*}
+\begin{aligned}[t]
+& S^1_1, a^1_1, r^1_2, \dots, S^1_T \\
+& \vdots \\
+& S^K_1, a^K_1, r^K_2, \dots, S^K_T
+\end{aligned}
+\end{align*}
+$$
+
+e.g. Repeatedly sample episode $k \in [1, K]$ and apply MC or TD(0)
+
+> [!tip] Example: AB
+> Consider a simple MDP with two states, A and B, no discounting, and 8 episodes of experience
+> 
+> ```
+> A, 0, B, 0
+> B, 1
+> B, 1
+> B, 1
+> B, 1
+> B, 1
+> B, 1
+> B, 0
+> ```
+> What is $V(A)$ and $V(B)$? $V(B)$ is a little more intuitive since we've seen more of it, we are likely to estimate it as $\frac{6}{8}$. However, we've only seen A once.
+> 
+> The answer is that $V(A)$ is $0$ or $\frac{6}{8}$ depending on if you use MC or TD.
+> - With MC, we've seen one episode of A, and the return was $0$ from that point until termination. $\therefore V(A) = 0$.
+> - With TD, we build the likeliest MDP that explains what we've seen so far (see below, i.e. the maximum likelihood MDP). Our values will then be based off of this.
+>     - When we are in A, we transition to B 100% of the time (based off the first observed episode)
+>     - From B, we have a $\frac{6}{8}$ chance to get a reward of 1
+>     - $\therefore V(A)=\frac{6}{8}$
+>       
+> ![[Pasted image 20231026084513.png]]
+
+From this, we can intuitively see that:
+
+- MC always converges to the solution with the minimum mean-squared error - i.e. the best fit to the observed returns
+$$\sum_{k=1}^{K} \sum_{t=1}^{T_k} \left( g^k_t - V(s^k_t) \right)^2$$
+- TD(0) converges to the solution of the maximum likelihood Markov model - i.e. solution to the MDP $\langle S, A, \hat{P}, \hat{R}, \gamma \rangle$ that best fits the data
+
+    - First equation: Transition probability of moving from $s$ to $s^\prime$ by taking action $a$ 
+        - Numerator: Number of times that taking action $a$ from $s$ leads to $s^\prime$
+        - Denominator: Number of times taking action $a$ from state $s$
+
+    - Second equation: Reward function for taking action $a$ from state $s$
+        - Numerator: Sum of reward $r^k_t$ only if taking action $a$ from state $s$
+        - Denominator: Number of times taking action $a$ from state $s$
+
+$$
+\hat{P}^a_{s,s'} = \frac{1}{N(s, a)} \sum_{k=1}^{K} \sum_{t=1}^{T_k} 1(s^k_t, a^k_t, s^k_{t+1} = s, a, s')
+$$
+$$
+\hat{R}^a_s = \frac{1}{N(s, a)} \sum_{k=1}^{K} \sum_{t=1}^{T_k} 1(s^k_t, a^k_t = s, a) r^k_t
+$$
+
+- Because of this, TD exploits the Markov property and hence works better in Markov environments
+- MC does not exploit the Markov property, usually more effective in non-Markov environments
+
+### Unified view
+
+Bringing this all together
+
+*Monte-Carlo backup*: $V(S_t) \leftarrow V(S_t) + \alpha \left( G_t - V(S_t) \right)$
+
+- MC we can think of like backups where we start at some state $S_t$ and implicitly there's a lookahead tree from that state. How do we make use of this lookahead tree to find the value function of $S_t$?
+    - MC samples one complete trajectory ($S_t$, $A_t$, $R_t$, $S_{t+1}$, $A_{t+1}$, etc) and uses it to update the value function at the root state and every intermediate state
+
+![[Pasted image 20231026085847.png]]
+
+*Temporal-Difference backup*: $V(S_t) \leftarrow V(S_t) + \alpha (R_{t+1} + \gamma V(S_{t+1}) - V(S_t))$
+
+- TD 1:07:38
