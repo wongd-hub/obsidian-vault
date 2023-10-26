@@ -289,6 +289,35 @@ Bringing this all together
 
 ![[Pasted image 20231026085847.png]]
 
+-----
+
 *Temporal-Difference backup*: $V(S_t) \leftarrow V(S_t) + \alpha (R_{t+1} + \gamma V(S_{t+1}) - V(S_t))$
 
-- TD 1:07:38
+- In TD, the backup is just over one step. We sample our action, state and reward (a sample of one step ahead), then back that up to the root node.
+
+![[Pasted image 20231026195505.png]]
+
+----
+
+*Dynamic Programming backup*: $V(S_t) \leftarrow \mathbb{E}_\pi \left[ R_{t+1} + \gamma V(S_{t+1}) \right]$
+
+- In DP, we also did a one-step lookahead but we didn't sample. We had to know the dynamics (all transition probabilities and actions) and had to use those to compute a full expectation across all eventualities at the root node.
+- You could also go all the way down the tree which would give you an *exhaustive tree search*.
+
+![[Pasted image 20231026195719.png]]
+
+#### Bootstrapping and sampling
+
+- Lets tease these components into dimensions with which we can define our algorithm space
+
+|    | **Bootstrapping**                  | **Sampling**                                                   |
+| --- | :----------------------------------: | :--------------------------------------------------------------: |
+|     | *using an estimate of the returns* | *update samples an expectation (instead of all eventualities)* |
+| MC  |           ❌                         |        ✅                                                        |
+| DP  |           ✅                         |           ❌                                                     |
+| TD    |         ✅                           |     ✅                                                           |
+
+#### Unified view of reinforcement learning
+
+![[Pasted image 20231026200615.png]]
+
