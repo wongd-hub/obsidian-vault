@@ -321,3 +321,92 @@ Bringing this all together
 
 ![[Pasted image 20231026200615.png]]
 
+- This is a unified view of methods for policy evaluation (we also have one for control later).
+    - On the y-axis we have *breadth/width* of the lookahead. We can either do full-width backups (across all actions/eventualities), or we can sample backups like we do in TD/MC.
+    - On the x-axis we have the *depth* of the lookahead. We can either look only a few steps ahead (TD) (which necessarily means bootstrapping) or look all the way until the end of the episode and propagate the reward backwards (MC).
+
+For the remainder of this lecture, we'll discuss the spectrum on the x-axis. There exists a generalised method that has pure MC and TD(0) on its extremes, $TD(\lambda)$.
+
+### TD(lambda)
+#### *n*-Step prediction and return
+
+- With $TD(0)$, we take one step then estimate our reward. Why not take this to an arbitrary number of steps, $n$?
+
+![[Pasted image 20231026231655.png]]
+
+- Consider the following $n$-step returns for $n = 1, 2, \dots, \infty$:
+$$
+\begin{array}{rll}
+n = 1 & (TD(0)) & G_t^{(1)} = R_{t+1} + \gamma V(S_{t+1}) \\
+n = 2 & & G_t^{(2)} = R_{t+1} + \gamma R_{t+2} + \gamma^2 V(S_{t+2}) \\
+\vdots & & \vdots \\
+n = \infty & (MC) & G_t^{(\infty)} = R_{t+1} + \gamma R_{t+2} + \ldots + \gamma^{T-1} R_T \\
+\end{array}
+$$
+- Hence, the generalised $n$-step return is:
+$$G_t^{(n)} = R_{t+1} + \gamma R_{t+2} + \ldots + \gamma^{n-1} R_{t+n} + \gamma^n V(S_{t+n})$$
+- Taking the $TD(0)$ update equation and replacing the return over one step with our $n$-step return, we are left with the following equation:
+$$V(S_t) \leftarrow V(S_t) + \alpha (G_t^{(n)} - V(S_t))$$
+
+This is valid for any $n$, so which $n$ is the best?
+
+> [!tip] Example: random walk
+> Same random walk example we looked at earlier in the lecture. This graph shows the RMSE against the true value function across different step sizes ($\alpha$) on the x-axis, each line represents a different $n$(-steps).
+> 
+> *NB*: On-line vs. off-line refers to whether you immediately update your value function after your step, or if you defer your updates until the end.
+> 
+> - As $n$ approaches $\infty$, we see what happens when we use Monte Carlo learning. You are left with a high minimum error in this case.
+> - There is exists a global minimum with the right $\alpha$ and $n$
+> 
+> ![[Pasted image 20231026233227.png]]
+> 
+> But how do we know which $n$ is the correct $n$ if we don't know the true value function? In the remainder of this lecture we're going to arrive at an algorithm that gets the best of all $n$.
+#### Averaging *n*-step returns
+#### lambda Return
+
+> [!info] Averaging $n$-step returns
+> - We can average $n$-step returns over different $n$, e.g. we do a single backup using the average of the 2-step and 4-step TD reward estimates $\frac{1}{2} G^{(2)} + \frac{1}{2} G^{(4)}$
+> - This combines information from multiple $n$, and there is an efficient way to average across all $n$ - the $\lambda$-return.
+
+![[Pasted image 20231027084020.png]]
+
+> [!tip]
+> Note that we'll approach $TD(\lambda)$ from the forward view first to gain intuition on the theory, then backwards to see the real implementation.
+
+- The $\lambda$-return $G^\lambda_t$ combines returns from all $n$ steps $G^{(n)}_t$ efficiently.
+
+    - It is defined as the geometrically weighted average of returns from all $n$. Weights are calculated as $(1-\lambda)\lambda^{n-1}$
+        - This uses a constant, $\lambda$ which tells us how much we decay the weight at each $n$ step increment.
+        - All weights sum to 1, the last weight is the complement of all existing weights (hence the terminal weight may be larger than previous weights).
+$$G_t^\lambda = (1 - \lambda) \sum_{n=1}^{\infty} \lambda^{n-1} G_t^{(n)}$$
+- We can see from this that $\lambda = 1$ is equivalent to Monte-Carlo, whereas $\lambda=0$ is equivalent to $TD(0)$
+    - Using an intermediate value of $\lambda$ allows us to tune our bias-variance tradeoff (i.e. the tradeoff between high variance but low bias deep backups and low variance but high bias bootstrapping)
+
+![[Pasted image 20231027085124.png]]
+
+> See how the weights look above. Why use a geometric weighting instead of arithmetic? Geometric weightings are memoryless(?) which allows us to compute this efficiently - we can do $TD(\lambda)$ for the same cost as $TD(0)$ this way.
+
+- The forward view on $TD(\lambda)$ is then $V(S_t) \leftarrow V(S_t) + \alpha \left( G_t^\lambda - V(S_t) \right)$
+#### Forward view TD(lambda)
+
+![[Pasted image 20231027085318.png]]
+
+- A bit like Monte-Carlo, if we want to implement the forward view version of this algorithm, we have to wait until the end of the episode to get our $n$-step returns.
+- However there's an equivalent version that achieves the same result but without needing to wait until the end of the episode.
+
+> [!tip] Example: random walk
+> ![[Pasted image 20231027085543.png]]
+> 
+> This shows again our RMSE against the true value function, however each line now represents a different value of $\lambda$.  We can see that the best value of $\lambda$ does just as well as the value of the best $n$ in the previous example, and that the sweet spot is much more robust.
+> 
+> Further, the optimal value of $\lambda$ would be the same regardless of the size of the random walk==(?)==.
+#### Backward view TD(lambda)
+
+- Forward view provides the theory, backward view provides the mechanism
+- Backward view allows us to update on-line, every step, from incomplete sequences
+
+> [!tip] Eligibility traces
+> ![[Pasted image 20231027090342.png]]
+
+1:30:38
+
