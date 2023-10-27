@@ -407,6 +407,62 @@ $$G_t^\lambda = (1 - \lambda) \sum_{n=1}^{\infty} \lambda^{n-1} G_t^{(n)}$$
 
 > [!tip] Eligibility traces
 > ![[Pasted image 20231027090342.png]]
+> 
+> If you observe this sequence, what do you think caused the bell? This is the *credit assignment problem*, did the bell or the light cause the shock? There are a few ways to think about this:
+> 
+> - Frequency heuristic: assign credit to most frequent state
+> - Recency heuristic: assign credit to most recent state
+>   
+> The idea of *eligibility traces* is to combine both heuristics. 
+> - Look over time at the states that we visit; every time we visit state $s$, we increase the eligibility trace, and decrease it when we start to not visit it.
+> - The diagram below shows the eligibility trace for one given state, the vertical lines at the bottom mark every time that the state is visited.
+> 
+> ![[Pasted image 20231027103240.png]]
+> 
+> $$
+> \begin{align}
+> E_0(s) &= 0 \\
+> E_t(s) &= \gamma \lambda E_{t-1}(s) + 1(S_t = s)
+> \end{align}
+> $$
+> 
+> When we see an error, we update the value function for each state in proportion to the eligibility trace/how much we think being in that state caused the error. 
 
-1:30:38
+- We keep an eligibility trace for every state $s \in \mathbb{S}$
+- We update the value function $V(s)$ for state $s$ in proportion to TD-error $\delta_t$ and eligibility trace $E_t(s)$
+    - Recall that $\delta_t=R_{t+1} + \gamma V(S_{t+1}) - V(S_t)$
+    - Hence our update equation is now $V(s) \leftarrow V(s) + \alpha \delta_t E_t(s)$
+
+![[Pasted image 20231027104019.png]]
+
+- This is like the TD-error being broadcast backwards to every state in the past, and the value function at every state being updated in proportion to the TD-error.
+
+> [!info] $TD(\lambda)$ and $TD(0)$
+> When $\lambda = 0$, only the current state is updated:
+> 
+> $$
+> \begin{align}
+> E_t(s) &= 1(S_t = s) \\
+> V(s) &\leftarrow V(s) + \alpha \delta_t E_t(s)
+> \end{align}
+> $$
+> 
+> This is equivalent to the $TD(0)$ update: $V(S_t) \leftarrow V(S_t) + \alpha \delta_t$
+
+> [!info] $TD(\lambda)$ and MC
+> When $\lambda=1$, credit is deferred until the end of the episode.
+>  - Consider episodic environments with off-line updates
+>  - Over the course of an episode, total update for $TD(1)$ is the same as the total update for MC
+>    
+>  **Theorem**
+>  
+>  *The sum of off-line updates is identical for forward view and backward view $TD(\lambda)$*
+>  
+>  $$\sum_{t=1}^{T} \alpha \delta_t E_t(s) = \sum_{t=1}^{T} \alpha (G_t - V(S_t)) 1(S_t = s)$$
+## Summary
+
+![[Pasted image 20231027105327.png]]
+
+
+
 
