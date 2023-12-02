@@ -203,7 +203,7 @@ $$
 
 > [!tip] Example: Student MDP
 > We've refactored the student example such that the focus is now on the action/decision you take. There are no longer probabilities attached to each action that moves you to each state since you are now choosing what action to take and hence which state you'll end up in.
-> - Note if you choose to go to the pub, this is the only place where is randomness built in; once you're there there are probabilities as to whether you'll transition to a set of other states.
+> - Note if you choose to go to the pub, this is the only place where randomness is built in; once you're there there are probabilities as to whether you'll transition to a set of other states.
 > 
 > ![[Pasted image 20230901134420.png]]
 > 
