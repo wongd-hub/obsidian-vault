@@ -260,7 +260,7 @@ $$
 
 - As with the MRP, the state-value and action-value functions can be decomposed into immediate reward plus discounted value of successor state:
     - State-value: $v_\pi(s) = \mathbb{E}_\pi [R_{t+1} + \gamma v_\pi(S_{t+1}) | S_t = s]$
-    - Action-value: $q_\pi(s, a) = \mathbb{E}_\pi [R_{t+1} + \gamma q_\pi(S_{t+1}, A_{t+1}) | S_t = s, A_t = a]$
+    - Action-value: $q_\pi(s, a) = \mathbb{E}_\pi [R_{t+1} + \gamma q_\pi(S_{t+1},  A_{t+1}) | S_t = s, A_t = a]$
 
 - Recall that the idea underlying these equations is that the value function at the current time step is equal to the immediate reward *plus* the value function of where you end up.
 #### Bellman for state-value
