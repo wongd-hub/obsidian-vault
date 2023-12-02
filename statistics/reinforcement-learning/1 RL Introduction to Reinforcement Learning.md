@@ -96,7 +96,7 @@ $$S_t=f\left(H_t\right)$$
 > $$\mathbb{P}[S_{t+1}|S_t]=\mathbb{P}[S_{t+1}|S_1, \dots, S_t]$$
 > In other words, the probability of the next state given the state you're in is the same as if you showed all of the previous states to the system.
 > 
-> i.e. This is a *memoryless* system. The current state fully characterises the distribution of over future actions/observations/rewards.
+> i.e. This is a *memoryless* system. The current state fully characterises the distribution of all future actions/observations/rewards.
 > $$H_{1:t} \rightarrow S_t \rightarrow H_{t+1:\infty}$$
 
 ^c3f6cb
@@ -140,7 +140,7 @@ So far we've only talked about the problem, not yet how to solve the problem.
         - Since the value will depend on what your action/policy is, we index by $\pi$: $v_\pi(s)=\mathbb{E}_\pi\left[R_t+\gamma R_{t+1} + \gamma^2 R_{t+2} + \dots|S_t=s\right]$
             - i.e. The value function tells us how much total reward we expect going into the future. We can also have discounting ($\gamma$) that goes into the future which helps us care more about immediate rewards if we want.
 
-    - **Model**: agent's subjective representation of the how the environment works. Its sometimes useful to learn the behaviour of the environment and use that model of the environment to help figure out what to do next.
+    - **Model**: agent's subjective representation of how the environment works. Its sometimes useful to learn the behaviour of the environment and use that model of the environment to help figure out what to do next.
         - It is optional to do this; a lot of the course we'll focus on model-free methods that don't use a model at all.
         - The way we normally do this is to have two parts of the model:
             - Transition model: $\mathscr{P}$ predicts the next state, predicts the dynamics of the environment. If this were the helicopter, this is the function that would predict where the helicopter would be next given its current state.
@@ -163,7 +163,7 @@ So far we've only talked about the problem, not yet how to solve the problem.
 > ![[Pasted image 20230817133131.png]]
 > 
 > An example of the agent's model of reality is like the following. The agent is trying to build its own map of the environment. The map represents the transition model ($\mathscr{P}^a_{ss'}$) and the numbers in each grid represent the expected reward in each state ($\mathscr{R}^a_s$)
-> ![[Pasted image 20230817133422.png]]
+> ![[Pasted image 20231202135742.png]]
 
 ### Categorising RL agents
 
