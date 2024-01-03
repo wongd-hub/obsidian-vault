@@ -4,5 +4,12 @@
   "spellcheckLanguages": null,
   "tabSize": 4,
   "useTab": false,
-  "newFileLocation": "current"
+  "newFileLocation": "current",
+  "pdfExportSettings": {
+    "includeName": true,
+    "pageSize": "A4",
+    "landscape": false,
+    "margin": "0",
+    "downscalePercent": 100
+  }
 }

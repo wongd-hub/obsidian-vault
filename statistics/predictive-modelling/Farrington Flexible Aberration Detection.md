@@ -75,4 +75,9 @@ controls <- list(
 )
 ```
 
-This is what the data look like, as well as the seasonal factor 
+This is what the data look like, as well as the seasonal factor created.
+
+- [ ] Need to plot the data + the seasonal factor. [BLOCKER]
+- [ ] Run the function and show the results.
+- [ ] Conclusion
+
