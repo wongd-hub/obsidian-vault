@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "statistics/inferential-statistics/6 ANOVA and Bootstrapping.md",
+                "file": "statistics/reinforcement-learning/1 RL Introduction to Reinforcement Learning.md",
                 "mode": "source",
                 "source": false
               }
@@ -89,7 +89,7 @@
         }
       }
     ],
-    "currentTab": 0
+    "currentTab": 5
   },
   "right": {
     "id": "33f851a784485b35",
@@ -101,7 +101,7 @@
         "state": {
           "type": "backlink",
           "state": {
-            "file": "statistics/inferential-statistics/6 ANOVA and Bootstrapping.md",
+            "file": "statistics/reinforcement-learning/1 RL Introduction to Reinforcement Learning.md",
             "collapseAll": false,
             "extraContext": false,
             "sortOrder": "alphabetical",
@@ -118,7 +118,7 @@
         "state": {
           "type": "outgoing-link",
           "state": {
-            "file": "statistics/inferential-statistics/6 ANOVA and Bootstrapping.md",
+            "file": "statistics/reinforcement-learning/1 RL Introduction to Reinforcement Learning.md",
             "linksCollapsed": false,
             "unlinkedCollapsed": true
           }
@@ -130,7 +130,7 @@
         "state": {
           "type": "outline",
           "state": {
-            "file": "statistics/inferential-statistics/6 ANOVA and Bootstrapping.md"
+            "file": "statistics/reinforcement-learning/1 RL Introduction to Reinforcement Learning.md"
           }
         }
       }
@@ -152,6 +152,7 @@
   },
   "active": "37dd6c7da585e6c5",
   "lastOpenFiles": [
+    "statistics/inferential-statistics/6 ANOVA and Bootstrapping.md",
     "statistics/introduction-to-statistical-learning/2 Statistical Learning/2.2 Assessing Model Accuracy.md",
     "Untitled.canvas",
     "statistics/reinforcement-learning/1 RL Introduction to Reinforcement Learning.md",
