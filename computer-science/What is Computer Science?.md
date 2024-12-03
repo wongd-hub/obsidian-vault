@@ -24,3 +24,11 @@ flowchart LR
         - Video can be represented as many images
 
 - Turning our attention to the algorithm, which is a step by step instruction for solving some problem. i.e. Code, which is the implementation of algorithms with computers.
+
+## Scratch demo
+
+- Scratch comes with a cat sprite who you can control using code, which itself is represented with puzzle pieces.
+- This lesson focused on certain aspects of writing code:
+    - Do not repeat yourself; that increases margin for error and inefficiency
+    - Abstract away complex or neatly encapsulated logic into functions
+    - Arguments to functions to make functions more flexible
