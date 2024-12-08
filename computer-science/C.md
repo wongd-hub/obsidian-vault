@@ -84,7 +84,13 @@ counter -= 1;
 ## If-else
 
 ```C
-
+if (x < y) {
+    // Do something if `true`
+} else if (x == y) {
+    // Do something if `true`
+} else {
+    // Otherwise, do this
+}
 ```
 
 ## For-loops
