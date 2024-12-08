@@ -65,7 +65,7 @@ string answer = get_string("What's your name? ");
 printf("hello %s\n", answer);
 ```
 
-- `s` stands for string. There is also `%c`, `%f`, 
+- `s` stands for string. There is also `%c`, `%f`, `%i`, `%li`, etc.
 
 ## Syntactic sugar
 
