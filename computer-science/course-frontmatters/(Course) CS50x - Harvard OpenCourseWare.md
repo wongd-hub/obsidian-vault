@@ -15,7 +15,9 @@ CS50 is Harvard University's introductory course in computer science and program
     - [[RGB]]
     - [[Pseudocode]]
 
-
+- Week 1: C
+    - [[C]]
+    - [[Linux Terminal]]
 
 - Week 2
     - [[1 Central Limit Theorem and Sampling Distributions]]
