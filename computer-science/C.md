@@ -13,7 +13,7 @@ int main(void) {
 - As a high level overview, here's what everything in this block is doing:
 
 ```C
-#include <stdio.h> // Loads the stdio.h library
+#include <stdio.h> // Loads the stdio.h (Standard I/O) library
 
 int main(void) {   // Defines a function, main, that takes no arguments
 
@@ -50,12 +50,15 @@ make hello   # Use hello.c to create an executable of the name hello
 ```C
 // Declare a string variable using user input
 string answer = get_string("What's your name? ");
+
+// Declare a counter integer
+int counter = 0;
 ```
 
 ## Strings
 
 - Strings with more than one character must be wrapped in *double* quotes, `"hello"`.
-- Characters with only one character must be wrapped in *single* quotes, `'a'`.
+- Characters with only one character must be wrapped in *single* quotes, `'a'`, and is of the type `char` instead of type `string`.
 
 ### Format strings
 
@@ -74,11 +77,21 @@ printf("hello %s\n", answer);
 ```C
 int counter = 0;
 
+counter = counter + 1; 
+// Is the same as:
 counter++;
 counter += 1;
 
 counter--;
 counter -= 1;
+```
+
+## Logical operators
+
+```C
+|| // OR
+&& // AND
+== // EQUALS
 ```
 
 ## If-else
@@ -96,15 +109,33 @@ if (x < y) {
 ## For-loops
 
 ```C
-for (int i = 0; i < n; i++)
+// Define a counter, i
+// For i < n, iterate...
+// ... At end of iteration, increment i by 1
+
+for (int i = 0; i < n; i++) {
+
+    // Do something
+
+}
 ```
 
 
 ## While-loops
 
 ```C
-while () {
+int i = 0; // Almost always start counting from 0
+while (i < 3) {
 
+    printf("meow\n");
+    i++;
+
+}
+
+// Have something happen forever
+while (true) {
+
+    // Do something
 
 }
 ```
@@ -112,13 +143,71 @@ while () {
 ## Function definitions
 
 ```C
-void meow(void) {
+// void type means there is no object returned from this function apart from side effects
+void meow(void) { // void arg means no arguments expected
 
     printf("meow\n");
 
 }
 ```
 
+```C
+int add(int x, int y) {
+
+    return x + y;
+
+}
+```
+
+## Scoping
+
+- Like other programming languages, there exists the concept of scope - i.e. what variables a function can see.
+
 ## Structure of a script
 
-- Hoisting
+```C
+#include <stdio.h>
+
+// We need to define functions before we use them.
+// Define meow() here
+
+void meow(void) {
+    printf("meow\n");
+}
+
+int main(void) {
+
+    for (int i = 0; i < 3; i++) {
+
+        meow();
+    
+    }
+
+}
+```
+
+- However, it's useful for `main()` to be at the top of the file since that's your entry-point. We can hoist the function definition to the top so to speak by copying the function's 'prototype' to the top.
+    - This tells C that there will be a function that returns a certain type, and takes certain arguments, that is defined later in the script.
+
+```C
+#include <stdio.h>
+
+// meow() prototype
+void meow(int n);
+
+int main(void) {
+
+    meow(3);
+
+}
+
+void meow(int n) {
+
+    for (int i = 0; i < n; i++) {
+
+        printf("meow\n");
+    
+    }
+    
+}
+```
