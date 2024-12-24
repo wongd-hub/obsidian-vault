@@ -224,13 +224,16 @@ void meow(int n) {
 }
 ```
 
-## What is C not good at?
+## What is C not good at / other miscellaneous notes
+
+### Memory usage & integer overflow
 
 - Random Access Memory (RAM) in the computer is where working data is stored. We have a finite amount of memory in each device.
 - In the world of numbers, if we're only using 3 digits we can count to 7
-    - If we're omitting the 4th digit, if we try to count past 7, we get a 0 again. i.e. we experience _integer overflow_ where we wrap around to 0 or a negative number. 
+    - If we're omitting the 4th digit, if we try to count past 7, we get a 0 again. i.e. we experience *integer overflow* where we wrap around to 0 or a negative number. 
+    - There are several real world examples of integer overflow occurring, for example in old video games.
 
-`1000 (if we only see the last 3 digits, it's a 0)`
+    `1000 (if we only see the last 3 digits, it's a 0)`
 
 - We often use 8 or 32 bits to represent numbers. 32 bits gives us counts up to 4.2 billion. However, if we need to count to 4.2 billion and 1, we'd need another bit.
     - If we want to also represent negative numbers, we'll need to split that in half again; so we can really only count up to 2.1 billion or down to -2.1 billion.
@@ -238,6 +241,87 @@ void meow(int n) {
 - When using data types in C, you can stipulate how much memory to use to represent numbers.
     - `int` is by convention 32 bits
     - A `long` can be 64 bits - which can represent numbers exponentially bigger than `int`. `%li` is how you represent a `long` in `printf()`.
+
+### Truncation
+
+Certain bad things can happen when you use large numbers. For example, consider a division function:
+
+```C
+#include <cs50.h>
+#include <stdio.h>
+
+int main(void) {
+
+    int x = get_int("x: ");
+    int y = get_int("y: ");
+
+    printf("%i\n", x / y);
+
+}
+
+
+#$ code calculator.c
+#$ make calculator
+#$ ./calculator
+#$ x: 1
+#$ y: 3
+#$ 0
+```
+
+- This is the incorrect answer; the reason is that `x / y` itself returns an `int` by default and we also requested an *integer* in `printf()`. We should instead request a floating point with `%f`.
+    - Floats use 64 bits, allowing us to represent more numbers before or after the decimal place.
+
+- The corrected function:
+
+```C
+int main(void) {
+
+    int x = get_int("x: ");
+    int y = get_int("y: ");
+
+    float z = x / y;
+
+    printf("%f\n", z);
+
+}
+
+#$ x: 1
+#$ y: 3
+#$ 0.00000
+```
+
+- This is still the wrong answer and is because of something called *truncation*. If you take an integer and divide it by an integer, then even if there's a fraction it gets discarded, since we're assuming we're doing just integer math. 
+    - To fix this, we need to *type cast* the integers as floats.
+
+```C
+int main(void) {
+
+    int x = get_int("x: ");
+    int y = get_int("y: ");
+
+    float z = (float) x / (float) y; // Type casting with (float)
+
+    // printf("%f\n", z)
+    printf("%.5f\n", z); // %.5f gives us a float with 5 decimal places
+
+}
+
+#$ x: 1
+#$ y: 3
+#$ 0.33333
+```
+
+### Floating point imprecision
+
+- If we set the number of decimal places to 20, we get the following answer:
+    - This is not 0.33 as we expected, and this is because the computer has limited memory to represent this floating point value.
+    - If we had used `double` instead of `float`, we'd get a number even closer to the true answer, but still not quite there. This is referred to as *floating point imprecision*.
+
+```C
+#$ x: 1
+#$ y: 3
+#$ 0.333333343267
+```
 
 
 ## Coding Mario
