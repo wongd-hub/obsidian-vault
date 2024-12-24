@@ -24,7 +24,7 @@ int main(void) {   // Defines a function, main, that takes no arguments
 ```
 
 - `main()` is the entry point of every C program, and serves as the starting point for code execution.
-    - `main()` always returns a `0` by default, which is why we set its type to `int`.
+    - `main()` always returns a `0` by default (if the program executed without issue), which is why we set its type to `int`.
 
 - Note also that CS50 has its own [C library](https://github.com/cs50/libcs50/releases) which implements a range of functions that ask the user for an input and return their answer. e.g.
     - `get_string("What is your name? ")`
@@ -32,7 +32,7 @@ int main(void) {   // Defines a function, main, that takes no arguments
 ## Compiling and running scripts
 
 - The lecturer is using the `code` command to both create an empty text file and open it in VS Code at the same time.
-- The `make` command compiles a `.c` script into an executable of the same name - sans file extension.
+- The `make` command compiles a `.c` script into a binary executable of the same name - sans file extension.
 - Invoke the executable to run the program.
 
 i.e. 
@@ -140,6 +140,18 @@ while (true) {
 }
 ```
 
+## Do while-loop
+
+```C
+int n; // Declare n in the current scope (not in the do{})
+do {
+
+    n = get_int("Size: ");
+
+}
+while(n < 1); // Do this at least once, and continue if n < 1
+```
+
 ## Function definitions
 
 ```C
@@ -209,5 +221,79 @@ void meow(int n) {
     
     }
     
+}
+```
+
+## What is C not good at?
+
+- Random Access Memory (RAM) in the computer is where working data is stored. We have a finite amount of memory in each device.
+- In the world of numbers, if we're only using 3 digits we can count to 7
+    - If we're omitting the 4th digit, if we try to count past 7, we get a 0 again. i.e. we experience _integer overflow_ where we wrap around to 0 or a negative number. 
+
+`1000 (if we only see the last 3 digits, it's a 0)`
+
+- We often use 8 or 32 bits to represent numbers. 32 bits gives us counts up to 4.2 billion. However, if we need to count to 4.2 billion and 1, we'd need another bit.
+    - If we want to also represent negative numbers, we'll need to split that in half again; so we can really only count up to 2.1 billion or down to -2.1 billion.
+
+- When using data types in C, you can stipulate how much memory to use to represent numbers.
+    - `int` is by convention 32 bits
+    - A `long` can be 64 bits - which can represent numbers exponentially bigger than `int`. `%li` is how you represent a `long` in `printf()`.
+
+
+## Coding Mario
+
+- We can represent the Mario game in code
+- For 4 "?" blocks in sequence:
+
+```C
+#include <stdio.h>
+
+int main(void) {
+
+    for (int i = 0; i < 4; i++) {
+
+        // Create 4 "?" blocks
+        printf("?");
+
+    }
+    printf("\n");
+
+}
+```
+
+- For a grid of 3x3 bricks:
+
+```C
+#include <stdio.h>
+
+void create_grid(int height, int width);
+
+int main(void) {
+
+    const int h = 3; // This creates an immutable variable
+    const int w = 3;
+    create_grid(h, w);
+
+}
+
+void create_grid(int height, int width) {
+
+    if (height < 1 || width < 1) {
+    
+        printf("height or width is < 1")
+        
+    }
+
+    for (int i = 0; i < height; i++) {
+
+        for (int j = 0; j < width; j++) {
+        
+            printf('#');
+
+        }
+        printf("\n");
+
+    }
+
 }
 ```
