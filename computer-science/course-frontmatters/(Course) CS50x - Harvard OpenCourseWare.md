@@ -21,6 +21,9 @@ CS50 is Harvard University's introductory course in computer science and program
     - [[Unix Time]]
 
 - Week 2: Arrays
+    - [[Compiler]]
+    - [[Debugging]]
+    - [[Cryptography]]
     - [[Memory]]
     - 
 

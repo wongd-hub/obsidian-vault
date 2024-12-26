@@ -29,7 +29,7 @@ int main(void) {   // Defines a function, main, that takes no arguments
 - Note also that CS50 has its own [C library](https://github.com/cs50/libcs50/releases) which implements a range of functions that ask the user for an input and return their answer. e.g.
     - `get_string("What is your name? ")`
     - `get_int("What is your age? ")`
-## Compiling and running scripts
+# Compiling and running scripts
 
 - The lecturer is using the `code` command to both create an empty text file and open it in VS Code at the same time.
 - The `make` command compiles a `.c` script into a binary executable of the same name - sans file extension.
@@ -43,7 +43,7 @@ make hello   # Use hello.c to create an executable of the name hello
 ./hello      # 
 ```
 
-## Variable declaration / assignment
+# Variable declaration / assignment
 
 - In addition to declaring the definition of a variable, C requires us to declare the type of the variable as well:
 
@@ -55,12 +55,12 @@ string answer = get_string("What's your name? ");
 int counter = 0;
 ```
 
-## Strings
+# Strings
 
 - Strings with more than one character must be wrapped in *double* quotes, `"hello"`.
 - Characters with only one character must be wrapped in *single* quotes, `'a'`, and is of the type `char` instead of type `string`.
 
-### Format strings
+## Format strings
 
 - C also provides a way to print the contents of variables in a string with [format strings](https://www.cprogramming.com/tutorial/printf-format-strings.html).
 
@@ -70,7 +70,7 @@ printf("hello %s\n", answer);
 
 - `s` stands for string. There is also `%c`, `%f`, `%i`, `%li`, etc.
 
-## Syntactic sugar
+# Syntactic sugar
 
 - Like JavaScript, we can do the following to increment (or decrement) a counter by 1
 
@@ -86,7 +86,7 @@ counter--;
 counter -= 1;
 ```
 
-## Logical operators
+# Logical operators
 
 ```C
 || // OR
@@ -94,7 +94,7 @@ counter -= 1;
 == // EQUALS
 ```
 
-## If-else
+# If-else
 
 ```C
 if (x < y) {
@@ -106,7 +106,7 @@ if (x < y) {
 }
 ```
 
-## For-loops
+# For-loops
 
 ```C
 // Define a counter, i
@@ -121,7 +121,7 @@ for (int i = 0; i < n; i++) {
 ```
 
 
-## While-loops
+# While-loops
 
 ```C
 int i = 0; // Almost always start counting from 0
@@ -140,7 +140,7 @@ while (true) {
 }
 ```
 
-## Do while-loop
+# Do while-loop
 
 ```C
 int n; // Declare n in the current scope (not in the do{})
@@ -152,7 +152,7 @@ do {
 while(n < 1); // Do this at least once, and continue if n < 1
 ```
 
-## Function definitions
+# Function definitions
 
 ```C
 // void type means there is no object returned from this function apart from side effects
@@ -171,11 +171,11 @@ int add(int x, int y) {
 }
 ```
 
-## Scoping
+# Scoping
 
 - Like other programming languages, there exists the concept of scope - i.e. what variables a function can see.
 
-## Structure of a script
+# Structure of a script
 
 ```C
 #include <stdio.h>
@@ -198,7 +198,7 @@ int main(void) {
 }
 ```
 
-- However, it's useful for `main()` to be at the top of the file since that's your entry-point. We can hoist the function definition to the top so to speak by copying the function's 'prototype' to the top.
+- However, it's useful for `main()` to be at the top of the file since that's your entry-point. We can hoist the function definition to the top so to speak by copying the function's 'prototype' to the top. ^4d6eb2
     - This tells C that there will be a function that returns a certain type, and takes certain arguments, that is defined later in the script.
 
 ```C
@@ -224,9 +224,9 @@ void meow(int n) {
 }
 ```
 
-## What is C not good at / other miscellaneous notes
+# What is C not good at / other miscellaneous notes
 
-### Memory usage & integer overflow
+## Memory usage & integer overflow
 
 - Random Access Memory (RAM) in the computer is where working data is stored. We have a finite amount of memory in each device.
 - In the world of numbers, if we're only using 3 digits we can count to 7
@@ -242,7 +242,7 @@ void meow(int n) {
     - `int` is by convention 32 bits
     - A `long` can be 64 bits - which can represent numbers exponentially bigger than `int`. `%li` is how you represent a `long` in `printf()`.
 
-### Truncation
+## Truncation
 
 Certain bad things can happen when you use large numbers. For example, consider a division function:
 
@@ -311,7 +311,7 @@ int main(void) {
 #$ 0.33333
 ```
 
-### Floating point imprecision
+## Floating point imprecision
 
 - If we set the number of decimal places to 20, we get the following answer:
     - This is not 0.33 as we expected, and this is because the computer has limited memory to represent this floating point value.
@@ -324,7 +324,7 @@ int main(void) {
 ```
 
 
-## Coding Mario
+# Coding Mario
 
 - We can represent the Mario game in code
 - For 4 "?" blocks in sequence:

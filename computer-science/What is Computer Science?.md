@@ -4,7 +4,7 @@
 - Solving problems with certain ideas and techniques
 - Problem solving is a goal we'll approach with **computational thinking**
 
-## Problem solving
+# Problem solving
 
 ```mermaid
 flowchart LR
@@ -25,7 +25,7 @@ flowchart LR
 
 - Turning our attention to the algorithm, which is a step by step instruction for solving some problem. i.e. Code, which is the implementation of algorithms with computers.
 
-## Scratch demo
+# Scratch demo
 
 - Scratch comes with a cat sprite who you can control using code, which itself is represented with puzzle pieces.
 - This lesson focused on certain aspects of writing code:
