@@ -21,8 +21,8 @@ CS50 is Harvard University's introductory course in computer science and program
     - [[Unix Time]]
 
 - Week 2: Arrays
-    - [[1 Central Limit Theorem and Sampling Distributions]]
-    - [[2 Confidence Intervals]]
+    - [[Memory]]
+    - 
 
 - Week 3
     - [[3 Hypothesis Testing]]
