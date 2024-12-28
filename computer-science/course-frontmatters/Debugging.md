@@ -2,4 +2,4 @@
 
 # C's debugger
 
-- Bugs are omnipresent even in indusry.
+- Bugs are omnipresent even in industry.
