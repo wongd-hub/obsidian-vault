@@ -171,6 +171,10 @@ int add(int x, int y) {
 }
 ```
 
+```C
+// A prototype of a function that takes an integer array as an arg
+float average(int length, int array_of_numbers[]);
+```
 # Scoping
 
 - Like other programming languages, there exists the concept of scope - i.e. what variables a function can see.
