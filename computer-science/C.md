@@ -29,6 +29,8 @@ int main(void) {   // Defines a function, main, that takes no arguments
 - Note also that CS50 has its own [C library](https://github.com/cs50/libcs50/releases) which implements a range of functions that ask the user for an input and return their answer. e.g.
     - `get_string("What is your name? ")`
     - `get_int("What is your age? ")`
+
+- We can also allow C programs to take [[Command Line Arguments for C | command line arguments]]
 # Compiling and running scripts
 
 - The lecturer is using the `code` command to both create an empty text file and open it in VS Code at the same time.
@@ -114,6 +116,13 @@ if (x < y) {
 // ... At end of iteration, increment i by 1
 
 for (int i = 0; i < n; i++) {
+
+    // Do something
+
+}
+
+// We can also declare two ints in the for-loop
+for (int i = 0, n = strlen(s); i < n; i++) {
 
     // Do something
 
@@ -225,6 +234,52 @@ void meow(int n) {
     
     }
     
+}
+```
+
+# Useful libraries
+
+- `string.h`, provides functions for manipulation of C strings and arrays
+- `ctype.h`, provides functions for classifying and modifying characters
+
+# Interesting function definitions
+
+## To uppercase
+
+```C
+#include <cs50.h>
+#include <stdio.h>
+#include <string.h>
+
+int main(void) {
+
+    string s = get_string("Before: ");
+    printf("After:  ");
+    for (int i = 0, n = strlen(s); i < n; i++) {
+    
+        // Since ASCII is just numeric representation, we can do this:
+        // If the character is lowercase...
+        if (s[n] >= 'a' && s[n] <= 'z') {
+    
+            // ...then minus 32 from it to move it to the ASCII number 
+            // that represents the uppercase version
+            printf("%c", s[i] - ('a' - 'A'));
+
+
+            
+        } else {
+        
+            printf("%c", s[i]);
+    
+        }
+        
+        // OR use ctype.h's function - which also means we don't need the 
+        // if-statement checking if the letter is uppercase already
+        // printf("%c", toupper(s[i]));
+        
+    }
+    printf("\n");
+
 }
 ```
 
