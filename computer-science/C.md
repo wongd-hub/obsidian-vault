@@ -31,6 +31,15 @@ int main(void) {   // Defines a function, main, that takes no arguments
     - `get_int("What is your age? ")`
 
 - We can also allow C programs to take [[Command Line Arguments for C | command line arguments]]
+
+# Other C concepts
+
+- [[Arrays]]
+- [[Compiler]]
+- [[Debugging]]
+- [[Exit Status]]
+- [[Structs]]
+
 # Compiling and running scripts
 
 - The lecturer is using the `code` command to both create an empty text file and open it in VS Code at the same time.
@@ -71,6 +80,10 @@ printf("hello %s\n", answer);
 ```
 
 - `s` stands for string. There is also `%c`, `%f`, `%i`, `%li`, etc.
+
+## String comparison
+
+- Strings cannot be compared the same way that numbers are compared. To do this, we'll need to load `string.h` and use `strcmp()`. See [[Search Algorithms#^fcc6cd]] for more details.
 
 # Syntactic sugar
 

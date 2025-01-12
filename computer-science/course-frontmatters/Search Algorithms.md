@@ -20,6 +20,42 @@ For i from 0 to n-1
 Return false
 ```
 
+- C function for numbers:
+
+```C
+#include <cs50.h>
+#include <stdio.h>
+
+int main(void) {
+
+    int numbers[] = {20, 500, 10, 5, 100, 1, 50};
+
+    int n = get_int("Number: ");
+
+    for (int i = 0; i < 7; i++) {
+
+        if (numbers[i] == n) {
+            printf("Found\n");
+            return 0;
+        } 
+    
+    }
+    
+    printf("Not found\n");
+    return 1;
+
+}
+```
+
+- We can also do a similar thing for an array of strings, but we need to use `string.h` to compare two strings for equality (we can't just use the double equals sign for this in C). So we'd need to do this instead of `strings[i] == n` ^fcc6cd
+    - We need to check that the output of `strcmp()` is `0`, because the function checks for string equality as well as *ASCII-betical value*.
+
+```C
+strcmp(strings[i], s) == 0;
+```
+
+
+
 # Binary search
 
 - The faster method works only on sorted arrays, where we split the array into two pieces in each iteration - drastically cutting down processing time

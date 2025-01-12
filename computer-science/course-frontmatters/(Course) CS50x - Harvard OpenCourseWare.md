@@ -31,6 +31,8 @@ CS50 is Harvard University's introductory course in computer science and program
 - Week 3: Algorithms
     - [[Search Algorithms]]
     - [[Running Time - O(n)]]
+    - [[Structs]]
+    - [[Sorting Algorithms]]
 
 
 
