@@ -27,12 +27,12 @@ CS50 is Harvard University's introductory course in computer science and program
     - [[Command Line Arguments for C]]
     - [[Exit Status]]
     - [[Cryptography]]
-    - 
-    - 
 
-- Week 3
-    - [[3 Hypothesis Testing]]
-    - [[4 Statistical Significance]]
+- Week 3: Algorithms
+    - [[Search Algorithms]]
+    - [[Running Time - O(n)]]
+
+
 
 - Week 4
     - [[5 t-distribution and Comparing Two Means]]
