@@ -18,5 +18,5 @@
     - The best case for linear search is $O(1)$ since the target could be the first number you see. Therefore it has a best-case runtime of $\Omega(1)$.
     - The same is the case for binary search.
 
-- If the $O(n)$ and $\Omega(n)$ are equal for a certain algorithm, we refer to this as $\Theta(n)$.
+- If the $O(n)$ and $\Omega(n)$ are equal for a certain algorithm, we refer to this as $\Theta(n)$. ^c6c454
 
