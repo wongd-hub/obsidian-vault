@@ -35,7 +35,8 @@ CS50 is Harvard University's introductory course in computer science and program
     - [[Sorting Algorithms]]
     - [[Recursion]]
 
-
+- Week 4: Memory
+    - [[Hexademical]] 
 
 - Week 4
     - [[5 t-distribution and Comparing Two Means]]

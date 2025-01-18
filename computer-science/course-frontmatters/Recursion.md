@@ -1,6 +1,6 @@
 #course_cs50 
 
-- A *recursive* function is a function that calls itself. This is a powerful problem-solving technique:
+- A *recursive* function is a function that calls itself. [[Recursion]] is a powerful problem-solving technique:
     - It allows us to tighten up our code and reduce the use of loops
     - It also allows us to utilise the computer's memory in an interesting way
 - An example is the [[Search Algorithms#Binary search|binary search algorithm]]
