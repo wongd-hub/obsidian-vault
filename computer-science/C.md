@@ -40,6 +40,8 @@ int main(void) {   // Defines a function, main, that takes no arguments
 - [[Exit Status]]
 - [[Structs]]
 - [[Memory#Memory addresses]] for _pointers_
+- [[Pointer Arithmetic]]
+- [[Memory#Copying]] for `malloc()` and `free()`
 
 # Compiling and running scripts
 

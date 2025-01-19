@@ -28,3 +28,27 @@ people[1].number = "2";
 people[2].name = "John";
 people[2].number = "3";
 ```
+
+# Defining data types
+
+- We can use this concept to declare our own data types, or to create aliases of them.
+- For example, to create an alias of `int` called `integer`:
+
+```C
+typedef int integer;
+```
+
+- C has no built-in data type for a byte, so commonly we see this:
+
+```C
+typedef uint8_t BYTE;
+```
+
+- The CS50 `string` construct is really just this: ^5e27cc
+
+```C
+typedef char *string;
+
+// Easier to understand if its this:
+typedef char* string;
+```
