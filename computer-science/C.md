@@ -39,6 +39,7 @@ int main(void) {   // Defines a function, main, that takes no arguments
 - [[Debugging]]
 - [[Exit Status]]
 - [[Structs]]
+- [[Memory#Memory addresses]] for _pointers_
 
 # Compiling and running scripts
 

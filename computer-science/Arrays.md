@@ -27,6 +27,8 @@ int array = {13, 42, 50};
 > [!warning]
 > Note that `string`s don't seem to be available in vanilla C, `cs50.h` seems to need to be loaded in order to define `string` variables.
 
+^5a0906
+
 - A `string` could also be thought of as an ordered array of character strings - of variable length. 
     - To signify that the string has ended, an extra byte (the `NUL` value) is added to the end of the string that contains all 0 bits (`00000000` - stylised as a `\0`) which represents the end of the string.
     - So every string is actually `n + 1` bytes to contain the 0-value
