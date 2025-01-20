@@ -76,7 +76,7 @@ int main(void) {
 #> 50
 ```
 
-- Note that pointers themselves are integer variables and therefore also occupy a space in memory. They typically take 8 bytes of space. 
+- Note that pointers themselves are integer variables and therefore also occupy a space in memory. They typically take 8 bytes of space.  ^bce4f7
     - This also means that we can perform arithmetic on them with [[Pointer Arithmetic]].
 
 # Copying

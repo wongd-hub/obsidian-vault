@@ -39,9 +39,14 @@ int main(void) {   // Defines a function, main, that takes no arguments
 - [[Debugging]]
 - [[Exit Status]]
 - [[Structs]]
-- [[Memory#Memory addresses]] for _pointers_
+- [[Memory#Memory addresses]] for *pointers*
 - [[Pointer Arithmetic]]
+- [[Strings]]
 - [[Memory#Copying]] for `malloc()` and `free()`
+- [[Debugging Memory Issues - malloc() and Valgrind]]
+- [[Passing by Value or Reference]]
+- [[scanf]]
+- [[File IO]]
 
 # Compiling and running scripts
 

@@ -44,4 +44,10 @@ CS50 is Harvard University's introductory course in computer science and program
     - [[NULL]]
     - [[Debugging Memory Issues - malloc() and Valgrind]]
     - [[Garbage Values]]
-    - [[Swapping]]
+    - [[Passing by Value or Reference]]
+    - [[scanf]]
+    - [[File IO]]
+    - [[Bitmap]]
+
+- Week 5: Data Structures
+    - [[]]
