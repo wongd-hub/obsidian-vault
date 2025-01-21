@@ -45,3 +45,66 @@ words[0] = "Hello world";
 
 - To access single characters within each string, we can do things like `words[0][2]`.
 
+# Resizing arrays
+
+- We can run into issues if we want to exceed the amount of values we originally assigned to an array.
+    - We don't know if we'll overwrite something important if we add more data to the next few bytes naively
+    - We also can't add it anywhere in memory since we need the array memory to remain contiguous
+
+- A solution to the problem might be to move the entire array to a different location with more space.
+    - This technically works, but suppose you want to add more - you'd need to repeat the operation
+    - Copying takes time, and you're also iterating over the array to copy it over (so at least $O(n)$ - [[Running Time - O(n)|see here for Running Time]])
+    - For a brief moment, we're using twice as much space as the original array (due to the nature of copying)
+
+- To demonstrate how inefficient this is - we'll do it in C:
+
+```C
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+
+    // We can't do the following since it creates a list, forever of size 3.
+    // Can't free this memory (we can only free memory from malloc)
+    // int list[3];
+
+
+    // We instead use malloc to allocate memory for 3 integers
+    int *list = malloc(3 * sizeof(int));
+    if (list == NULL) return 1;
+
+    // C knows `list` was initialised as an array of integers, so pointer 
+    // arithmetic kicks in and we don't need to do things like 
+    // list[0], list[4], etc given a list is of size 4
+    list[0] = 1;
+    list[1] = 2; // Instead of list[4], C is smart enough 
+                 // to know where the next int starts
+    list[2] = 3;
+
+
+    // Say we want to dynamically allocate more memory and free up the old
+    int *tmp = malloc(4 * sizeof(int));
+    if (tmp == NULL) {
+    
+        free(list);
+        return 1;
+    
+    }
+
+    // Next step is to iteratively copy the old numbers into the new space
+    for (int i = 0; i < 3; i++) {
+
+        tmp[i] = list[i];
+    
+    }
+    tmp[3] = 4;
+    free(list);
+
+    // We can also keep using the `list` variable by doing
+    list = tmp;
+
+    free(list);
+    return 0;
+
+}
+```
