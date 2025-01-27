@@ -49,12 +49,13 @@ words[0] = "Hello world";
 
 - We can run into issues if we want to exceed the amount of values we originally assigned to an array.
     - We don't know if we'll overwrite something important if we add more data to the next few bytes naively
-    - We also can't add it anywhere in memory since we need the array memory to remain contiguous
+    - We also can't add the new values anywhere in memory since we need the array memory to remain contiguous
 
 - A solution to the problem might be to move the entire array to a different location with more space.
     - This technically works, but suppose you want to add more - you'd need to repeat the operation
     - Copying takes time, and you're also iterating over the array to copy it over (so at least $O(n)$ - [[Running Time - O(n)|see here for Running Time]])
     - For a brief moment, we're using twice as much space as the original array (due to the nature of copying)
+        - We need to have memory allocated for 2 of the original array for a moment in time
 
 - To demonstrate how inefficient this is - we'll do it in C:
 
@@ -108,3 +109,5 @@ int main(void) {
 
 }
 ```
+
+- A more efficient alternative may be the [[Linked Lists|linked list]] since it can point to multiple non-contiguous places in memory.
