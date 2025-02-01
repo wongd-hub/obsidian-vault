@@ -138,10 +138,12 @@ int main(int argc, char *argv[]) {
             return 1;
         }
 
+        // CREATING THE NODE
         // Insert number data, initialise pointer
         n->number = number;
         n->next = NULL;
 
+        // APPENDING THE NODE TO THE LAST MEMBER OF THE LIST
         // If list is empty at this point
         if (list == NULL) {
         
@@ -179,3 +181,99 @@ int main(int argc, char *argv[]) {
 ```
 
 - What happens to time efficiency of insertion here? Since we're looking through the whole list to find the last element, which we then point to the inserted item, this is $O(n)$.
+
+# Inserting to the list in sorted order
+
+- We need to consider a few possible scenarios if we want to insert into the list in sorted order
+
+```C
+#include <cs50.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct node {
+    int number;
+    struct node *next;
+} node;
+
+int main(int argc, char *argv[]) {
+
+    // Memory for numbers
+    node *list = NULL;
+
+    // For each command-line argument
+    for (int i = 1; i < argc; i++) {
+    
+        // Convert argument to int
+        int number = atoi(argv[i]);
+
+        // Allocate node for number
+        node *n = malloc(sizeof(node));
+        if (n == NULL) {
+            // Free up memory
+            return 1;
+        }
+
+        // CREATING THE NODE
+        // Insert number data, initialise pointer
+        n->number = number;
+        n->next = NULL;
+
+        // APPENDING THE NODE TO THE LAST MEMBER OF THE LIST
+        // If list is empty at this point
+        if (list == NULL) {
+        
+            // Then this node is the whole list
+            list = n;
+
+        // If number belongs at the beginning of the list
+        } else if (n->number < list->number) {
+        
+            n->next = list;
+            list = n;
+            
+        } else { // If list has numbers already
+        
+            // Iterate over nodes in list
+            //   Initialise ptr to look at start of list
+            //   Keep traversing list until we find a node with next=NULL
+            //   This is the end of the list, so update the last node's next 
+            //     to point to n that we just created
+            for (node *ptr = list; ptr != NULL; ptr = ptr->next) {
+            
+                // If at the end of the list
+                if (ptr->next == NULL) {
+                
+                    // Append node
+                    ptr->next = n;
+                    break;
+                
+                }
+
+                // If in middle of list - then insert new node in 
+                //  between two existing nodes
+                if (n->number < ptr->next->number) {
+
+                    // Update our new node's next ptr to point to the 
+                    //  currently selected node's next
+                    n->next = ptr->next;
+
+                    // Update the currently selected node's next ptr to
+                    //  point to our new node
+                    ptr->next = n;
+                    break;
+                
+                }
+            
+            }
+        
+        }
+    
+
+    }
+
+}
+```
+
+- Run time is in $O(n)$ again, since in the worst case (our new node belongs at the end of the list) we're still looking through the entire list.
+
