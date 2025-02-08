@@ -7,3 +7,5 @@
 
 - In the example of the Contacts app, names are the keys, phones are the values.
     - We don't want running time to become linear, logarithmic will be better, but let's aspire for $O(1)$ - i.e. constant time.
+
+- Note that dictionaries, at least in Python, are an implementation of [[Hash Tables|hash tables]] - which can get close to $O(1)$.

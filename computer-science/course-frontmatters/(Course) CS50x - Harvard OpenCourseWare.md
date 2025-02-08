@@ -57,4 +57,7 @@ CS50 is Harvard University's introductory course in computer science and program
     - [[Trees]]
     - [[Dictionaries]]
     - [[Hashing]] & [[Hash Tables]]
+    - [[Tries]]
 
+- Week 6: Python
+    - [[Python]]
