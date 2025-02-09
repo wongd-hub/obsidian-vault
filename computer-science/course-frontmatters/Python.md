@@ -1,7 +1,7 @@
 #course_cs50 
 
 - We step into the realm of high-level languages now, that *abstract* away all of the low-level implementation details that we had to think about when working with [[C]].
-- Python's popularity derives from relatively easy to read it is; it also has a large number of libraries, allowing you to get real work done faster.
+- Python's popularity derives from relatively easy to read it is; it also has a large ecosystem of libraries, allowing you to get real work done faster.
 
 # Differences to C
 
@@ -16,8 +16,14 @@ python hello.py
 - We can also use single and double quotes interchangeably. 
 - Python also manages your memory for you. No more need for `malloc()` and pointers.
 
+> [!tip]
+> Learning C teaches us what is happening underneath the hood, but Python lets us express our solutions to the same problems more readily.
+
 # So why use C?
 
 - C is seen as faster to run than Python. 
-- C is also more memory efficient - Python is managing memory for you and won't know _a priori_ how much memory you will need overall.
+- C is also more memory efficient - Python is managing memory for you and won't know _a priori_ how much memory you will need overall. It will likely over-allocate for you.
 
+# Functions
+
+- 
