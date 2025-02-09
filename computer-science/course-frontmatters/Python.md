@@ -14,3 +14,10 @@ python hello.py
 
 - We also do away with the need to load libraries for functions that are included in base Python; as well as the `main()` function.
 - We can also use single and double quotes interchangeably. 
+- Python also manages your memory for you. No more need for `malloc()` and pointers.
+
+# So why use C?
+
+- C is seen as faster to run than Python. 
+- C is also more memory efficient - Python is managing memory for you and won't know _a priori_ how much memory you will need overall.
+
