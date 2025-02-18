@@ -3,6 +3,9 @@
 - We step into the realm of high-level languages now, that *abstract* away all of the low-level implementation details that we had to think about when working with [[C]].
 - Python's popularity derives from relatively easy to read it is; it also has a large ecosystem of libraries, allowing you to get real work done faster.
 
+> [!tip]
+> The term *Pythonic* refers to design patterns that are the best way to do things in Python (partially by consensus of the Python community).
+
 # Differences to C
 
 - We will now run Python scripts with the following commands. 
@@ -174,6 +177,41 @@ elif s in ["n", "no"]:
     print("Not agreed")
 ```
 
+# Looping
+
+- It's a lot easier to loop in Python than in C because it's easy to loop over anything that is *iterable*.
+
+- Note that you don't define `i` inside of the loop declaration
+
+```python
+i = 0
+while i < 3:
+    print("meow")
+    i += 1
+
+while True:
+    print("meow")
+```
+
+```python
+# Correct, but bad design
+for i in [0, 1, 2]:
+    print("hello, world")
+
+# Note, no need to manually iterate i, this is automatic
+
+# Better to create the range dynamically
+for i in range(3):
+    print("hello, world")
+
+# If you don't care about the value of the iterator, use an underscore
+#  Note, underscore is a valid character - there is no special meaning,
+#  this is just convention.
+for _ in range(3):
+    print("hello, world")
+```
+
+
 # Object-oriented programming
 
 - When you passed a variable to `tolower()` or `toupper()` in C, they just trusted that you passed them a string.
@@ -186,5 +224,45 @@ elif s in ["n", "no"]:
 
 ```python
 s = input("Do you agree? ").lower()
+```
+
+# Truncation
+
+- 
+# Code/function examples
+## To upper case
+
+```python
+before = input("Before: ")
+print("After: ", end="")
+
+for c in before:
+    print(c.upper(), end="")
+
+print()
+#$ python uppercase.py
+#> Before: cat
+#> After:  CAT
+
+# But we don't need to loop over whole strings. Can just do:
+before = input("Before: ")
+print(f"After: {before.upper()}")
+```
+
+# Meow 3 times
+
+- It is not required to have a `main()` function in Python, but it is the convention to have one.
+    - This means that we can define our functions _after_ we show how we're calling them (and we can't rely on [[C#^4d6eb2|function prototypes like in C]]).
+    - However, since this is convention and not enforced by the language, `main()` is not actually called for you; so you need to call it yourself.
+
+```python
+def main():
+    meow(5)
+
+def meow(n):
+    for _ in range(n):
+        print("meow")
+
+main()
 ```
 
