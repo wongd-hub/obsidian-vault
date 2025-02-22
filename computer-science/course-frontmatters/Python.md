@@ -30,12 +30,13 @@ python hello.py
 
 - C is seen as faster to run than Python. 
 - C is also more memory efficient - Python is managing memory for you and won't know *a priori* how much memory you will need overall. It will likely over-allocate for you.
-# Syntax tips
+# Syntax tips / syntactic sugar
 
 - Python introduces syntactic sugar to:
-    - Concatenate strings with the `+` operator. e.g. 
+    - Concatenate strings with the `+` operator. e.g.
+    - Repeat a string $n$ times: `print("?" * n)`
 
-# Module imports
+# Module imports / libraries
 
 ```python
 # Import the full module
@@ -53,6 +54,57 @@ random.randint()
 m.factorial()
 ```
 
+## `pip`
+
+- `pip` is how Python packages are installed.
+
+```bash
+pip install cowsay
+```
+
+## The `sys` library
+
+- We got access to command line arguments with `argc` and `argv` in C ([[Command Line Arguments for C]]).
+- Here's how we do it in Python.
+    - Note we're technically typing 3 words at the prompt but the `python` part of the command is ignored, so `python greet.py` technically has a `len(argv)` of 1.
+
+```python
+from sys import argv
+
+if len(argv) == 2:
+    print(f"hello, {argv[1]}")
+else:
+    print("hello, world")
+
+#$ python greet.py
+#> hello, world
+#$ python greet.py Carter
+#> hello, Carter
+```
+
+- Here's how we exit a running process:
+
+```python
+import sys
+
+if len(sys.argv) != 2:
+    print("Missing command-line argument")
+    sys.exit(1) # Setting exit code
+
+print(f"hello, {sys.argv[1]}")
+sys.exit(0)
+```
+
+## Generating QR codes
+
+```python
+#$ pip install qrcode
+
+import qrcode
+
+img = qrcode.make("https://youtu.be/xvFZjo5PgG0")
+img.save("qr.png", "PNG")
+```
 # Format strings (f-strings)
 
 - Python has built-in string interpolation with *f-strings*:
@@ -129,6 +181,52 @@ print(x + y)
 #> x: 1
 #> y: 2
 #> 3
+```
+
+## Lists
+
+- Denoted by square brackets, `[]`. This recalls the syntax of C [[Arrays|arrays]], however in Python lists are more like linked lists: the memory is automatically handled for you.
+- Lists, like other data types, have a range of methods that come pre-packaged.
+    - `len(list)`
+    - `sum(list)`
+    - `list.append(4)`: append an item to the end of the list
+
+## Dicts
+
+- Recall that this [[Abstract Data Types|abstract data type]] is a collection of key-value pairs. This is implemented as a hash table in Python.
+- We can do things like give ourselves a list of dictionaries:
+
+```python
+people = [
+    {
+        "name": "David",
+        "number": "..."
+    },
+    {"name": "Carter", "number": "…"},
+    {"name": "John", "number": "…"},
+]
+
+# We can then access a person's number doing things like this:
+name = input("Name: ")
+
+for person in people:
+    if person["name"] == name:
+        print(f"Found {person['number']}")
+        break
+else:
+    print("Not found")
+
+# An even better version of this - since we only have the number as an attribute
+people = {
+    "Carter": "...",
+    "David": "...",
+    "John": "..."
+}
+
+if name in people:
+    print(f"Found {people[name]}")
+else:
+    print("Not found")
 ```
 
 # Control flow & boolean operators
@@ -211,6 +309,28 @@ for _ in range(3):
     print("hello, world")
 ```
 
+## For-loop else clause
+
+- Python has an `else` clause to accompany its for-loop. It will trigger if the for-loop gets to the end of processing without ever triggering `break`.
+
+```Python
+names = ["Carter", "David", "John"]
+
+name = input("Name: ")
+
+for n in names:
+    if name == n:
+        print("Found")
+        break
+else:
+    print("Not found")
+
+# More Pythonic would be:
+if name in names:
+    print("Found")
+else:
+    print("Not found")
+```
 
 # Object-oriented programming
 
@@ -228,7 +348,52 @@ s = input("Do you agree? ").lower()
 
 # Truncation
 
-- 
+- In C, [[C#Truncation|truncation]] was an issue. This is where we divided two integers and would only get back the integer portion of the fractional answer by default.
+- Python is a little smarter when converting one value into another. An integer divided by an integer will be a float.
+
+# Floating point imprecision
+
+- In C, we had the problem with [[C#Floating point imprecision|floating point imprecision]].
+- To see more significant figures, we need to use an f-string and format the number like so (use a colon and the format string):
+
+```Python
+x = 1
+y = 3
+
+z = x / y
+print(f"{z:.50f}")
+
+#$ 0.3333333333333331482961
+```
+
+- With this, we can see that floating point imprecision is still a problem in Python.
+- There do exist packages that let you get more precision.
+
+# Integer overflow
+
+- In C, if we increment a number past the maximum representable number for that data type, we end up going back to 0 ([[C#Memory usage & integer overflow|integer overflow]]).
+- Python will grow an integer dynamically to keep fitting the number - it is not a static number of bits; thus doing away with the problem of integer overflow.
+
+# Exceptions
+
+- A better way to handle errors. In C, we could only really handle errors by having functions [[Exit Status|return special values]].
+- There are a whole list of possible exceptions in Python such as ValueError or NameError.
+
+```python
+def get_int(prompt):
+    while True:
+        try:
+            # Returning also breaks you out of this loop
+            return int(input(prompt))
+        except ValueError:
+            # print("Not an integer")
+            pass # This silently moves to the next iteration
+
+
+def main(): 
+    ...
+```
+
 # Code/function examples
 ## To upper case
 
@@ -249,20 +414,21 @@ before = input("Before: ")
 print(f"After: {before.upper()}")
 ```
 
-# Meow 3 times
+## Meow 3 times
 
 - It is not required to have a `main()` function in Python, but it is the convention to have one.
-    - This means that we can define our functions _after_ we show how we're calling them (and we can't rely on [[C#^4d6eb2|function prototypes like in C]]).
+    - This means that we can define our functions *after* we show how we're calling them (and we can't rely on [[C#^4d6eb2|function prototypes like in C]]).
     - However, since this is convention and not enforced by the language, `main()` is not actually called for you; so you need to call it yourself.
 
 ```python
 def main():
     meow(5)
 
+
 def meow(n):
     for _ in range(n):
         print("meow")
 
+
 main()
 ```
-

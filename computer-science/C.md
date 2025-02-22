@@ -324,6 +324,8 @@ int main(void) {
 
 ## Truncation
 
+^ac710b
+
 Certain bad things can happen when you use large numbers. For example, consider a division function:
 
 ```C

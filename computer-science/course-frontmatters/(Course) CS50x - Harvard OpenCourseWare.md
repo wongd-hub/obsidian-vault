@@ -61,3 +61,6 @@ CS50 is Harvard University's introductory course in computer science and program
 
 - Week 6: Python
     - [[Python]]
+
+- Week 6.5 Artificial Intelligence
+    - [[Introduction to Artificial Intelligence]]
