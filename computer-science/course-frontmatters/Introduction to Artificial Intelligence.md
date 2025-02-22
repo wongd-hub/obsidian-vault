@@ -45,3 +45,38 @@
 # Decision trees
 
 - This is how we can start translating human intuition into a crude artificial intelligence.
+
+```mermaid
+graph TD;
+    A["Is ball left of paddle?"] -->|Yes| B["Move paddle left."]:::blueBox
+    A -->|No| C["Is ball right of paddle?"]
+    C -->|Yes| D["Move paddle right."]:::blueBox
+    C -->|No| E["Don't move paddle."]:::blueBox
+
+    classDef blueBox fill:#1E5AC3,stroke:#ffffff,color:#ffffff,font-weight:bold;
+    classDef decision fill:#000000,stroke:#ffffff,color:#ffffff;
+    
+    class A,C decision;
+    class B,D,E blueBox;
+```
+
+- How can we use decision trees to always at least force a tie in tic-tac-toe?
+
+```mermaid
+graph TD;
+    A["Can I get 3 in a row this turn?"] -->|Yes| B["Play in square to get 3 in a row."]:::blueBox
+    A -->|No| C["Can my opponent get 3 in a row on their next turn?"]
+    C -->|Yes| D["Play in square to block opponent's 3 in a row."]:::blueBox
+    C -->|No| E["?"]:::blueBox
+
+    classDef blueBox fill:#1E5AC3,stroke:#ffffff,color:#ffffff,font-weight:bold;
+    classDef decision fill:#000000,stroke:#ffffff,color:#ffffff;
+    
+    class A,C decision;
+    class B,D,E blueBox;
+```
+
+# Minimax
+
+- The reason AI is so good at games is that inputs and outputs can be represented mathematically; then a goal in the form of a function can be used to maximise/minimise the outcome.
+- Minimax is one of the first algorithms that you might learn when attempting to do this. 
