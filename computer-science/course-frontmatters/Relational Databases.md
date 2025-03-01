@@ -1,6 +1,7 @@
 #course_cs50 
 
-- This is more advanced than [[SQL#^7bb746|flat files]], and instead is a piece of software running on a computer or a server holding a lot of tables that may be related to each other. 
+- It is common to use Comma Separated Values (CSV) to store data in separate tables. These are referred to sometimes as *flat files* given they only have a 2 dimensional structure. ^b38c8a
+- Relational databases are more advanced than flat files, and instead are pieces of software running on a computer or a server holding a lot of tables that may be related to each other. 
 - These can be queried with [[SQL]]. 
 
 # CRUD
