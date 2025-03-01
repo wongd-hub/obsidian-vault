@@ -66,3 +66,5 @@ CS50 is Harvard University's introductory course in computer science and program
     - [[Introduction to Artificial Intelligence]]
 
 - Week 7: SQL
+    - [[SQL]]
+    - [[Relational Databases]]

@@ -432,3 +432,66 @@ def meow(n):
 
 main()
 ```
+
+## Opening and analysing CSVs
+
+- Here's how we'd analyse some simple data using Python.
+
+```python
+import csv
+
+file = open("favourites.csv", "r")
+# Do something with file
+close(file)
+
+# File will be automatically closed if we do this:
+with open("favourites.csv", "r") as file:
+    reader = csv.reader(file)
+    next(reader) # Skip the first header line in the CSV
+    for row in reader:
+        # Returns the row as an array
+        favourite = row[1] # Print contents of second column
+        print(favourite)
+
+# What would be better? 
+# We should be using the names of the columns to query them
+with open("favourites.csv", "r") as file:
+    reader = csv.DictReader(file)
+    for row in reader:
+        # Returns the row as a dictionary with keys = the column names
+        print(row["language"])
+
+# Count the number of favourite language responses
+with open("favourites.csv", "r") as file:
+    reader = csv.DictReader(file)
+    counts = {}
+    for row in reader:
+        favourite = row['language']
+        if favourite in counts:
+            counts[favourite] += 1
+        else:
+            counts[favourite] = 0
+
+for favourite in sorted(counts, key=counts.get, reverse=True): 
+    # sorted() sorts the keys by the size of the values (gotten by .get)
+    print(f"{favourite}: {counts[favourite]}")
+
+# Or we can do this with collections without needing an ifelse
+from collections import Counter
+
+with open("favourites.csv", "r") as file:
+    reader = csv.DictReader(file)
+    counts = Counter()
+
+    for row in reader:
+        favourite = row["language"]
+        counts[favourite] += 1
+
+# Returns a key-value pair, and sorts the dict in descending order of value
+for favourite, count in counts.most_common():
+    print(f"{favourite}: {count}")
+
+# Or query what the most popular language is
+favourite = input("Favourite: ")
+print(f"{favourite}: {counts[favourite]}")
+```
