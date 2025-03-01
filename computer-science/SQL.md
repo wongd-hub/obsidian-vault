@@ -14,6 +14,11 @@
 ```
 
 - Note missingness is represented by `NULL` in SQL.
+
+# Other related links
+
+- [[Race Conditions]]
+- [[SQL Injection Attacks]]
 # How do you run `sqlite3`?
 
 - Let's load a [[Relational Databases#^b38c8a|flat file]] into this database for analysis.
@@ -42,16 +47,11 @@ sqlite3 favourites.db
 
 ## Other SQLite functionality
 
-- Use `.timer ON` to turn a 
-# Relational databases
+- Use `.timer ON` to keep track of the time taken for each query run thereafter. Output looks like this where `real` refers to the 'wall clock' time.
 
-- It is common to use Comma Separated Values (CSV) to store data in separate tables. These are referred to sometimes as *flat files* given they only have a 2 dimensional structure. ^b38c8a
-- Relational databases are more advanced than flat files, and instead are pieces of software running on a computer or a server holding a lot of tables that may be related to each other. 
-- These can be queried with SQL.
-
-## CRUD
-
-- This stands for Create, Retrieve, Update, Delete. In a relational database you can really only do these four operations.
+```
+Run Time: real 0.044 user 0.041286 sys 0.000763
+```
 
 # Basic SQL operations
 ## Retrieving
@@ -133,6 +133,60 @@ FROM     favourites
 GROUP BY language 
 ORDER BY n DESC;
 ```
+
+# Indexes
+
+- These are a data structure that makes it faster to perform queries such as `SELECT` statements.
+- If you know your app or users are going to search a table on a specific column frequently, you can prepare the database in advance to get back answers faster.
+    - This saves you in terms of server usage and therefore cost and efficiency.
+    - You also only need to perform these once; SQL engines generally maintain the index upon insert, update, or delete operations.
+
+```sql
+CREATE INDEX name ON table (column, ...);
+
+/* e.g. */
+/* sqlite> .timer ON */
+CREATE INDEX title_index oN shows (title);
+/* Run Time: real 0.417 user 0.222288 sys 0.063809 */
+
+SELECT * FROM shows WHERE title = 'The Office';
+/* Run Time: real 0.000 user 0.000207 sys 0.000121 */
+/* For reference, this query used to run in 0.044 wall-clock time */
+```
+
+- The previous query is essentially doing a linear search over everything. When creating an index, you're building up a *b-tree* in memory.
+    - This isn't a [[Trees#Binary search trees (BSTs)|binary tree]], but is a short, fat tree where every node might have say 30 children. This helps to reduce the height of the tree, meaning less steps taken to find the value you want.
+
+- Why wouldn't we just want to index every single column in our database? Because each index takes up space - so creating an index is trading off more memory usage for faster processing time.
+    - Further, since SQL engines will maintain these indexes on inserts, updates, and deletes, having indexes will slightly slow those operations down. This leads to trade-offs in time taken to query a table vs. time taken to update a table.
+
+## Deeper example
+
+- While [[SQL#Primary keys|primary keys]] are automatically indexed by SQLite, [[SQL#Foreign keys|foreign keys]] are not. So the following query benefits from the indexing of the primary keys (`shows.id`, `people.id`), but suffers on the slowness of the foreign keys in the `stars` table. Further, the `name` column is not indexed either.
+    - Note that the join syntax shown in this example is known as an [implicit or old-style join](https://sqlblog.org/2009/10/08/bad-habits-to-kick-using-old-style-joins), it is generally advisable to use the more readable, explicit [[#Joins]] syntax. Implicit joins may also introduce unintended Cartesian products as well.
+
+```sql
+/* sqlite> .timer ON */
+SELECT title
+FROM   shows, stars, people
+WHERE  shows.id = stars.show_id
+    AND people.id = stars.person_id
+    AND name = 'Steve Carell'
+/* Run Time: real 2.763 seconds */
+
+/* Perform indexing on relevant columns - i.e. 3 b-trees */
+CREATE INDEX person_index ON stars (person_id);
+CREATE INDEX show_index ON stars (show_id);
+CREATE INDEX name_index ON people (name);
+
+SELECT title
+FROM   shows, stars, people
+WHERE  shows.id = stars.show_id
+    AND people.id = stars.person_id
+    AND name = 'Steve Carell'
+/* Run Time: real 0.001 seconds */
+```
+
 # Other functions
 ## Mathematical operations
 
@@ -341,6 +395,7 @@ CREATE TABLE ratings (
 ### Primary keys
 
 - In the People table, we had an integer ID column that uniquely identified every person in that table. Each ID only appeared once in the table.
+- Note that when you create a *primary key* in SQLite, you also automatically index that column.
 
 ### Foreign keys
 
@@ -408,4 +463,32 @@ JOIN   shows
     ON stars.show_id = shows.id
 WHERE shows.title = 'The Office'
     AND shows.year = 2005;
+```
+
+# SQL syntax in Python
+
+- We get the best of both worlds by combining SQL and [[Python]] together.
+
+```python
+#$ sqlite3 favourites.db
+#sqlite> .mode csv
+#sqlite> .favourites.csv favourites
+#sqlite> .quit
+#$ code favourites.py
+
+from cs50 import SQL
+
+db = SQL("sqlite:///favourites.db")
+
+favourite = input("Favourite: ")
+
+# The ? will be filled in with `favourite` and is resistant to SQL injections
+rows = db.execute('''
+    SELECT COUNT(*) AS n
+    FROM   favourites 
+    WHERE  problem = ?
+''', favourite)
+
+row = rows[0]
+print(row["n"])
 ```
