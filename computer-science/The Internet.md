@@ -113,7 +113,65 @@
 - What your device is designed to do when you put in a URL into your browser is to ask some local DNS server on your mobile carrier's network or your home's network - what is the IP address of the domain name that was requested?
     - The return should hopefully be a valid IP address.
     - Your device is designed to ask DNS servers hierarchically - starting with the nearest one (likely provided by your Internet Service Provider), then moving to the next most important one.
+        - Your device used to be manually configured to know the IP address of the nearest DNS server.
     - There are a finite number of *root servers* in the world that know of all possible domain names and their corresponding IP addresses.
     - Part of what you're paying for when renting domain names is for someone to associate your domain name with your desired IP address.
 
 - Conceptually, DNS servers will contain a dictionary or a database table with two columns: a *Fully Qualified Domain Name*, and the corresponding IP address.
+
+# Dynamic Host Configuration Protocol (DHCP)
+
+- These answer questions on what your DNS server and router should be. When your device powers up, it broadcasts a request to the DHCP server and receives the answer.
+- These servers also tell your device what IP address it should use.
+
+# Hypertext Transfer Protocol (HTTP)
+
+- Governs how web browsers and web servers speak. This protocol standardises what goes into data packet envelopes when it comes to allowing a web browser to request and receive information from a web server.
+    - HTTPS is the secure version of this, the connection is encrypted so it's unlikely that someone who intercepts the traffic will know what's in the envelope.
+
+## URLs
+
+- `https://www.example.com/`: the terminating slash means give me the root folder of the website
+- `https://www.example.com/path`: this means accessing a certain file on the web server. Note that older websites might show `path.html` but newer servers hide this file extension
+- `https://www.example.com/folder/`: this means accessing a folder on the web server.
+- `www.example.com`: the *Fully Qualified Domain Name*
+    - `www`: the *host name*, not strictly required and this was mainly to signal that a URL in print was a web address. Modern sites hide this.
+        - You can re-direct users from the `www` server to another using tricks we'll discuss later.
+    - `com`: the *top level domain*, there are multiple different values this can be, and can also be a 2-character country code (e.g. `au`)
+    - `https`: the *scheme* or the *protocol*
+
+## Ways to request information
+
+- There are two main ways to format what goes into the request data packet envelope: `GET` and `POST`. The more common one is `GET` so we'll focus on this.
+- Inside of the envelope are HTTP messages that look like this - in this example we are simply visiting the <https://www.harvard.edu> website:
+    - Upon pressing Enter in the URL bar, your computer will package up this text into an envelope, address the envelope with the destination IP and the source IP, then hand it off to the nearest router.
+
+```
+GET / HTTP/2
+Host: www.harvard.edu
+...
+```
+
+- Breaking this down:
+    - `GET` is the verb
+    - `/` means get the root path of the website
+    - `HTTP/2` means the version of HTTP to use
+    - `Host:` is a HTTP header that tells the server what fully qualified domain name it's looking for
+        - This is important because you might have multiple websites being hosted on a single server.
+        - Notice that this is another key-value pair - similar to a dictionary
+
+- What comes back from the server to the browser? A message like the following:
+    - An acknowledgement of the version being used
+    - `200` a status code
+    - `Content-type: …` telling us what content is in the data packet
+
+```
+HTTP/2 200
+Content-Type: text/html
+...
+```
+
+- We can see this if we run the following:
+
+![[Pasted image 20250302225850.png]]
+
