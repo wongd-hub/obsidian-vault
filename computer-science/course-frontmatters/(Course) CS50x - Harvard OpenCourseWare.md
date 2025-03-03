@@ -73,6 +73,7 @@ CS50 is Harvard University's introductory course in computer science and program
 
 - Week 8: HTML, CSS, and JavaScript
     - [[The Internet]]
+        - [[TCP & IP]], [[Domain Name System (DNS)]], [[Dynamic Host Configuration Protocol (DHCP)]], [[Hypertext Transfer Protocol (HTTP)]]
     - [[HTML]]
     - [[Regular Expressions]]
     - [[CSS]]
