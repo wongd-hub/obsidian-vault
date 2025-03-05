@@ -53,6 +53,7 @@ graph TD;
 | `<head>/<title>`     | Where you define your site title                                                                                                                                                                                                                                                         |
 | `<body>`             | Where you place the visible aspects of your website                                                                                                                                                                                                                                      |
 | `<p>`                | Tells the browser when to start a paragraph                                                                                                                                                                                                                                              |
+| `<div>`              | A 'division' of the page, one of the most commonly used tags used to divide the page into manageable chunks                                                                                                                                                                              |
 | `<h1>`, `<hx>`       | Allows you to add headers of different levels                                                                                                                                                                                                                                            |
 | `<ul>`, `<ol>`       | Tells the browser to begin an unordered or ordered list                                                                                                                                                                                                                                  |
 | `<u/ol>`/`<li>`      | Denotes another list item inside a list                                                                                                                                                                                                                                                  |
@@ -108,9 +109,15 @@ graph TD;
 ## Tables
 
 ```html
-<table>            <!-- Begin table -->
-    <tr>           <!-- Begin table row -->
-        <td>1</td> <!-- Begin table cell within row -->
+<table>                     <!-- Begin table -->
+    <thead>                 <!-- Begin table header -->
+        <tr>
+            <th>Name</th>   <!-- Begin table header cell -->
+            <th>Number</th>
+        </tr>
+    </thead>
+    <tr>                    <!-- Begin table row -->
+        <td>1</td>          <!-- Begin table cell within row -->
         <td>1</td>
     </tr>
     <tr>
@@ -119,6 +126,14 @@ graph TD;
     </tr>
 </table<
 ```
+
+# Special symbols (HTML entities)
+
+- e.g. `&#169;` is a copyright symbol.
+
+# Semantic tags
+
+- It's better to not use just `<div>`s all the time, for [[Search Engine Optimisation]] - instead we can signal the contents of each element with tags like `<header>`, `<main>`, and `<footer>`.
 
 # Devtools
 
