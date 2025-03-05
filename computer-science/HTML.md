@@ -29,6 +29,8 @@
 - `<head>`: gives your browser metadata about your site, such as the title bar
 - `<body>`: the actual content of your page
 
+- Consider the following a graphical representation of the [[Document Object Model]]
+
 ```mermaid
 graph TD;
     A["document"] --> B["html"];
