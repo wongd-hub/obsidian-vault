@@ -15,6 +15,17 @@
     - `com`: the *top level domain*, there are multiple different values this can be, and can also be a 2-character country code (e.g. `au`)
     - `https`: the *scheme* or the *protocol*
 
+## Placing user input into URLs
+
+- There is a standard way of sending input from a browser to a server, generally formatted as a URL ending in a `?` and then key-value pairs delimited by ampersands. ^78ae8e
+
+```
+https://www.example.com/path?key=value&key=value
+
+# e.g.
+https://www.google.com/search?q=dogs
+```
+
 ## Ways to request information
 
 - There are two main ways to format what goes into the request data packet envelope: `GET` and `POST`. The more common one is `GET` so we'll focus on this.

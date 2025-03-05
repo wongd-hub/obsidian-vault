@@ -88,6 +88,19 @@ graph TD;
     <button></button>
 </form>
 ```
+
+### `<input>`
+
+- There are several attributes that allow you to mutate the input to meet your needs.
+
+| Attribute      | Definition                                                |
+| -------------- | --------------------------------------------------------- |
+| `name`         | Name of the input                                         |
+| `type`         | Type of the input, e.g. `search`                          |
+| `placeholder`  | Placeholder text in the input                             |
+| `autocomplete` | Whether to allow autocomplete                             |
+| `autofocus`    | Automatically puts the cursor in the input upon page load |
+
 ## Tables
 
 ```html
@@ -121,3 +134,28 @@ http-server
 ```
 
 - When you update the HTML files, you need to refresh your page so that your browser requests the updated data from the server.
+
+
+# Google case study
+
+- We've seen that [[Hypertext Transfer Protocol (HTTP)#^78ae8e|you can specify user input by encoding it into the URL]]. Let's use this information to replicate Google.
+
+```html
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>search</title>
+    </head>
+    <body>
+        <form action="https://www.google.com/search" method="get">
+            <!-- q is the name of the query param -->
+            <input name="q" type="search" placeholder="Query">
+            <button>Search</button>
+        </form>
+    </body>
+</html>
+```
+
+- Entering `cats` into this input takes us to `https://www.google.com/search?q=cats`.
+
