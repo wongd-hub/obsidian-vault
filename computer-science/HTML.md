@@ -116,11 +116,6 @@ graph TD;
 </table<
 ```
 
-
-# Attributes
-
-
-
 # Serving HTML webpages when on a headless server
 
 - If we had access to Chrome or another browser, we could simply double click the HTML file and it would render the webpage for us.
