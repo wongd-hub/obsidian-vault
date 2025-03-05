@@ -18,10 +18,11 @@ flask run
 ```
 📁 flask-project/
 ├─ 📄 app.py
+├─ 📄 requirements.txt
+├─ 📁 static/
 ├─ 📁 templates/
-├─ 📄 app.py
 ```
 
-- We'll have an app.py Python program
-- We'll have a `templates` folder with any of the HTML, CSS, and JavaScript we write
-- 
+- We'll have an `app.py` Python program, as well as a text file that sets out the package dependencies and their versions
+- We'll have a `static/` folder that contains all of our static assets such as images
+- We'll have a `templates/` folder with any of the HTML, CSS, and JavaScript we write
