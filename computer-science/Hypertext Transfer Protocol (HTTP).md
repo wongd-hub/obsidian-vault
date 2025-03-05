@@ -26,6 +26,8 @@ https://www.example.com/path?key=value&key=value
 https://www.google.com/search?q=dogs
 ```
 
+- It is a good idea for URLs to be *stateful* like this - i.e. they contain all the information needed to replicate the webpage to anyone else with that same URL.
+- However, if you need the user to input sensitive information such as passwords or credit card information, this will not be a great idea. In this case, we'll need to use [[Flask#Examples Using POST|POST]].
 ## Ways to request information
 
 - There are two main ways to format what goes into the request data packet envelope: `GET` and `POST`. The more common one is `GET` so we'll focus on this.

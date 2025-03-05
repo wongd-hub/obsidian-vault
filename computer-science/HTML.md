@@ -73,6 +73,7 @@ graph TD;
 <meta name="viewport" content="initial-scale=1, width=device-width">
 ```
 
+- This tells the page to resize based on the device's width instead of just zooming out.
 ### Open Graph protocol
 
 - This allows the site to display previews when linked from externally; this uses the [Open Graph protocol](https://ogp.me/).
