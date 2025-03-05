@@ -120,6 +120,14 @@ graph TD;
 </table<
 ```
 
+# Devtools
+
+- You can edit the HTML underlying a webpage in your browser using Devtools. This is a client-side modification.
+
+# W3: Validator
+
+- Handy tool to ensure your HTML is syntactically correct: [validator.w3.org](https://validator.w3.org/)
+
 # Serving HTML webpages when on a headless server
 
 - If we had access to Chrome or another browser, we could simply double click the HTML file and it would render the webpage for us.
