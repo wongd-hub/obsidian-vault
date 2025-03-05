@@ -93,14 +93,18 @@ graph TD;
 
 - There are several attributes that allow you to mutate the input to meet your needs.
 
-| Attribute      | Definition                                                |
-| -------------- | --------------------------------------------------------- |
-| `name`         | Name of the input                                         |
-| `type`         | Type of the input, e.g. `search`                          |
-| `placeholder`  | Placeholder text in the input                             |
-| `autocomplete` | Whether to allow autocomplete                             |
-| `autofocus`    | Automatically puts the cursor in the input upon page load |
-
+| Attribute      | Definition                                                               |
+| -------------- | ------------------------------------------------------------------------ |
+| `name`         | Name of the input                                                        |
+| `type`         | Type of the input, e.g. `search`, `text`, `email`                        |
+| `placeholder`  | Placeholder text in the input                                            |
+| `autocomplete` | Whether to allow autocomplete                                            |
+| `autofocus`    | Automatically puts the cursor in the input upon page load                |
+| `pattern`      | A [[Regular Expressions\|regex]] specification that the input must match |
+- Note that using `pattern` isn't a great way at guarding against malicious input.
+    - Having this in the HTML means that this is currently running on the client-side.
+    - However, the client can go into the HTML and remove the `pattern` attribute of the input then put their own inputs in.
+    - i.e. client-side validation is user-friendly but it's not secure.
 ## Tables
 
 ```html
