@@ -241,11 +241,3 @@ def cart():
 
 {% endblock %}
 ```
-
-# Examples: Scaling up the data
-
-## app.py
-
-
-
-## index.html
