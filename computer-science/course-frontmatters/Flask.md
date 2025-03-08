@@ -13,6 +13,10 @@
 flask run
 ```
 
+- Note that the paradigm of routing users between different sub-routes on your domain is getting increasingly dated, and we're moving towards requesting more data from the server so that the browser acts like a cohesive app.
+    - This is referred to as *Single Page Applications* and is driven by [[Asynchronous Javascript and XML (AJAX)]].
+    - Another benefit is there is no downtime for the user between clicking links - i.e. no need to load a different route.
+
 # File structure of Flask project
 
 ```

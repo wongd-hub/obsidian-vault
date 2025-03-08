@@ -7,7 +7,7 @@ CS50 is Harvard University's introductory course in computer science and program
 
 ## Table of Contents
 
-- Week 0: Scratch
+- Week 0: **Scratch**
     - [[What is Computer Science?]]
     - [[Binary]]
     - [[ASCII]]
@@ -15,12 +15,12 @@ CS50 is Harvard University's introductory course in computer science and program
     - [[RGB]]
     - [[Pseudocode]]
 
-- Week 1: C
+- Week 1: **C**
     - [[C]]
     - [[Linux Terminal]]
     - [[Unix Time]]
 
-- Week 2: Arrays
+- Week 2: **Arrays**
     - [[Arrays]]
     - [[Compiler]]
     - [[Debugging]]
@@ -29,14 +29,14 @@ CS50 is Harvard University's introductory course in computer science and program
     - [[Exit Status]]
     - [[Cryptography]]
 
-- Week 3: Algorithms
+- Week 3: **Algorithms**
     - [[Search Algorithms]]
     - [[Running Time - O(n)]]
     - [[Structs]]
     - [[Sorting Algorithms]]
     - [[Recursion]]
 
-- Week 4: Memory
+- Week 4: **Memory**
     - [[Hexadecimal]] 
     - [[Memory#Memory addresses]]
     - [[Strings]]
@@ -50,7 +50,7 @@ CS50 is Harvard University's introductory course in computer science and program
     - [[File IO]]
     - [[Bitmap]]
 
-- Week 5: Data Structures
+- Week 5: **Data Structures**
     - [[Abstract Data Types]]
     - [[Arrays#Resizing arrays]]
     - [[Linked Lists]]
@@ -59,19 +59,19 @@ CS50 is Harvard University's introductory course in computer science and program
     - [[Hashing]] & [[Hash Tables]]
     - [[Tries]]
 
-- Week 6: Python
+- Week 6: **Python**
     - [[Python]]
 
-- Week 6.5: Artificial Intelligence
+- Week 6.5: **Artificial Intelligence**
     - [[Introduction to Artificial Intelligence]]
 
-- Week 7: SQL
+- Week 7: **SQL**
     - [[SQL]]
     - [[Relational Databases]]
     - [[Race Conditions]]
     - [[SQL Injection Attacks]]
 
-- Week 8: HTML, CSS, and JavaScript
+- Week 8: **HTML, CSS, and JavaScript**
     - [[The Internet]]
         - [[TCP & IP]], [[Domain Name System (DNS)]], [[Dynamic Host Configuration Protocol (DHCP)]], [[Hypertext Transfer Protocol (HTTP)]]
     - [[HTML]]
@@ -80,7 +80,10 @@ CS50 is Harvard University's introductory course in computer science and program
     - [[Bootstrap]]
     - [[JavaScript]]
 
-- Week 9: Flask
+- Week 9: **Flask**
     - [[Flask]]
     - [[Cookies and Sessions]]
-    - [[]]
+    - [[Asynchronous Javascript and XML (AJAX)]]
+    - [[Application Programming Interface (API)]]
+
+- Week 10: **Cybersecurity**
