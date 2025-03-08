@@ -23,4 +23,28 @@ graph LR
     - That way, when a user goes to log in, the password they input can be hashed with the same function and compared against the stored hashed password.
 
 - However, there are tables called *Rainbow Tables* that map known hashed outputs to their inputs. This means that hackers, once they get their hands on a password database, can spend their time decoding what the original input was.
-    - However, this is still a time consuming approach 
+    - This is still a time consuming approach and it doesn't necessarily put all our passwords at risk since they may not be in here due to the sheer size of the number of possibilities.
+
+# Salting
+
+- To combat the threat of rainbow tables, there is a technique known as salting wherein an extra input is added to the hash function input. This could be something like two extra characters but they cause the hash to become significantly more difficult to crack.
+    - The salt is preserved in the hash so we know what to apply when the user inputs their password.
+
+- For illustration:
+
+```mermaid
+graph LR
+    A["50 (salt)"] --> B["hash function"]
+    A2["cherry (password)"] --> B
+    B --> C["50kbbTM.xAinU (hash output)"]
+```
+
+- But when changing the salt, the entire hash changes:
+
+```mermaid
+graph LR
+    A["49 (salt)"] --> B["hash function"]
+    A2["cherry (password)"] --> B
+    B --> C["493vg4DKt4MKg (hash output)"]
+```
+

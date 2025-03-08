@@ -76,7 +76,7 @@ for passcode in product(ascii_letters + digits + punctuation, repeat=8):
 
 - If you ever start a forgotten password process with a website that then sends you your unencrypted password in an email, that is horrible design.
     - Websites should *not* be storing passwords that are unobfuscated from the user's actual password.
-    - The mechanisms that websites use to obfuscate passwords is called *hashing*.
+    - The mechanism that websites use to obfuscate passwords is called *hashing*.
 
 - On the server side, there will be a database or a text file that associates usernames with passwords. 
     - However, if those passwords were not obfuscated, then any hacker that gets their hands on this has an easy way in. They can further use these passwords in what is referred to as *password stuffing*, where the assumption is that you've re-used the same password on multiple sites.
